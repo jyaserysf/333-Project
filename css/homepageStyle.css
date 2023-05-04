@@ -1,0 +1,30 @@
+#header{
+    background-color: #23286B;
+    height: 100px;
+}
+
+#display{
+    background-color: #EEEEEE;
+    padding: 70px 30px 30px 30px;
+    display:flex;
+    justify-content: center;
+}
+
+.displaysection{
+   
+}
+
+#tagline{
+    padding: 30px 80px;
+    width:40%;
+}
+
+#tagline h2{
+    padding: 40px+ 0 20px 60px;
+}
+
+#displayImg img{
+   transform: scaleX(-1);
+}
+
+
