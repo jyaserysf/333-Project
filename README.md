@@ -2,8 +2,8 @@
 
 ### add all your work here 
 
-## Color palette
-
+## [Color palette](https://colorhunt.co/palette/161853292c6dfaedf0ec255a)
+dark blue #161853 less darker blue #292C6D pinkish beige #FAEDF0 red #EC255A
 ## Important Links 
 [Git Tutorial](https://youtu.be/RGOj5yH7evk), 
 [Bootstrap 20 minute review](https://youtu.be/eow125xV5-c),
