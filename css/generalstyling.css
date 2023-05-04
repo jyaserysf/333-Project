@@ -1,3 +1,18 @@
 body{
     margin: 0;
+   
+}
+
+#header{
+    background-color: #161853;
+    
+}
+
+#header a{
+    color: #FAEDF0;
+}
+
+footer{
+    background-color: #161853;
+    color: #FAEDF0;
 }
