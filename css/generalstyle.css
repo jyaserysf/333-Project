@@ -15,8 +15,12 @@ a span{
     
 }
 
-#header li a{
+a.nav-link{
     color: #FAEDF0;
+}
+
+a.nav-link:hover{
+    color: #EC255A;
 }
 
 #headLogin{
@@ -25,8 +29,9 @@ a span{
 }
 
 #headLogin:hover{
-    background-color: #FAEDF0;
+    background-color: #EC255A;
     color: #161853;
+    border-color: #EC255A;
 }
 
 #headRegister{
@@ -35,8 +40,8 @@ a span{
 }
 
 #headRegister:hover{
-    color: #FAEDF0;
-    border-color: #FAEDF0;
+    color: #EC255A;
+    border-color: #EC255A;
     background-color: #161853;
 }
 
