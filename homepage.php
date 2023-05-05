@@ -37,6 +37,14 @@
     
     <div id="explore">
         <h1> Explore </h1>
+        <div class="card">
+            <div class="card-pic"><img src="images/pic1.jpg"  > </div> 
+            <div class="card-details">
+                <p class="text-title">Card title</p>
+                <p class="text-body">Here are the details of the card</p>
+            </div>
+            <button class="card-button">start</button>
+        </div>
     </div>
     <div id="pastsurvey">
 
