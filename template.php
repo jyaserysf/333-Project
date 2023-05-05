@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="header"> <?php include 'header.html'?> </div>
-    <div class="cointainer m-4" id="main">
+    <div class="cointainer" id="main">
 add content here
     </div>
     <div > <?php include 'footer.html'?> </div>
