@@ -4,34 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/generalstyle.css">
     <link rel="stylesheet" href="css/homepageStyle.css">
-    <link rel="stylesheet" href="css/generalstyling.css">
+   
 </head>
 <body>
-    <div id="header">
-        
-    </div>
-    <div id="display">
-        <div class="displaysection" id="tagline">
-            <h1> Something about surveys </h1>
-            <h2> Create an account now! </h2>
-            <button action="" > Create </button>
+    <div id="header"> <?php include 'header.html'?> </div>
+    <!-- Page content in this container -->
+    <div class="cointainer " id="main">
+        <div class="seperate">
+            <hr>
         </div>
-        <div class="displaysection" id="displayImg">
-            <img src="img\Customer Survey-amico (1).png" width=450px  >
-        </div>
-        
-    </div>
+         
+        <div class="top-display d-flex justify-content-around ">
+            
+            <div class="displaysection d-flex flex-column align-items-center justify-content-center flex-grow-1" id="tagline">
+             <h1 class="m-5"> Something about surveys </h1>
+             <div> 
+                <h2 class="mb-4"> Create an account now! </h2> 
+                <div class="d-grid gap-2 col-6 mx-auto my-2">
+                    <button class="btn p-2 create" type="button"> Create </button></div>
+             </div>
+            </div>
+            <div class="displaysection flex-grow-2 me-5 p-2" id="displayImg">
+            <img src="img\Customer Survey-amico.svg" width=450px  >
+            </div>
+        </div> 
+    
+   
+    
     <div id="explore">
-
+        <h1> Explore </h1>
     </div>
     <div id="pastsurvey">
 
     </div>
-    <div id="footer">
-
     </div>
+    <div > <?php include 'footer.html'?> </div>
 
 
 </body>

@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="css/generalstyle.css">
 </head>
 <body>
+    
     <div id="header"> <?php include 'header.html'?> </div>
+    <!-- Page content in this container -->
     <div class="cointainer" id="main">
-add content here
+        add content here
     </div>
     <div > <?php include 'footer.html'?> </div>
 </body>
