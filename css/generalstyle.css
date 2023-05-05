@@ -1,12 +1,14 @@
 body{
     margin: 0;
-    
-   
+    background-color: #FAEDF0;
 }
 
-.main-content{
-    margin: 0 auto;
-    background-color: #292C6D;
+ a span{
+    color: #FAEDF0;
+ }
+#main{
+    min-height: 40vw;
+    
 }
 
 #header{
@@ -14,13 +16,18 @@ body{
     
 }
 
-#header li a, #header button{
+#header li a{
     color: #FAEDF0;
 }
 
 #footer{
     background-color: #161853;
     color: #FAEDF0;
+    bottom: 0;
+}
+
+.smicon a {
+    text-decoration: none;
 }
 
 #headLogin{
@@ -30,5 +37,5 @@ body{
 
 #headRegister{
     background-color: #FAEDF0;
-    
+    color: #161853;
 }
