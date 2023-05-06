@@ -36,13 +36,23 @@ hr{
 }
 
 #explore{
-    padding: 5% 10%;
+    padding: 5% 7%;
     min-height: 400px;
    
 }
 
-#explore h1{
+#explore h1,h2,h3{
     color: #161853;
+}
+
+.explore-head{
+    margin-bottom: 3%;
+}
+
+#pastsurvey{
+    padding: 5% 7%;
+    min-height: 400px;
+    background-color: #292C6D;
 }
 
 
