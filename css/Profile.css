@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:ital,wght@1,100&display=swap');
+
+
+*{
+    /* get rid of all padding & margin */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+	
+}
+
+html,body
+{
+	height:100%;
+	width:100%;
+}
+
+body,input
+{
+    font-family: "Poppins", sans-serif;
+}
+
+body
+{
+	background-image: linear-gradient(to left bottom, rgb(248, 196, 65), rgb(252, 232, 232));
+	background-repeat: no-repeat;
+}
+
+#header
+{
+	width: 100%;
+	height:10%;
+	background-color: rgba(255, 166, 0, 0.411);
+}
+
+.container
+{
+    min-height: 400px;
+    max-width: 1200px;
+	padding: 3%;
+    margin-left: 2.5%;
+}
+
+.outer
+{
+    position: relative;
+	background-image: linear-gradient(to top right,#fdf1a1,#fff7c5);
+	border-radius: 2rem;
+	width: 85%;
+	height:90%;
+	width: 100%;
+	min-height: 460px;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+
+}
+
+
+.inner
+{
+	width: 95%;
+	height: 95%;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	display:flex;
+	flex-wrap: wrap;
+}
+
+.one
+{
+	height: 90%;
+	width: 33.33%;
+	/* border-right: #c4c0c07d 2px solid; */
+}
+
+.two
+{
+	height: 90%;
+	width: 66.67%;
+}
+
+
+.two1,.two2
+{
+	display:flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+}
+
+.two1
+{
+	height: 65%;
+	width: 100%;
+}
+
+form
+{
+	display:flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	margin-top: -7%;
+}
+
+#form1
+{
+	margin-top: -9%;
+}
+
+
+.myprofile
+{
+	margin-top: 2%;
+	margin-left: 2%;
+	width: 100%;
+}
+
+.field
+{
+	margin-bottom: -1%;
+	width:45%;
+	height: 20%;
+	position:relative;
+}
+
+label
+{
+	font-size: 0.7rem;
+	color: #bbb;
+	pointer-events: none;
+	position:absolute;
+	left: 4.75%;
+	transform:translateX(-10%);
+	top: 50%;
+	transform:translateY(-55%);
+}
+
+.pass label
+{
+	left: 23%;
+	transform:translateX(-70%) ;
+	top: 50%;
+	transform:translateY(-70%);
+}
+
+.lastrowform1
+{
+	width: 100%;
+	height: 25%;
+	display: flex;
+	padding-left: 3.5%;
+}
+
+.phone
+{
+	width: 80%;
+	height: 100%;
+	position:relative;
+}
+
+.submitbutton
+{
+	height: 80%;
+	width: 25%;
+	margin-right: 27%;
+	padding: 0.5%;
+}
+
+.submitbutton input
+{
+	cursor: pointer;
+	background-color: #e3362c;
+	border-radius: 0.8rem;
+	color: #fff;
+	height: 100%;
+	width: 100%;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.phone-number
+{
+	width: 75%;
+	position: absolute;
+	left: 17%;
+	height: 80%;
+}
+
+select
+{
+	cursor: pointer;
+	bottom: 8%;
+	width: 15%;
+	height: 70%;
+	border-radius: 0.8rem;
+	position: absolute;
+	top: 0;
+	font-size: 0.7rem;
+	font-weight: bold;
+	text-align: center;
+	/**font-family: "Roboto";*/
+}
+
+.two2
+{
+	height: 40%;
+	width: 100%;
+	position: relative;
+	margin-left: 2%;
+	border-top: #c4c0c07d 2px solid;
+	transition-duration: 0.6s;
+}
+
+
+.form2
+{
+	width: 50%;
+	height: 100%;
+	margin-right: 3%;
+	margin-top: 1.5%;
+	transform: translateY(-20%);
+    /* display: none; */
+}
+
+.pass /*contains password fields*/
+{
+	width: 100%;
+	display:flex;
+	justify-content:center;
+	margin-bottom: 2.5%;
+	height: 25%;
+}
+
+
+#oldpass
+{
+	margin-top: 11%;
+}
+
+.changepass
+{
+	width: 35%;
+	height: 18%;
+	position: absolute;
+	top: 55%;
+	right: 110%;
+}
+
+.changepass input[type=submit]
+{
+	margin-left: 15%;
+	font-size: 0.73rem;
+	cursor: pointer;
+	background-color: #e3362c;
+	border-radius: 0.8rem;
+	padding: 0.5%;
+	color: #fff;
+	height: 100%;
+	width: 100%;
+}
+
+input[type=submit]:hover, #profile-label:hover
+{
+	background-color: rgb(95, 6, 134);
+	color: rgb(255, 242, 0);
+	transition-duration: 0.5s;
+}
+
+
+input,select
+{
+	border: none;
+	outline: none;
+}
+
+input
+{
+	border-radius:0.8rem;
+	padding-left: 4%;
+	background-color: rgb(255, 255, 255);
+}
+
+.phone-number input
+{
+	padding-left: 2%;
+}
+
+input[type=text],input[type=email]
+{
+	height: 90%;
+}
+
+input[type=password]
+{
+	height: 75%;
+}
+
+.input-field.active
+{
+	border-color: #151111;
+}
+
+.input-field.active + label
+{
+	font-size: 0.69rem;
+	top:-45%;
+	transform: translateX(-10%);
+	color: #4be01a;
+	font-weight: bold;
+	transition-duration: 0.45s;
+}
+
+
+.input-field.active + label.pl {
+	top: -40%;
+	color: #1a6ce0;
+	font-weight: bold;
+	transition-duration: 0.45s;
+  }
+
+/*Realted to (div one)*/
+
+
+#image-file
+{
+	display: none;
+}
+
+.one
+{
+	display:flex;
+	flex-wrap: wrap;
+}
+
+#display_name
+{
+	display: inline-block;
+	width: 95%;
+	height: 10%;
+    text-align: center;
+}
+
+#profilePicture
+{
+	width:7rem;
+	height: 7rem;
+	border-radius: 10rem;
+	margin-left: 25%;
+	margin-top: 5%;
+}
+
+.profile-image
+{
+    min-height:400px;
+    padding-top:2% ;
+	margin-top: 4%;
+	margin-left: 10%;
+    background-color: rgba(197, 197, 197, 0.281);
+    border-radius: 25px;
+}
+
+.profile-image p
+{
+	margin-left: 28%;
+	font-size:0.9rem;
+}
+
+
+#profile-label
+{
+	pointer-events: all;
+	cursor: pointer;
+	margin-left: 5.35%;
+	margin-top: 2.5%;
+	border-radius: 0.8rem;
+	background-color: #e3362c;
+	color: #fff;
+	padding: 0.5%;
+    font-size: 0.70rem;
+}
+
+
+@media(max-width:768px)
+{
+
+    html
+    {
+    position: fixed; /*prevent scrolling*/
+    }
+    
+    .two1
+    {
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        position: relative;
+        min-height: 240px;
+    }
+
+    #form1
+    {
+        position: absolute;
+        top: 3rem;
+
+    }
+    
+    .lastrowform1
+    {
+        position: relative;
+    }
+
+    .phone
+    {
+        width: 100%;
+        position: absolute;
+        left: 38px;
+    }
+
+    #code
+    {
+        margin-top:2px;
+        height: 1.35rem;
+        margin-left:4px ;
+        
+    }
+
+    .submitbutton
+    {
+        position: absolute;
+        height: 1.8rem;
+        width: 7rem;
+        top: 1.85rem;
+        left: 10.25rem;
+    }
+
+    .myprofile
+    {
+        position: absolute;
+        left:35%;
+        bottom: 15rem;
+        font-size:0.8rem ;
+    }
+
+    .field
+    {
+        margin-bottom: 0.8rem;
+        height: 1.7rem;
+    }
+
+
+
+    #form1
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        margin-right: 70px;
+	    margin-top: -5%;
+        }
+
+
+    .pass
+    {
+    margin-bottom: 0.4rem;
+	height: 21.5%;
+    flex-wrap: wrap;
+    }
+
+    .changepass
+    {
+        width: 8rem;
+        height: 1.65rem;
+        position: static;
+        margin-right:2.25rem;
+    }
+
+    label
+    {
+        left: 1.75rem;
+    }
+
+    .pass label
+    {
+        top: 75%;
+        left: 0.08rem;
+        transform:translateY(-65%);
+    }
+
+    .input-field.active + label
+    {
+        font-size: 0.65rem;
+        top:-50%;
+        transform: translateX(-1.5rem);
+        color: #4be01a;
+        font-weight: bold;
+        transition-duration: 0.45s;
+    }
+
+    .input-field.active + label.pl {
+        top: -15%;
+      }
+
+
+
+    .two2 :first-child
+    {
+        margin-top: 5.5%;
+    }
+ 
+    .one
+    {
+        width: 30%;
+    }
+    
+    #profilePicture
+    {
+        margin-left: 2.5%;
+    }
+    
+    
+    .profile-image p
+    {
+        margin-left: 0;
+        font-size:0.8rem;
+    }
+
+    .profile-image
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin:0;
+        padding-right: 2%;
+    }
+    
+    
+    #profile-label
+    {
+        margin-left: 0.5%;
+        margin-top: -2%;
+        padding: 0.9%;
+    }
+
+
+    #display_name
+    {
+        font-size: 0.7rem;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+@media(max-width:400px) {
+
+    body
+    {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 9900px;
+    }
+
+    .two1 .field
+    {
+        margin-left: 10px;
+    }
+
+    .field
+    {
+        height: 23px;
+    }
+
+
+    input
+    {
+        width: 195px;
+    }
+
+     .phone-number input
+    {
+        width: 140px;
+        margin-left: 12.5px;
+    }
+
+    select
+    {
+        width: 50px;
+        
+    }
+
+    .phone
+    {
+        margin-left: 20px;
+    }
+
+    .field label
+    {
+        width: 100px;
+        font-size: 0.7rem;
+    }
+
+    .submitbutton
+    {
+        height: 19.5px;
+        width: 87px;
+        left: 6.75rem;
+    }
+
+    input[type=submit]
+    {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    .two2
+    {
+        padding: 10px;
+        border-top: 0;
+    }
+
+    .two
+    {
+        margin-left: -10px;
+    }
+
+    .pass
+    {
+        margin-left: 37px;
+        height: 26px;
+    }
+
+    .pass label
+    {
+        width:150px;
+        margin-left: -20px;
+    }
+
+
+    .changepass
+    {
+        height: 18.5px;
+        width: 87px;
+        margin-left:28px;
+    }
+
+    .changepass input[type=submit]
+    {
+        font-size: 10px;
+        width: 100px;
+    }
+
+
+    #profilePicture
+    {
+        width:5rem;
+        height: 5rem;
+        border-radius: 10rem;
+        margin-top: 5%;
+    }
+ 
+    .profile-image p, #display_name
+    {
+        margin-top: 5px;
+        margin-left: 0;
+        font-size:0.65rem;
+    }
+
+    #profile-label
+    {
+        margin-left:-24.5px;
+        margin-top: -50px;
+        padding: 0.5% 1.5%;
+        font-size: 10px;
+        height: 18.5px;
+        width: 87px;
+        text-align: center;
+    }
+
+    .profile-image
+    {
+        padding:px ;
+    }
+
+
+    .input-field.active + label
+    {
+        font-size: 0.5rem;
+        top:-40%;
+    }
+    .input-field.active + label.pl {
+        top: -25%;
+      }
+    
+
+}
+
+
+
+
