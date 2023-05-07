@@ -137,7 +137,7 @@
     <div > <?php include 'footer.html'?> </div>
 
     
-  <script src="Profile.js">
+  <script src="javascript/Profile.js">
   </script>
 </body>
 </html>
