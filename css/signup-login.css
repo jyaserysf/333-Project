@@ -1,0 +1,421 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+
+*,
+*::before,
+::after {
+    /* get rid of all pattern & margin */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, input {
+    font-family: "Poppins", sans-serif;
+}
+
+main {
+    width: 100%;
+    /* will expand to contain the new content */
+    min-height: 100vh;  
+    overflow: hidden;
+    background-color: white;
+    /* In smaller screens we're gonna have some
+       space between the wight box and the edges
+       of the viewports */
+    padding: 2rem;
+    display: flex;
+    /* align center verticaly */
+    align-items: center;
+    /* align center horizontally */
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    height: 640px;
+    background-color: #292C6D;
+    border-radius: 3.3rem;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+}
+
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 4.1rem);
+    height: calc(100% - 4.1rem);
+    /* move to center */ 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.forms-area {
+    position: absolute;
+    height: 100%;
+    width: 45%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: 0.8s ease-in-out;
+}
+
+.image-area {
+    position: relative;
+    height: 100%;
+    width: 55%;
+    top: 0;
+    left: 45%;
+    background-color: white;
+    border-radius: 3.3rem;
+    transition: 0.8s ease-in-out;
+}
+
+.image-area-signup {
+    position: fixed;
+    height: 100%;
+    width: 55%;
+    top: 0;
+    left: 45%;
+    background-color: white;
+    border-radius: 3.3rem;
+    transition: 0.8s ease-in-out;
+}
+
+form {
+    max-width: 260px;
+    width: 100%;
+    height: 100%;
+    /* push to center */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* start in 1st col line and end in 2nd col line */
+    grid-column: 1 / 2;
+    /* start in 1st row line and end in 2nd row line */
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    width: 35px;
+    margin-right: 0.6rem;
+}
+
+.logo h4 {
+    font-size: 1.3rem;
+    margin-top: -1px;
+    letter-spacing: -0.5px;
+    color: #EC255A;
+}
+
+.heading h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    padding-bottom: 4%; /* for the "Not registered yet? */
+}
+
+.Link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.7rem;
+    transition: 0.3s;
+}
+
+.Link:hover {
+    color: #EC255A;
+}
+
+.input-area {
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.95rem;
+    color: white;
+    transition: 0.4s;
+}
+
+#rememberMeBtn {
+    margin-bottom: 0;
+}
+
+.input-field-checkbox {
+    padding: 0;
+}
+
+label {
+    position: absolute;
+    left: 0; 
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.label_rememberme {
+    left: 9%;
+    font-size: 0.75rem;
+    color: white;
+    pointer-events: none;
+    padding-bottom: 5%;
+}
+
+.input-field.active {
+    border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+    font-size: 0.75rem;
+    top: -2px;
+}
+
+.login-btn, .signup-btn {
+    /*so we can set its width and height*/
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: none;
+    /*finger*/
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.login-btn:hover, .signup-btn:hover {
+    background-color: #EC255A;
+    color: white;
+}
+
+.text {
+    color: #bababa;
+    font-weight: 400;
+    font-size: 0.7rem;
+}
+
+.toggle {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.7rem;
+    transition: 0.3s;
+}
+
+.toggle:hover {
+    color: #EC255A;
+}
+
+#img1 {
+    width: 90%;
+    margin-top: 30%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    transition: opacity 0.3s;
+}
+
+#img2 {
+    width: 90%;
+    margin-top: 30%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+    transition: opacity 0.3s;
+}
+
+#img3 {
+    width: 90%;
+    margin-top: 30%;
+    margin-left: 5%;
+    margin-right: 5%;
+    position: absolute;
+}
+
+.resetPassword-btn {
+    /*so we can set its width and height*/
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    color: black;
+    border: none;
+    /*finger*/
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.75rem;
+    transition: 0.3s;
+}
+
+.resetPassword-btn:hover {
+    background-color: #EC255A;
+    color: white;
+}
+
+.backToLogin-btn {
+    /*so we can set its width and height*/
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    background-color: #434687;
+    color: #fff;
+    border: none;
+    /*finger*/
+    cursor: pointer;
+    border-radius: 0.8rem;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.backToLogin-btn:hover {
+    background-color: #EC255A;
+}
+
+form.forgotPassword-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.image-area #img2 {
+    opacity: 0;
+}
+
+
+main.forgotPasswordMode form.login-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.forgotPasswordMode .image-area #img1 {
+    opacity: 0;
+}
+
+
+main.forgotPasswordMode form.forgotPassword-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+main.forgotPasswordMode .image-area #img2 {
+    opacity: 1;
+}
+
+
+main.forgotPasswordMode .forms-area {
+    left: 55%;
+}
+
+main.forgotPasswordMode .image-area {
+    left: 0;
+}
+
+/* Responsiveness */
+
+/* tablet */
+@media screen and (max-width: 850px) {
+    .box {
+        height: auto;
+        max-width: 550px;
+        overflow: hidden;
+    }
+
+    .inner-box {
+        position: static;
+        transform: none;
+        width: revert;
+        height: revert;
+        padding: 2rem;
+    }
+
+    .forms-area {
+        position: revert;
+        width: 100%;
+        height: auto;
+    }
+
+    .image-area, .image-area-signup {
+        display: none;
+    }
+
+    form {
+        max-width: revert;
+        padding: 1.5rem 2.5rem 2rem;
+        transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+    }
+
+    .heading {
+        margin: 2rem 0;
+    }
+
+    /* trans animation */
+
+    form.forgotPassword-form {
+        transform: translateX(100%);
+    }
+
+    main.forgotPasswordMode form.login-form {
+        transform: translateX(-100%);
+    }
+
+    main.forgotPasswordMode form.forgotPassword-form {
+        transform: translateX(0%);
+    }
+}
+
+/* mobile */
+@media screen and (max-width: 530px) {
+    main {
+        padding: 1rem;
+    }
+
+    .box {
+        border-radius: 2rem;
+    }
+
+    .inner-box {
+        padding: 1rem;
+    }
+
+    .image-area, .image-area-signup {
+        display: none;
+    }
+
+    form {
+        padding: 1rem 2rem 1.5rem;
+    }
+}
+
+
+
+
+
