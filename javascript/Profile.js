@@ -1,3 +1,7 @@
+if (window.history.replaceState) {
+    window.history.replaceState(null, null, window.location.href);
+  }
+  
 const inputs = document.querySelectorAll(".input-field");
 
 inputs.forEach((inp) => {
@@ -18,3 +22,5 @@ image_file.onchange = function()
 {
   profile_pic.src = URL.createObjectURL(image_file.files[0]);
 }
+
+

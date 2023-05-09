@@ -23,11 +23,15 @@
         <div class="one">
 
           <div class="profile-image">
-            <h3 id="display_name"> MUNTADHER ALMUTAWAJ</h3>
+            <h3 style='color:#161853' id="display_name"> MUNTADHER ALMUTAWAJ</h3>
             <p>@Almutawaj</p>
             <img src="img/Profile-Image-Trail.jpeg" alt="The profile image should be here" id="profilePicture">
             <label id="profile-label" for="image-file">Update Image</label>
             <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file">
+            <a class="history" href="history.php">View History</a>
+            <form method="post">
+            <input class="pass_change" type="submit" value='Change Password?' name='pass_change'>
+            </form>
           </div>
 
         </div>
@@ -42,14 +46,14 @@
             </div>
 
             <form id="form1" action="">
-              <div class="firstname field">
-                <input size="30" id="firstname" class="input-field"  type="text" minlength="4" autocomplete="off" required >
-                <label>First Name</label>
+              <div class="fullname field">
+                <input size="30" id="fullname" class="input-field"  type="text" minlength="4" autocomplete="off" required >
+                <label>Full Name</label>
               </div>
   
-              <div class="lastname field">
-                <input size="30" id="lastname" class="input-field"  type="text" minlength="4" autocomplete="off" required >
-                <label>Last Name</label>
+              <div class="role field">
+                <input size="30" id="role" class="input-field"  type="text" minlength="4" autocomplete="off" required >
+                <label>Role</label>
               </div>
   
               <div class="username field">
@@ -99,6 +103,22 @@
           <div class="two2">
 
 
+            <?php
+            if(isset($_POST['pass_change']))
+            {
+                echo "
+                <style>
+                .form2
+                {
+                    display: block;
+                }
+            </style>
+                ";
+            }
+            ?>
+
+
+
 
             <form class="form2" action="">
               
@@ -136,7 +156,7 @@
     <div > <?php include 'footer.html'?> </div>
 
     
-  <script src="javascript/Profile.js">
-  </script>
+  <script src="javascript/Profile.js"></script>
+  <script src="javascript/Common(History and Profile).js"></script>
 </body>
 </html>

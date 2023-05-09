@@ -129,7 +129,7 @@ label
 
 .pass label
 {
-	left: 23%;
+	left: 15%;
 	transform:translateX(-70%) ;
 	top: 50%;
 	transform:translateY(-70%);
@@ -211,7 +211,7 @@ select
 	margin-right: 3%;
 	margin-top: 1.5%;
 	transform: translateY(-20%);
-    /* display: none; */
+    display: none;
 }
 
 .pass /*contains password fields*/
@@ -251,11 +251,12 @@ select
 	width: 100%;
 }
 
-input[type=submit]:hover, #profile-label:hover
+input[type=submit]:hover, #profile-label:hover, .history:hover, .pass_change:hover
 {
 	background-color: rgb(95, 6, 134);
 	color: rgb(255, 242, 0);
 	transition-duration: 0.5s;
+    
 }
 
 
@@ -358,18 +359,40 @@ input[type=password]
 }
 
 
-#profile-label
+#profile-label, .history, .pass_change
 {
 	pointer-events: all;
 	cursor: pointer;
-	margin-left: 5.35%;
-	margin-top: 2.5%;
+	margin-left: 6.9%;
+	margin-top: 5.5%;
 	border-radius: 0.8rem;
 	background-color: #e3362c;
 	color: #fff;
 	padding: 0.5%;
     font-size: 0.70rem;
 }
+
+
+.history, .pass_change
+{
+    text-decoration: none;
+    position: absolute;
+    top: 55%;
+    right: 75%;
+    transform: translateY(-60%);
+    transform: translateX(-75%);
+    padding: 0.5%;
+
+}
+
+.pass_change
+{
+    top: 63.5%;
+    right: 70.25%;
+
+}
+
+
 
 #header
 {
@@ -384,11 +407,6 @@ input[type=password]
 @media(max-width:768px)
 {
 
-    html
-    {
-         /*position: fixed; prevent scrolling*/
-    }
-    
     .two1
     {
         margin: 0;
@@ -484,8 +502,9 @@ input[type=password]
     .pass label
     {
         top: 75%;
-        left: 0.08rem;
         transform:translateY(-65%);
+        right: 70%;
+        transform:translateX(-65%);
     }
 
     .input-field.active + label
