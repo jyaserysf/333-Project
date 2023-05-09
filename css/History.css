@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:ital,wght@1,100&display=swap');
+
+
+*{
+    /* get rid of all padding & margin */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+	
+}
+
+
+body,input
+{
+    font-family: "Poppins", sans-serif;
+}
+
+body
+{
+	background-image: linear-gradient(to left bottom, rgb(248, 196, 65), rgb(252, 232, 232));
+	background-repeat: no-repeat;
+}
+
+.container
+{
+    min-height: 400px;
+    max-width: 1200px;
+	padding: 3%;
+    margin-left: 2.5%;
+}
+
+.outer
+{
+    position: relative;
+	background-image: linear-gradient(to top right,#fdf1a1,#fff7c5);
+	border-radius: 2rem;
+	width: 85%;
+	height:90%;
+	width: 100%;
+	min-height: 460px;
+    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+
+}
+
+
+.inner
+{
+	width: 95%;
+	height: 95%;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	display:flex;
+	flex-wrap: wrap;
+}
+
+
+.area1
+{
+	height: 90px;
+	width: 100%;
+    background-color: yellow;
+}
+
+
+
+@media(max-width:768px)
+{
+
+    html
+    {
+        margin: 0;
+    /* position: fixed; 
+     (prevent scrolling)*/
+    }
+    
+}
+
+
+@media(max-width:400px) {
+
+    body
+    {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-height: 700;
+    }
+    
+
+}
+
+
+
+

@@ -10,11 +10,6 @@
 	
 }
 
-html,body
-{
-	height:100%;
-	width:100%;
-}
 
 body,input
 {
@@ -25,14 +20,10 @@ body
 {
 	background-image: linear-gradient(to left bottom, rgb(248, 196, 65), rgb(252, 232, 232));
 	background-repeat: no-repeat;
+    
 }
 
-#header
-{
-	width: 100%;
-	height:10%;
-	background-color: rgba(255, 166, 0, 0.411);
-}
+
 
 .container
 {
@@ -70,14 +61,14 @@ body
 
 .one
 {
-	height: 90%;
+	height: 100%;
 	width: 33.33%;
 	/* border-right: #c4c0c07d 2px solid; */
 }
 
 .two
 {
-	height: 90%;
+	height: 100%;
 	width: 66.67%;
 }
 
@@ -380,13 +371,22 @@ input[type=password]
     font-size: 0.70rem;
 }
 
+#header
+{
+    height: 100%;
+}
+
+.search
+{
+    margin-top: 27%;
+}
 
 @media(max-width:768px)
 {
 
     html
     {
-    position: fixed; /*prevent scrolling*/
+         /*position: fixed; prevent scrolling*/
     }
     
     .two1
@@ -554,12 +554,13 @@ input[type=password]
 
 @media(max-width:400px) {
 
+  
     body
     {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        min-height: 9900px;
+        min-height: 800px;
     }
 
     .two1 .field
