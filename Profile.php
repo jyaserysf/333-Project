@@ -1,3 +1,10 @@
+<?php
+/*session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
+if(!isset($_SESSION['user'])) {
+    header("location: Login.php");
+    die();
+}*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,21 +54,15 @@
 
             <form id="form1" method="post">
               <div class="fullname field">
-                <?php if(isset($_POST['fullname'])||isset($_POST['role'])||isset($_POST['username'])||isset($_POST['email'])||isset($_POST['number']))
-                         echo
-                        '<style>
-                         .field label{
-                         font-size: 0.69rem;
-                         top:-45%;
-                         transform: translateX(-10%);
-                         color: #4be01a;
-                         font-weight: bold;
-                         transition-duration: 0.45s;
-                         }
-                         </style>';
 
+                <?php 
+                # write a code here to retrieve the information from the database instead of null in echo isset($_POST['fullname']) ? $_POST['fullname']:null;
+                # instead of all the below if statement make the style directly printed (No need forif statement because the data of the user must be placed in the fields initially)
+                if(isset($_POST['fullname'])||isset($_POST['role'])||isset($_POST['username'])||isset($_POST['email'])||isset($_POST['number']))
+                        { echo"<style>";include 'css/moveUp.css'; echo "</style>";}
                 ?>
-                <input size="30" name="fullname" value="<?php echo isset($_POST['fullname']) ? $_POST['fullname']:null;?>" class="input-field"  type="text"  autocomplete="off">
+                
+                <input size="30" name="fullname" value="<?php echo isset($_POST['fullname']) ? $_POST['fullname']:"place it here from the database";?>" class="input-field"  type="text"  autocomplete="off">
                 <label>Full Name</label>
               </div>
   
@@ -88,24 +89,33 @@
                   <select id="code" name="code">">
                     
                     <option value="<?php
-                    if(isset($_POST['sf1'])&&$_POST['code']!='Code'){$cc=explode('#',$_POST['code'])[0]; $cn=explode('#',$_POST['code'])[1];
-                        echo $cn.'#'.$cc;
-                      } 
-                      else{echo 'Code';}
+                    if(isset($_POST['sf1'])&&isset($_POST['code']))
+                    {
+                        echo $_POST['code'];
+                    }
+                    else
+                    {
+                        echo "Code";
+                    }
                     ?>">
+                    
                     <?php
-                    if(isset($_POST['sf1'])&&$_POST['code']!='Code'){
-                        echo explode('#',$_POST['code'])[1];
-                      } 
-                      else{echo 'Code';}
+                    if(isset($_POST['sf1'])&&isset($_POST['code']))
+                    {
+                        echo $_POST['code'];
+                    }
+                    else
+                    {
+                        echo "Code";
+                    }
                     ?></option>
                      
-                    <option value="Kuwait#+965">+965</option>
-                    <option value="Saudi-Arabia#+966">+966</option>
-                    <option value="Oman#+968">+968</option>
-                    <option value="United Arab Emirates#+971">+971</option>
-                    <option value="Bahrain#+973">+973</option>
-                    <option value="Qatar#+974">+974</option>
+                    <option value="+965">+965</option>
+                    <option value="+966">+966</option>
+                    <option value="+968">+968</option>
+                    <option value="+971">+971</option>
+                    <option value="+973">+973</option>
+                    <option value="+974">+974</option>
                   </select>
                 </div>
 
@@ -122,17 +132,19 @@
 
           </div>
           <?php
+          include('test_input.php');
         if(isset($_POST['sf1']))
         {
-            $fullname = $_POST['fullname']; 
-            $role = $_POST['role']; 
-            $username = $_POST['username']; 
-            $email = $_POST['email']; 
-            $code = $_POST['code']; 
-            $number = $_POST['number'];
-            if(trim($fullname)==""||trim($role)==""||trim($username)==""||trim($email)==""||trim($number)=="")
+            $fullname = test_input($_POST['fullname']); 
+            $role = test_input($_POST['role']); 
+            $username = test_input($_POST['username']); 
+            $username = strtolower($username);
+            $email = test_input($_POST['email']); 
+            $code = test_input($_POST['code']); 
+            $number = test_input($_POST['number']);
+            if($fullname==""||$role==""||$username==""||$email==""||$number=="")
             {
-                echo "<span style='color:red;font-size:12px;'>Please, fill all the fields !</span>" ;
+                echo "<span style='color:red;font-size:12px;'>Please, fill all the fields properly !</span>" ;
                 echo "
                 <style>
                 .field{
@@ -140,10 +152,10 @@
                 }
                 </style>
                 ";
-               
+                die();
             } 
 
-             else if(trim($code)=="Code")
+             else if($code=="Code")
                 {
                 echo "<span style='color:red;font-size:12px;'>Please, choose your country code !</span>" ;
                     echo "<style>
@@ -152,19 +164,101 @@
                     }
                     </style>
                     ";
+                die();
                 }
+        
+                else if(!preg_match('/^[a-zA-Z ]{7,40}$/',$fullname))
+                {
+                    echo "<style>
+                    .field{
+                        margin-bottom:2%;
+                    }
+                    </style>
+                    ";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter your fullname properly !</span>" ;
+                    die();
+                }
+                else if(!preg_match('/^[a-z ]{4,25}$/i',$role))
+                {
+                    echo "<style>
+                    .field{
+                        margin-bottom:2%;
+                    }
+                    </style>
+                    ";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid role !</span>" ;
+                die();
+                }
+                else if(!preg_match('/^[a-z0-9.]{4,20}$/',$username))
+                {
+                    echo "<style>
+                    .field{
+                        margin-bottom:2%;
+                    }
+                    </style>
+                    ";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid username!</span>" ;
+                die();
+                }
+                else if(!preg_match('/^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,}$/i',$email))
+                {
+                    echo "<style>
+                    .field{
+                        margin-bottom:2%;
+                    }
+                    </style>
+                    ";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid email format !</span>" ;
+                die();
+                }
+                else if($code=='+973'){
+                 if(!preg_match('/^(3|6)[0-9]{7}$/', $number))
+                {
+                    echo "<style>
+                    .field{
+                        margin-bottom:2%;
+                    }
+                    </style>
+                    ";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid Bahraini phone number !</span>" ;
+                die();
+            }
         }
+            else if($code!='+973') # general verification for the rest 5 countries
+            {
+                if(!preg_match('/^[0-9]{8,15}$/',$number))
+                {
+                    echo "<style>
+                    .field{
+                        margin-bottom:2%;
+                    }
+                    </style>
+                    ";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid phone number !</span>" ;
+                die();
+
+            }  
+
+        }
+         else # all input are good => you can update data
+        {
+            try {
+                require('database/connection.php');
+                $stmt = $db->prepare("UPDATE users SET fullname=?, role=?, username=?, email=?, number=?, code=?  WHERE username= ?");
+                $stmt->execute(array($fullname, $role, $username, $email, $number, $code, $_SESSION['user']));
+                $db=null;
+                header("location: Profile.php");
+            }
+            catch(PDOException $e) {
+                die($e->getMessage());
+            }
+        } 
+
+        } # end of isset check
         ?>  
- 
             </form>
     
           </div>
-
-
-
-
-        
-        
 
 
 
@@ -186,8 +280,6 @@
                 ";
             }
             ?>
-
-
 
 
             <form class="form2" action="">
