@@ -99,7 +99,6 @@ if(!isset($_SESSION['user'])) {
                         echo "Code";
                     }
                     ?>">
-                    
                     <?php
                     if(isset($_POST['sf1'])&&isset($_POST['code']))
                     {
@@ -143,127 +142,85 @@ if(!isset($_SESSION['user'])) {
             $username = test_input($_POST['username']); 
             $username = strtolower($username);
             $email = test_input($_POST['email']); 
-            $code = test_input($_POST['code']); 
+            $code = $_POST['code']; 
             $number = test_input($_POST['number']);
             if($firstname==""||$lastname==""||$username==""||$email==""||$number=="")
             {
                 echo "<span style='color:red;font-size:12px;'>Please, fill all the fields properly !</span>" ;
-                echo "
-                <style>
-                .field{
-                    margin-bottom:2%;
-                }
-                </style>
-                ";
+                echo '<style>'; include 'moveUpF.css';'</style>';
                 die();
             } 
 
              else if($code=="Code")
                 {
                 echo "<span style='color:red;font-size:12px;'>Please, choose your country code !</span>" ;
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
+                echo '<style>'; include 'moveUpF.css';'</style>';
                 die();
                 }
         
                 else if(!preg_match('/^[a-zA-Z]{3,15}$/',$firstname))
                 {
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
                     echo "<span style='color:red;font-size:12px;'>Please, enter your firstname properly !</span>" ;
+                    echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
                 }
                 else if(!preg_match('/^[a-z]{3,15}$/i',$lastname))
                 {
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
                     echo "<span style='color:red;font-size:12px;'>Please, enter your lastname properly !</span>" ;
-                die();
+                    echo '<style>'; include 'moveUpF.css';'</style>';
+                    die();
                 }
                 else if(!preg_match('/^[a-z0-9.]{4,20}$/',$username))
                 {
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid username!</span>" ;
-                die();
+                    echo '<style>'; include 'moveUpF.css';'</style>';
+                    die();
                 }
                 else if(!preg_match('/^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,}$/i',$email))
                 {
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid email format !</span>" ;
-                die();
+                    echo '<style>'; include 'moveUpF.css';'</style>';
+                    die();
                 }
-                else if($code=='+973'){
+                else if($code=="+973"){
                  if(!preg_match('/^(3|6)[0-9]{7}$/', $number))
                 {
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid Bahraini phone number !</span>" ;
-                die();
-            }
+                    echo '<style>'; include 'moveUpF.css';'</style>';
+                    die();
+                }
         }
-            else if($code!='+973') # general verification for the rest 5 countries
+            else if($code!="+973") # general verification for the rest 5 countries
             {
                 if(!preg_match('/^[0-9]{8,15}$/',$number))
                 {
-                    echo "<style>
-                    .field{
-                        margin-bottom:2%;
-                    }
-                    </style>
-                    ";
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid phone number !</span>" ;
-                die();
+                    echo '<style>'; include 'moveUpF.css';'</style>';
+                    die();
+                }  
 
-            }  
-
-        }
-         else # all input are good => you can update data
+            }
+         else # all input are valid => you can update data
         {
             try {
                 require('database/connection.php');
                 $stmt = $db->prepare("UPDATE users SET fullname=?, role=?, username=?, email=?, number=?, code=?  WHERE username= ?");
-                $stmt->execute(array($fullname, $role, $username, $email, $number, $code, $_SESSION['user']));
+                $stmt->execute(array($firstname, $lastname, $username, $email, $number, $code, $_SESSION['user']));
                 $db=null;
                 header("location: Profile.php");
+                echo "<span style='color:green;font-size:12px;'>Your Data Has Been Updated Successfully.</span>" ;
+                echo '<style>'; include 'moveUpF.css';'</style>';
             }
             catch(PDOException $e) {
                 die($e->getMessage());
             }
         } 
-
+           
         } # end of isset check
         ?>  
             </form>
     
           </div>
-
-
 
 
 
