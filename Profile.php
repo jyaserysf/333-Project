@@ -56,19 +56,20 @@ if(!isset($_SESSION['user'])) {
               <div class="fullname field">
 
                 <?php 
+                # select statement
                 # write a code here to retrieve the information from the database instead of null in echo isset($_POST['fullname']) ? $_POST['fullname']:null;
-                # instead of all the below if statement make the style directly printed (No need forif statement because the data of the user must be placed in the fields initially)
-                if(isset($_POST['fullname'])||isset($_POST['role'])||isset($_POST['username'])||isset($_POST['email'])||isset($_POST['number']))
+                # instead of all the below if statement make the style directly printed (No need for if statement because the data of the user must be placed in the fields initially)
+                if(isset($_POST['firstname'])||isset($_POST['lastname'])||isset($_POST['username'])||isset($_POST['email'])||isset($_POST['number']))
                         { echo"<style>";include 'css/moveUp.css'; echo "</style>";}
                 ?>
                 
-                <input size="30" name="fullname" value="<?php echo isset($_POST['fullname']) ? $_POST['fullname']:"place it here from the database";?>" class="input-field"  type="text"  autocomplete="off">
-                <label>Full Name</label>
+                <input size="30" name="firstname" value="<?php echo isset($_POST['firstname']) ? $_POST['firstname']:"place it here from the database";?>" class="input-field"  type="text"  autocomplete="off">
+                <label>First Name</label>
               </div>
   
               <div class="role field">
-                <input size="30" name="role" value="<?php echo isset($_POST['role']) ? $_POST['role'] : null;?>" class="input-field"  type="text"  autocomplete="off">
-                <label>Role</label>
+                <input size="30" name="lastname" value="<?php echo isset($_POST['lastname']) ? $_POST['lastname'] : null;?>" class="input-field"  type="text"  autocomplete="off">
+                <label>Last Name</label>
               </div>
   
               <div class="username field">
@@ -135,14 +136,16 @@ if(!isset($_SESSION['user'])) {
           include('test_input.php');
         if(isset($_POST['sf1']))
         {
-            $fullname = test_input($_POST['fullname']); 
-            $role = test_input($_POST['role']); 
+            $firstname = test_input($_POST['firstname']); 
+            $firstname=ucfirst($firstname); 
+            $lastname = test_input($_POST['lastname']);
+            $lastname=ucfirst($lastname);
             $username = test_input($_POST['username']); 
             $username = strtolower($username);
             $email = test_input($_POST['email']); 
             $code = test_input($_POST['code']); 
             $number = test_input($_POST['number']);
-            if($fullname==""||$role==""||$username==""||$email==""||$number=="")
+            if($firstname==""||$lastname==""||$username==""||$email==""||$number=="")
             {
                 echo "<span style='color:red;font-size:12px;'>Please, fill all the fields properly !</span>" ;
                 echo "
@@ -167,7 +170,7 @@ if(!isset($_SESSION['user'])) {
                 die();
                 }
         
-                else if(!preg_match('/^[a-zA-Z ]{7,40}$/',$fullname))
+                else if(!preg_match('/^[a-zA-Z]{3,15}$/',$firstname))
                 {
                     echo "<style>
                     .field{
@@ -175,10 +178,10 @@ if(!isset($_SESSION['user'])) {
                     }
                     </style>
                     ";
-                    echo "<span style='color:red;font-size:12px;'>Please, enter your fullname properly !</span>" ;
+                    echo "<span style='color:red;font-size:12px;'>Please, enter your firstname properly !</span>" ;
                     die();
                 }
-                else if(!preg_match('/^[a-z ]{4,25}$/i',$role))
+                else if(!preg_match('/^[a-z]{3,15}$/i',$lastname))
                 {
                     echo "<style>
                     .field{
@@ -186,7 +189,7 @@ if(!isset($_SESSION['user'])) {
                     }
                     </style>
                     ";
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid role !</span>" ;
+                    echo "<span style='color:red;font-size:12px;'>Please, enter your lastname properly !</span>" ;
                 die();
                 }
                 else if(!preg_match('/^[a-z0-9.]{4,20}$/',$username))
