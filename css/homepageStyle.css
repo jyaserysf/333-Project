@@ -21,10 +21,22 @@ hr{
 
 .create{
     background-color: #EC255A;
-    color: #FAEDF0;
+    
     border-color: #EC255A;
-    text-decoration-style: double;
+    
+    
+}
+
+.create a{
+    color: #FAEDF0;
+    text-decoration: none;
     font-size: 1.3rem; 
+}
+
+.create a:hover{
+    
+    font-size: 1.3rem;
+     
 }
 
 .create:hover{
@@ -32,27 +44,67 @@ hr{
     color: #EC255A;
     border-color: #EC255A;
     text-decoration-style: double;
-    font-size: 1.3rem; 
+    
 }
 
 #explore{
     padding: 5% 7%;
-    min-height: 400px;
+    margin: 3% 0;
+    min-height: 500px;
    
 }
 
-#explore h1,h2,h3{
+#explore h1, #explore h2, #explore h3, #explore svg{
     color: #161853;
 }
+
+#explore svg:hover, #explore .btn:hover{
+    color: #EC255A;
+    outline: none;
+    
+}
+
 
 .explore-head{
     margin-bottom: 3%;
 }
 
+.morelink a{
+    color: #161853;
+}
+
+.morelink a:hover{
+    color:#EC255A;
+}
+
+.cardrow{
+    overflow: visible;
+    min-height: 350px;
+}
+
+
 #pastsurvey{
     padding: 5% 7%;
     min-height: 400px;
+    background-color: #161853;
+    color:#FAEDF0;
+}
+
+.surveydisplay{
     background-color: #292C6D;
+    padding: 5% 6%;
+    min-height: 250px;
+}
+
+.surveydisplay a{
+    text-decoration: none;
+    color: #EC255A;
+    font-size: 1.25em;
+    text-decoration: double;
+}
+
+.surveydisplay .col{
+    padding: 2% 1%;
 }
 
 
