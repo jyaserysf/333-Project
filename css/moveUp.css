@@ -1,0 +1,9 @@
+
+.field label{
+font-size: 0.69rem;
+top:-45%;
+transform: translateX(-10%);
+color: #4be01a;
+font-weight: bold;
+transition-duration: 0.45s;
+}
