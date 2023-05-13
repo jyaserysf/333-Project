@@ -17,7 +17,7 @@
 <body>
     <div id="header"> <?php include 'header.html'?> </div>
     <!-- Page content in this container -->
-    <div class="containerr " id="main">
+    <div class="cointainer " id="main">
         <div class="seperate">
             <hr>
         </div>
