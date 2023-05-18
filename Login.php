@@ -4,6 +4,26 @@ if(isset($_SESSION['user'])) {
     header("location: homepage.php");
     die();
 }
+
+elseif(isset($_COOKIE['remember_me'])) {
+    $cookie = json_decode($_COOKIE['remember_me']);
+    try {
+        require("database/connection.php");
+        $stmt = $db->prepeare("SELECT * FROM users WHERE username=?");
+        $stmt->execute(array($cookie['username']));
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if (password_verify($cookie['password'], $row['password'])) {
+                $_SESSION['user'][$row['username']] = $row['role'];
+                header("location: homepage.php");
+                die();
+            }
+        }
+    }
+    catch(PDOException $e) {
+        echo $e->getMessage();
+    }
+}
+
 elseif(isset($_POST['login'])) {
     extract($_POST);
     require("test_input.php");
@@ -15,7 +35,11 @@ elseif(isset($_POST['login'])) {
         $stmt->execute(array($username));
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if(password_verify($password, $row['password'])) {
-                $_SESSION['user'] = $row['password'];
+                $_SESSION['user'][$row['username']] = $row['role'];
+                if(isset($remember_me)) {
+                    $data = ["username"=>$row['username'], "password"=>$row['password'], "role"=>$row['role']];
+                    setcookie('remember_me',json_encode($data), time() + 5*60);
+                }
                 header("location: homepage.php");
                 die();
             }
