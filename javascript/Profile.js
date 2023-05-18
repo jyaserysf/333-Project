@@ -23,4 +23,11 @@ image_file.onchange = function()
   profile_pic.src = URL.createObjectURL(image_file.files[0]);
 }
 
+/*
+var changePasswordButton = document.getElementById("sf2");
+var form2 = document.getElementById("form2");
 
+changePasswordButton.addEventListener("click", function() {
+    form2.style.display = "block";
+});
+*/

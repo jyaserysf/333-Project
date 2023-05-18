@@ -211,7 +211,6 @@ select
 	margin-right: 3%;
 	margin-top: 1.5%;
 	transform: translateY(-20%);
-    display: none;
 }
 
 .pass /*contains password fields*/
@@ -298,7 +297,7 @@ input[type=password]
 	font-size: 0.69rem;
 	top:-45%;
 	transform: translateX(-10%);
-	color: #4be01a;
+	color: #e01a8a;
 	font-weight: bold;
 	transition-duration: 0.45s;
 }
@@ -512,7 +511,7 @@ input[type=password]
         font-size: 0.65rem;
         top:-50%;
         transform: translateX(-1.5rem);
-        color: #4be01a;
+        color: #e01a70;
         font-weight: bold;
         transition-duration: 0.45s;
     }

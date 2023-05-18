@@ -27,7 +27,7 @@ elseif(isset($_COOKIE['remember_me'])) {
 elseif(isset($_POST['login'])) {
     extract($_POST);
     require("test_input.php");
-    $username = test_input($username);
+    $username = strtolower(test_input($username));
     $password = test_input($password);
     try {
         require("database/connection.php");
@@ -36,6 +36,7 @@ elseif(isset($_POST['login'])) {
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if(password_verify($password, $row['password'])) {
                 $_SESSION['user'][$row['username']] = $row['role'];
+                $_SESSION['username']=$row['username'];
                 if(isset($remember_me)) {
                     $data = ["username"=>$row['username'], "password"=>$row['password'], "role"=>$row['role']];
                     setcookie('remember_me',json_encode($data), time() + 5*60);
@@ -185,6 +186,6 @@ elseif(isset($_POST['login'])) {
     </main>
     
     <!-- Javascript file -->
-    <script src="js/Login.js"></script>
+    <script src="javascript/Login.js"></script>
 </body>
 </html>
