@@ -1,13 +1,6 @@
 <?php 
-<<<<<<< HEAD
-/*session_start(); # open it later to prevent the user to come without premission to profile page (should be added to most pages)
-if(!isset($_SESSION['user'])) {
-    header("location: Login.php");
-    die();
-}*/
-=======
-session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
->>>>>>> c3d296a5f7bccf807d84dbec0985407dc1a58f93
+
+
 
 //var_dump($_POST);
 ?>
@@ -17,12 +10,12 @@ session_start(); # open it later to prevent the user to come without premission 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Survey</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/generalstyle.css">
     <link rel="stylesheet" href="css/answerSurvey.css">
     <script>
-    // pop up to 
+    // pop up to lgin (MAYBE)
         
     function displayPopup() {
         // Display the popup
