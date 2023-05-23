@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/generalstyle.css">
 </head>
 <body>
-    <div id="header"> <?php include 'header.html' ?> </div>
+    <div id="header"> <?php include 'header.php' ?> </div>
         <div class="cointainer" id="main">
             <div>
                 <form id="form1" method='post' action="createQs.php">

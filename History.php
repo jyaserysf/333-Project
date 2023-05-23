@@ -14,7 +14,7 @@
 </head>
 <body>
     
-    <div id="header"> <?php include 'header.html'?> </div>
+    <div id="header"> <?php include 'header.php'?> </div>
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
     <div class="container">
