@@ -36,7 +36,6 @@ elseif(isset($_POST['login'])) {
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if(password_verify($password, $row['password'])) {
                 $_SESSION['user'][$row['username']] = $row['role'];
-                $_SESSION['username']=$row['username'];
                 if(isset($remember_me)) {
                     $data = ["username"=>$row['username'], "password"=>$row['password'], "role"=>$row['role']];
                     setcookie('remember_me',json_encode($data), time() + 5*60);

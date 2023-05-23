@@ -222,26 +222,27 @@
             $stmt = $db->prepare("INSERT INTO surveys VALUES(NULL, DEFAULT, ?, NOW(), ?, ?, ?)");
             $stmt->execute(array($totalQuestions, $surveyTitle, $surveyDesc, $surveyCat));
             $lastSurvey = $db->lastInsertId();
-            $stmt = $db->prepare("INSERT INTO choices VALUES(NULL,?,?,?,?,?,$lastSurvey)");
+            $stmt1 = $db->prepare("INSERT INTO questions VALUES(NULL,?,?,$lastSurvey)");
+            $stmt2 = $db->prepare("INSERT INTO choices VALUES(?,?,?,?,?)");
 
             for($i=0;$i<$mcqloopcount;$i++)
             {
-                $stmt->execute(array($MCQ[$i],$MCQ[$i+1],$MCQ[$i+2],$MCQ[$i+3],$MCQ[$i+4]));
+                $stmt1->execute(array($MCQ[$i],'mcq'));
+                $stmt2->execute(array($db->lastInsertId(),$MCQ[$i+1],$MCQ[$i+2],$MCQ[$i+3],$MCQ[$i+4]));
             }
-            $stmt = $db->prepare("INSERT INTO questions VALUES(NULL,?,?,$lastSurvey)");
             for($i=0;$i<$TFQC;$i++)
             {
-                $stmt->execute(array($TFQ[$i],'yes_no'));
+                $stmt1->execute(array($TFQ[$i],'yes_no'));
 
             }
             for($i=0;$i<$ShortC;$i++)
             {
-                $stmt->execute(array($Short[$i],'short_answer'));
+                $stmt1->execute(array($Short[$i],'short_answer'));
 
             }
             for($i=0;$i<$ScaleC;$i++)
             {
-                $stmt->execute(array($Scale[$i],'scale'));
+                $stmt1->execute(array($Scale[$i],'scale'));
 
             }
             $db->commit();

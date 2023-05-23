@@ -23,7 +23,7 @@
     try{ 
     require('database/connection.php');
     $sql=$db->prepare('select * from users where username=?');
-    $username = $_SESSION['username'];
+    $username = key($_SESSION['user']);
     $sql->execute(array($username)); # I need the username from the session
     
     if($row=$sql->fetch(PDO::FETCH_NUM))
@@ -223,7 +223,7 @@ die("Error Occured:".$e->getMessage());
                 require('database/connection.php');
                 $db->beginTransaction();
                 $stmt = $db->prepare("update users set name=?, username=?, email=?,  phoneCode=?, phoneNumber=?  WHERE username=?");
-                $stmt->execute(array($name, $username, $email, $code, $number, $_SESSION['username']));
+                $stmt->execute(array($name, $username, $email, $code, $number,  key($_SESSION['user'])));
                 $db->commit();
                 echo "<span style='color:green;font-size:12px;'>Your Data Has Been Updated Successfully.</span>" ;
                 echo '<style>'; include 'moveUpF.css';'</style>';
@@ -247,7 +247,7 @@ die("Error Occured:".$e->getMessage());
 
         
 
-            <form class="form2" id='f2'>
+            <form method='post' class="form2" id='f2'>
               
               <div id="oldpass" class="pass field"> <input size="30" name='oldpass' type="password"  class="input-field" autocomplete="off">
                 <label class="pl">Old Password</label>
@@ -290,11 +290,11 @@ if(isset($_POST['oldpass']))
     {   
         require('database/connection.php');
         $sql=$db->prepare('select password from users where username=?');
-        $sql->execute(array($username)); # I need the username from the session
+        $sql->execute(array(key($_SESSION['user']))); 
         $db=null;
-        if($row=$sql->fetch(PDO::FETCH_NUM))
+        if($row=$sql->fetch(PDO::FETCH_ASSOC))
         {
-            $oldsaved=$row[0];
+            $oldsaved=$row['password'];
         }
     }
     catch(PDOException $e)
@@ -308,34 +308,39 @@ if(isset($_POST['oldpass']))
      if($oldpass==''||$newpass==''||$cnewpass=='')
      {
         echo "<span style='color:red;font-size:12px;'>Please, fill all the fields properly !</span>" ;
-        echo '<style>'; include 'moveUpF.css';'</style>';
-        die();
      }
 
      else if(!password_verify($oldpass, $oldsaved))
      {
         echo "<span style='color:red;font-size:12px;'>Please, enter your old password correctly !</span>" ;
-        echo '<style>'; include 'moveUpF.css';'</style>';
-        die();
      }
      else if(!preg_match($pattern_password, $newpass)){
          echo "<span style='color:red;font-size:12px;'>Enter a valid new password !</span>" ;
-         echo '<style>'; include 'moveUpF.css';'</style>';
-         die();
     }
  
      else if($cnewpass != $newpass){
      echo "<span style='color:red;font-size:12px;'>The new password and its confirmation does not match !</span>" ;
-     echo '<style>'; include 'moveUpF.css';'</style>';
-     die();
      }
     else
     { #try and catch to do update password 
-        echo "<span style='color:green;font-size:111px;'>Password has been updated sccessfully !</span>" ;
-        echo '<style>'; include 'moveUpF.css';'</style>';
-        die();
+        $passToUpdate = password_hash($cnewpass,PASSWORD_DEFAULT);
+            try {
+                require('database/connection.php');
+                $db->beginTransaction();
+                $stmt = $db->prepare("update users set password=? WHERE username=?");
+                $stmt->execute(array($passToUpdate, key($_SESSION['user'])));
+                $db->commit();
+                echo "<span style='color:green;font-size:16px;'>Password has been updated sccessfully !</span>" ;
+            }
+            catch(PDOException $e) {
+                $db->rollBack();
+                die('Error:'.$e->getMessage());
+            }
+
+        }
+
     }
-}
+
 
 ?>
 
