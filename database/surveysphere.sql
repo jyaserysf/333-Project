@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 09:53 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 23, 2023 at 10:41 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,24 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `choices` (
-  `choiceID` int(11) NOT NULL,
-  `choice` varchar(200) NOT NULL,
-  `questionID` int(11) NOT NULL
+  `MCQID` int(11) NOT NULL,
+  `Question` varchar(200) NOT NULL,
+  `choice1` varchar(200) NOT NULL,
+  `choice2` varchar(200) NOT NULL,
+  `choice3` varchar(200) NOT NULL,
+  `choice4` varchar(200) NOT NULL,
+  `surveyID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `choices`
 --
 
-INSERT INTO `choices` (`choiceID`, `choice`, `questionID`) VALUES
-(1, '20-40 hours', 1),
-(2, '40-60 hours', 1),
-(3, '60-80 hours', 1),
-(4, '80-100 hours', 1),
-(5, 'Less than 4 hours', 2),
-(6, '4-6 hours', 2),
-(7, '6-8 hours', 2),
-(8, '8-10 hours', 2);
+INSERT INTO `choices` (`MCQID`, `Question`, `choice1`, `choice2`, `choice3`, `choice4`, `surveyID`) VALUES
+(10, 'Who are you?', 'A1', 'A2', 'A3', 'A4', 4);
 
 -- --------------------------------------------------------
 
@@ -78,11 +75,9 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`questionID`, `content`, `type`, `SurveyID`) VALUES
-(1, 'How many hours is your typical work week?', 'mcq', 1),
-(2, 'How many hours do you sleep on a typical work night?', 'mcq', 1),
-(3, 'Have you recently missed a personal event because of work?', 'yes_no', 1),
-(4, 'How satisfied are you with your current work-life balance?', 'scale', 1),
-(5, 'What can we do to give you a better work-life balance?', 'short_answer', 1);
+(9, 'Really?', 'trueORfalse', 4),
+(10, 'Really?', 'ShortAnswer', 4),
+(11, 'Rate?', 'Scale', 4);
 
 -- --------------------------------------------------------
 
@@ -118,7 +113,7 @@ CREATE TABLE `surveys` (
 --
 
 INSERT INTO `surveys` (`surveyID`, `numQuestions`, `numResponses`, `date`, `title`, `description`, `category`) VALUES
-(1, 5, 0, '2023-05-23', 'Work-Life Balance', 'The purpose of this survey is to find whether work-life balance is contributing to dissatisfaction among employees or not. ', 'work');
+(4, 0, 4, '2023-05-23', 'SurveyOne', 'This is the first survey', 'work');
 
 -- --------------------------------------------------------
 
@@ -154,8 +149,8 @@ INSERT INTO `users` (`userID`, `username`, `name`, `email`, `phoneCode`, `phoneN
 -- Indexes for table `choices`
 --
 ALTER TABLE `choices`
-  ADD PRIMARY KEY (`choiceID`),
-  ADD KEY `questionID` (`questionID`);
+  ADD PRIMARY KEY (`MCQID`),
+  ADD KEY `surveyID` (`surveyID`);
 
 --
 -- Indexes for table `participate`
@@ -202,7 +197,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `choices`
 --
 ALTER TABLE `choices`
-  MODIFY `choiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MCQID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `participate`
@@ -214,7 +209,7 @@ ALTER TABLE `participate`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `responses`
@@ -226,7 +221,7 @@ ALTER TABLE `responses`
 -- AUTO_INCREMENT for table `surveys`
 --
 ALTER TABLE `surveys`
-  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -242,7 +237,7 @@ ALTER TABLE `users`
 -- Constraints for table `choices`
 --
 ALTER TABLE `choices`
-  ADD CONSTRAINT `choices_ibfk_1` FOREIGN KEY (`questionID`) REFERENCES `questions` (`questionID`);
+  ADD CONSTRAINT `choices_ibfk_1` FOREIGN KEY (`surveyID`) REFERENCES `surveys` (`surveyID`);
 
 --
 -- Constraints for table `participate`

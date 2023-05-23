@@ -231,17 +231,17 @@
             $stmt = $db->prepare("INSERT INTO questions VALUES(NULL,?,?,$lastSurvey)");
             for($i=0;$i<$TFQC;$i++)
             {
-                $stmt->execute(array($TFQ[$i],'trueORfalse'));
+                $stmt->execute(array($TFQ[$i],'yes_no'));
 
             }
             for($i=0;$i<$ShortC;$i++)
             {
-                $stmt->execute(array($Short[$i],'ShortAnswer'));
+                $stmt->execute(array($Short[$i],'short_answer'));
 
             }
             for($i=0;$i<$ScaleC;$i++)
             {
-                $stmt->execute(array($Scale[$i],'Scale'));
+                $stmt->execute(array($Scale[$i],'scale'));
 
             }
             $db->commit();
