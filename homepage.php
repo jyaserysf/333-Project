@@ -67,47 +67,60 @@
 
                         <div class="carousel-inner">
                             <!-- this should be done with php -->
-                            
-                                <div class="carousel-item">
-                                    <div class="row cardrow">
-                                        <?php 
-                                        for($i=0; $i<4; $i++){
-                                            ?>
-                                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
-                                            <div class="card ">
-                                                <div class="card-pic"><img src="images/pic1.jpg"  > </div> 
-                                                <div class="card-details">
-                                                    <p class="text-title">Card title</p>
-                                                    <p class="text-body">Here are the details of the card</p>
+                            <?php
+                                echo "<div class='carousel-item'>
+                                    <div class='row cardrow'>";
+                                         
+                                        try{
+                                            require('database/connection.php');
+                                            $surveysrec=$db->prepare("SELECT * from surveys");
+                                            $surveysrec->execute();
+                                            $surveys=$surveysrec->fetchAll();
+                                            //print_r($surveys);
+                                            foreach($surveys as $surv){
+                                                // create form for button and hidden input then redirect to displaySu
+                                            echo "<div class='col-lg-3 col-md-4 col-sm-8 mb-3'>
+                                                <div class='card '>
+                                                   
+                                                    <div class='card-details'>";
+                                                      echo"  <p class='text-title'>".$surv['title']."</p>
+                                                        <p class='text-body'>".$surv['description']."</p>
+                                                    </div>
+                                                    <form action='displaySurvey.php' method='POST'>
+                                                        <input type='hidden' id='surveyID' name='svID' value='".$surv['surveyID']."'>
+                                                        <button class='card-button' name='startSurv' type='submit'>Answer</button>
+                                                    </form>
+                                            
                                                 </div>
-                                                <input type="hidden" id="surveyID" value="surveyID">
-                                                <button class="card-button">start</button>
-
-                                            </div>
-                                        </div>
-                                        <?php } ?>
-
-                                    </div>
+                                            </div> ";
+                                            }
+                                    echo "</div>
                                 </div>
                             
-                            <div class="carousel-item active">
-                                <div class="row cardrow">
+                            <div class='carousel-item active'>
+                                <div class='row cardrow'>";
 
-                                <?php for($i=0; $i<4; $i++){?>
-                                        <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
-                                            <div class="card ">
-                                                <div class="card-pic"><img src="images/pic1.jpg"  > </div> 
-                                                <div class="card-details">
-                                                    <p class="text-title">Card title</p>
-                                                    <p class="text-body">Here are the details of the card</p>
+                                 for($i=0; $i<4; $i++){
+                                       echo" <div class='col-lg-3 col-md-4 col-sm-8 mb-3'>
+                                            <div class='card '>
+                                                <div class='card-pic'><img src='images/pic1.jpg'  > </div> 
+                                                <div class='card-details'>
+                                                    <p class='text-title'>Card title</p>
+                                                    <p class='text-body'>Here are the details of the card</p>
                                                 </div>
-                                                <button class="card-button">start</button>
+                                                <input type='hidden' id='surveyID' value='surveyID'>
+                                                <button class='card-button'>Answer</button>
                                             </div>
-                                        </div>
-                                        <?php } ?>
+                                        </div>";
+                                         } 
 
-                                </div>
-                            </div>
+                              echo "  </div>
+                            </div>";
+                        }catch(PDOException $e){
+                                            
+                            die($e->getMessage());
+                                        
+                            }?>
                             <!--end of carousel item  -->
                         </div> <!--end of carousel inner  -->
                     </div> <!--end of carousel ID  -->
@@ -154,6 +167,7 @@
                                                 <p class="text-title">Card title</p>
                                                 <p class="text-body">Here are the details of the card</p>
                                             </div>
+                                            <input type="hidden" id="surveyID" value="surveyID">
                                             <button class="card-button"> Edit Response </button>
                                         </div>
                                 </div>
