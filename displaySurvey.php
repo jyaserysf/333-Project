@@ -53,8 +53,17 @@
                     $displaySurvey=$displaySurvRec->fetch();
                     echo "<div class='container' id='displaySurvey'>
                     <div class=' id='surveyHead'>
-                        <div> <h1>".$displaySurvey['title']."</h1></div>
-                        <div> <h5> ".$displaySurvey['description']."</h5></div>
+                        <div> <h1>".$displaySurvey['title']."</h1></div>";
+                        if ($displaySurvey['category']=='work'){
+                            echo"<div> <h3> Category: Work </h3></div>";
+                        }else{
+                            echo"<div> <h3> Category: Student </h3></div>";
+                        }
+                            
+                        
+                        echo"<div> <h5> ".$displaySurvey['description']."</h5></div>
+                                <div> Created on: ".$displaySurvey['date']."</div>
+                                <div>Total Responses: ".$displaySurvey['numResponses']." </div> 
                     </div>";
                    
 

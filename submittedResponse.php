@@ -44,6 +44,7 @@ if(!isset($_SESSION['user'])) {
                         $qIDarrSerialized = $_POST['SrqID'];
                         $qIDarr = unserialize($qIDarrSerialized);
                         //echo count($qIDarr);
+                        // insert new response record
                         $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
                         for($i=0; $i<count($qIDarr); $i++){
                             
@@ -51,6 +52,8 @@ if(!isset($_SESSION['user'])) {
                             $insertResponse->bindParam(':qID',$qIDarr[$i]);
                             $insertResponse->bindParam(':resp',$_POST["qID_".$qIDarr[$i]]);
                             $insertResponse->execute();
+                            // update numResponses
+
                             
                         }
                          if($insertResponse->rowCount()>0){
@@ -58,7 +61,7 @@ if(!isset($_SESSION['user'])) {
                             <div class='m-auto submitMsg' id=''>
                                 <div> <h2>Your response has been submitted succesfully! </h2></div>
                                 <div> <h4> Try another one of our surveys </h4></div>
-                                <div> <a class='btn' href='explorepage2.php'>Explore</a></div>
+                                <div> <a class='btn' id='headLogin' href='explorepage2.php'>Explore</a></div>
                             </div>";
                          }
                          else{

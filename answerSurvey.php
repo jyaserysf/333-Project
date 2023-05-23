@@ -145,30 +145,30 @@
                     //foreach($qIDarr as $qid)
                     //echo $qid;
 
-                    if(isset($_POST['submitSurv'])){
-                        $userIDrec=$db->prepare("SELECT userID from users where username=?");
-                        $userIDrec->execute(array($_SESSION['username']));
-                        $userID=$userIDrec->fetch()['userID'];
-                        echo $userID;
-                        print_r($qIDarr);
-                        echo "<h3> ".$_POST["qID_1"]."</h3>";
-                        //echo count($qIDarr);
-                        $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
-                        $insertResponse->bindParam(':userID',$userID);
-                        $insertResponse->bindParam(':qID',$qIDarr[0]);
-                        $insertResponse->bindParam(':resp',$_POST["qID_1"]);
-                        $insertResponse->execute();
-                        foreach($qIDarr as $qid){
+                    // if(isset($_POST['submitSurv'])){
+                    //     $userIDrec=$db->prepare("SELECT userID from users where username=?");
+                    //     $userIDrec->execute(array($_SESSION['username']));
+                    //     $userID=$userIDrec->fetch()['userID'];
+                    //     echo $userID;
+                    //     print_r($qIDarr);
+                    //     echo "<h3> ".$_POST["qID_1"]."</h3>";
+                    //     //echo count($qIDarr);
+                    //     $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
+                    //     $insertResponse->bindParam(':userID',$userID);
+                    //     $insertResponse->bindParam(':qID',$qIDarr[0]);
+                    //     $insertResponse->bindParam(':resp',$_POST["qID_1"]);
+                    //     $insertResponse->execute();
+                    //     foreach($qIDarr as $qid){
                             
-                            //$insertResponse->execute(array($userID,$qid,$_POST["qID_".$qid]));
-                            //$insertResponse->bindParam(':userID',$userID);
-                            //$insertResponse->bindParam(':qID',$qid);
-                            //$insertResponse->bindParam(':resp',$_POST["qID_".$qid]);
+                    //         //$insertResponse->execute(array($userID,$qid,$_POST["qID_".$qid]));
+                    //         //$insertResponse->bindParam(':userID',$userID);
+                    //         //$insertResponse->bindParam(':qID',$qid);
+                    //         //$insertResponse->bindParam(':resp',$_POST["qID_".$qid]);
                             
-                        }
+                    //     }
                         
                         
-                    }
+                    // }
                     
                 }
 
