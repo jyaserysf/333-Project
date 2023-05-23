@@ -60,7 +60,7 @@ die("Error Occured:".$e->getMessage());
             <label id="profile-label" for="image-file">Update Image</label>
             <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file">
             <a class="history" href="history.php">View History</a>
-            <form method="post">
+            <form method="post" action="profile-e3.php">
             <input class="pass_change" type="submit" value='Change Password?' name='pass_change'>
             </form>
           </div>
@@ -76,25 +76,25 @@ die("Error Occured:".$e->getMessage());
               <h3>My Profile</h3>
             </div>
 
-            <form id="form1" method="post">
+            <form id="form1" method="post" action="profile-e1.php">
               <div class="fullname field">
                 <?php 
                 echo "<style>";include 'css/moveUp.css'; echo "</style>";
                 # select statement
                 # write a code here to retrieve the information from the database instead of null in echo isset($_POST['fullname']) ? $_POST['fullname']:null;
                 ?>
-                <input size="30" name="name" value="<?php echo isset($_POST['name']) ? $_POST['name']:$name;?>" class="input-field"  type="text"  autocomplete="off">
+                <input size="30" name="name" value="<?php echo $name;?>" class="input-field"  type="text"  autocomplete="off">
                 <label>Name</label>
               </div>
 
   
               <div class="username field">
-                <input size="30" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] :$username;?>" class="input-field"  type="text"  autocomplete="off" >
+                <input size="30" name="username" value="<?php echo $username;?>" class="input-field"  type="text"  autocomplete="off" >
                 <label>User Name</label>
               </div>
   
               <div class="email field">
-                <input size="30" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] :$email;?>"  class="input-field"  type="text"  autocomplete="off" >
+                <input size="30" name="email" value="<?php echo $email;?>"  class="input-field"  type="text"  autocomplete="off" >
                 <label>Email Address</label>
               </div>
               
@@ -106,11 +106,7 @@ die("Error Occured:".$e->getMessage());
                   <select id="code" name="code">">
                     
                     <option value="<?php
-                    if(isset($_POST['sf1'])&&isset($_POST['code']))
-                    {
-                        echo $_POST['code'];
-                    }
-                    else if($code!="")
+                    if($code!="")
                     {
                         echo $code;
                     }
@@ -120,11 +116,7 @@ die("Error Occured:".$e->getMessage());
                     }
                     ?>">
                     <?php
-                    if(isset($_POST['sf1'])&&isset($_POST['code']))
-                    {
-                        echo $_POST['code'];
-                    }
-                    else if($code!="")
+                    if($code!="")
                     {
                         echo $code;
                     }
@@ -144,7 +136,7 @@ die("Error Occured:".$e->getMessage());
                 </div>
 
                 <div class="phone-number field">
-                  <input size="30" id="number" name="number" value="<?php echo isset($_POST['number']) ? $_POST['number'] :$number;?>" class="input-field" type="text" autocomplete="off" >
+                  <input size="30" id="number" name="number" value="<?php echo $number;?>" class="input-field" type="text" autocomplete="off" >
                   <label>Phone number</label>
                 </div>
 
@@ -157,97 +149,15 @@ die("Error Occured:".$e->getMessage());
           </div>
           <?php
           include('test_input.php');
-        if(isset($_POST['sf1']))
-        {
-            $name = test_input($_POST['name']); 
-            $name=ucfirst($name); 
-            $username = test_input($_POST['username']); 
-            $username = strtolower($username);
-            $email = test_input($_POST['email']); 
-            $code = $_POST['code']; 
-            $number = test_input($_POST['number']);
-            if($name==""||$username==""||$email==""||$number=="")
-            {
-                echo "<span style='color:red;font-size:12px;'>Please, fill all the fields properly !</span>" ;
-                echo '<style>'; include 'moveUpF.css';'</style>';
-                die();
-            } 
-
-             else if($code=="Code")
-                {
-                echo "<span style='color:red;font-size:12px;'>Please, choose your country code !</span>" ;
-                echo '<style>'; include 'moveUpF.css';'</style>';
-                die();
-                }
-        
-                else if(!preg_match('/^[a-zA-Z ]{3,30}$/',$name))
-                {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter your name properly !</span>" ;
-                    echo '<style>'; include 'moveUpF.css';'</style>';
-                    die();
-                }
-
-                else if(!preg_match('/^[a-z0-9.]{4,20}$/',$username))
-                {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid username!</span>" ;
-                    echo '<style>'; include 'moveUpF.css';'</style>';
-                    die();
-                }
-                else if(!preg_match('/^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,}$/i',$email))
-                {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid email format !</span>" ;
-                    echo '<style>'; include 'moveUpF.css';'</style>';
-                    die();
-                }
-                else if($code=="+973"){
-                 if(!preg_match('/^(3|6)[0-9]{7}$/', $number))
-                {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid Bahraini phone number !</span>" ;
-                    echo '<style>'; include 'moveUpF.css';'</style>';
-                    die();
-                }
-        }
-            else if($code!="+973") # general verification for the rest 5 countries
-            {
-                if(!preg_match('/^[0-9]{8,15}$/',$number))
-                {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid phone number !</span>" ;
-                    echo '<style>'; include 'moveUpF.css';'</style>';
-                    die();
-                }  
-
-            }
-         else # all input are valid => you can update data
-        {
-            try {
-                require('database/connection.php');
-                $db->beginTransaction();
-                $stmt = $db->prepare("update users set name=?, username=?, email=?,  phoneCode=?, phoneNumber=?  WHERE username=?");
-                $stmt->execute(array($name, $username, $email, $code, $number, $_SESSION['username']));
-                $db->commit();
-                echo "<span style='color:green;font-size:12px;'>Your Data Has Been Updated Successfully.</span>" ;
-                echo '<style>'; include 'moveUpF.css';'</style>';
-            }
-            catch(PDOException $e) {
-                $db->rollBack();
-                die('Error:'.$e->getMessage());
-            }
-        } 
-           
-        } # end of isset check
-        ?>  
+          ?>  
             </form>
-    
           </div>
 
 
 
           <div class="two2">
 
-
-        
-
-            <form class="form2" id='f2'>
+            <form class="form2" id='f2' action="profile-e2.php">
               
               <div id="oldpass" class="pass field"> <input size="30" name='oldpass' type="password"  class="input-field" autocomplete="off">
                 <label class="pl">Old Password</label>
@@ -280,66 +190,6 @@ die("Error Occured:".$e->getMessage());
                 ";
             }
             ?>
-
-
-            
-<?php
-if(isset($_POST['oldpass']))
-{   $oldsaved='';
-    try
-    {   
-        require('database/connection.php');
-        $sql=$db->prepare('select password from users where username=?');
-        $sql->execute(array($username)); # I need the username from the session
-        $db=null;
-        if($row=$sql->fetch(PDO::FETCH_NUM))
-        {
-            $oldsaved=$row[0];
-        }
-    }
-    catch(PDOException $e)
-    {
-        die("Error Occured:".$e->getMessage());
-    }
-    $oldpass=$_POST['oldpass'];
-    $newpass=$_POST['newpass'];
-    $cnewpass=$_POST['cnewpass'];
-    $pattern_password = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#@%\*\-.!$^?])[A-Za-z0-9_#@%.!$^\*\-?]{8,24}$/';
-     if($oldpass==''||$newpass==''||$cnewpass=='')
-     {
-        echo "<span style='color:red;font-size:12px;'>Please, fill all the fields properly !</span>" ;
-        echo '<style>'; include 'moveUpF.css';'</style>';
-        die();
-     }
-
-     else if(!password_verify($oldpass, $oldsaved))
-     {
-        echo "<span style='color:red;font-size:12px;'>Please, enter your old password correctly !</span>" ;
-        echo '<style>'; include 'moveUpF.css';'</style>';
-        die();
-     }
-     else if(!preg_match($pattern_password, $newpass)){
-         echo "<span style='color:red;font-size:12px;'>Enter a valid new password !</span>" ;
-         echo '<style>'; include 'moveUpF.css';'</style>';
-         die();
-    }
- 
-     else if($cnewpass != $newpass){
-     echo "<span style='color:red;font-size:12px;'>The new password and its confirmation does not match !</span>" ;
-     echo '<style>'; include 'moveUpF.css';'</style>';
-     die();
-     }
-    else
-    { #try and catch to do update password 
-        echo "<span style='color:green;font-size:111px;'>Password has been updated sccessfully !</span>" ;
-        echo '<style>'; include 'moveUpF.css';'</style>';
-        die();
-    }
-}
-
-?>
-
-
           </div>
 
         </div>
