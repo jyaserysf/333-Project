@@ -44,40 +44,51 @@ die("Error Occured:".$e->getMessage());
 </head>
 <body>
     
-    <div id="header"> <?php include 'header.html'?> </div>
+    <div id="header"> <?php include 'header.php'?> </div>
     <!-- Page content in this external container -->
     <div class="cointainer" id="main">
     <div class="container">
-    <div class="outer">
-      <div class="inner">
+    <div class="outer ">
+      <div class="inner row">
   
-        <div class="one">
+        <div class="one col-3">
 
           <div class="profile-image">
-            <h3 style='color:#161853' id="display_name"> <?php echo strtoupper($name);?></h3>
+            <h3 style='color:#FAEDF0' id="display_name"> <?php echo strtoupper($name);?></h3>
             <p>@<?php echo ucfirst($username)?></p>
             <img src="img/Profile-Image-Trail.jpeg" alt="The profile image should be here" id="profilePicture">
-            <label id="profile-label" for="image-file">Update Image</label>
-            <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file">
-            <a class="history" href="history.php">View History</a>
-            <form method="post">
-            <input class="pass_change" type="submit" value='Change Password?' name='pass_change'>
-            </form>
+            <div class="row">
+              <div class="col">
+                <label id="profile-label" for="image-file">Update Image</label>
+                <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file">
+              </div>
+              <div class="col">
+                <a class="history" href="history.php">View History</a>
+              </div>
+              <div class="col">
+                <form method="post">
+                  <input class="pass_change" type="submit" value='Change Password?' name='pass_change'>
+                </form>
+              </div>
+            </div>
+            
+            
+            
           </div>
 
         </div>
       
-        <div class="two">
+        <div class="two col">
 
 
-          <div class="two1">
+          <div class="two1 row">
 
             <div class="myprofile">
               <h3>My Profile</h3>
             </div>
 
             <form id="form1" method="post">
-              <div class="fullname field">
+              <div class="fullname field col-6">
                 <?php 
                 echo "<style>";include 'css/moveUp.css'; echo "</style>";
                 # select statement
@@ -88,21 +99,21 @@ die("Error Occured:".$e->getMessage());
               </div>
 
   
-              <div class="username field">
+              <div class="username field col-6">
                 <input size="30" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] :$username;?>" class="input-field"  type="text"  autocomplete="off" >
                 <label>User Name</label>
               </div>
   
-              <div class="email field">
+              <div class="email field col-6">
                 <input size="30" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] :$email;?>"  class="input-field"  type="text"  autocomplete="off" >
                 <label>Email Address</label>
               </div>
               
-              <div class="lastrowform1">
+              <div class="lastrowform1 col-6">
 
-              <div class="phone">
+              <div class="phone row" id="phoneNO">
                 
-                <div class="country">
+                <div class="country col">
                   <select id="code" name="code">">
                     
                     <option value="<?php
@@ -145,7 +156,7 @@ die("Error Occured:".$e->getMessage());
 
                 <div class="phone-number field">
                   <input size="30" id="number" name="number" value="<?php echo isset($_POST['number']) ? $_POST['number'] :$number;?>" class="input-field" type="text" autocomplete="off" >
-                  <label>Phone number</label>
+                  <label class="mb-2" for="phoneNO">Phone number</label>
                 </div>
 
               </div>
@@ -199,23 +210,17 @@ die("Error Occured:".$e->getMessage());
                     echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
                 }
-                else if($code=="+973"){
-                 if(!preg_match('/^(3|6)[0-9]{7}$/', $number))
+                else if($code=="+973" && !preg_match('/^(3|6)[0-9]{7}$/', $number))
                 {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid Bahraini phone number !</span>" ;
                     echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
                 }
-        }
-            else if($code!="+973") # general verification for the rest 5 countries
+            else if($code!="+973" && !preg_match('/^[0-9]{8,15}$/',$number)) # general verification for the rest 5 countries
             {
-                if(!preg_match('/^[0-9]{8,15}$/',$number))
-                {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid phone number !</span>" ;
                     echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
-                }  
-
             }
          else # all input are valid => you can update data
         {
@@ -242,7 +247,7 @@ die("Error Occured:".$e->getMessage());
 
 
 
-          <div class="two2">
+          <div class="two2 row">
 
 
         
