@@ -10,7 +10,7 @@ if(isset($_POST['signup'])) {
     $password = test_input($password);
     $cpassword = test_input($cpassword);
 
-    $pattern_user = '/^[a-z0-9.]{4,20}$/';
+    $pattern_user = '/^[a-z0-9.]{4,20}$/i';
     if(!preg_match($pattern_user, $username))
         die("Please enter a valid username");
 
@@ -29,7 +29,7 @@ if(isset($_POST['signup'])) {
         require('database/connection.php');
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $db->prepare("INSERT INTO users (username,email,password) VALUES(?,?,?)");
-        $stmt->execute(array($username, $email, $hash));
+        $stmt->execute(array(strtolower($username), $email, $hash));
         $db=null;
         header("location: Login.php");
         die();
@@ -156,6 +156,7 @@ if(isset($_POST['signup'])) {
         </div>
     </main>
     
-    
+    <script src="javascript/Login.js"></script>
+
  </body>
  </html>

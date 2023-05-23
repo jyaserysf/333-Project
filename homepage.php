@@ -30,7 +30,7 @@
              <div> 
                 <h2 class="mb-4"> Create an account now! </h2> 
                 <div class="d-grid gap-2 col-6 mx-auto my-2">
-                    <button class="btn p-2 create" type="button"> <a href="Login.html">Register </a></button>
+                    <button class="btn p-2 create" type="button"> <a href="Signup.php">Register </a></button>
                 </div>
              </div>
             </div>
@@ -131,10 +131,10 @@
                 <div class="row  d-flex flex-column align-items-center justify-content-center surveydisplay text-center "> 
                     <!-- if no sign up/login -->
                     <div class="col " style="font-size: 1.5rem">
-                       Please <a href="Login.html"> Login </a> to see your past surveys!
+                       Please <a href="Login.php"> Login </a> to see your past surveys!
                     </div>
                     <div class="col " style="font-size: 1.25rem">
-                        Don't have an account? <a href="Login.html">Register now!</a>
+                        Don't have an account? <a href="Signup.php">Register now!</a>
                     </div>
                     <!-- if new user -->
                     <div class="col" style="font-size: 1.5rem">
