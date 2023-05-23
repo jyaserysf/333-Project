@@ -96,13 +96,16 @@ h2{
 <h2>Explore</h2>
   <div class="display">
 <div class="d-flex flex-row flex-nowrap">
-<?php for($x=0;$x<10;$x++){?>
+<?php for($x=0;$x<10;$x++){
+  // add survey ID in hidden input so it can be displayed
+  ?>
   <div class="col"></div>
 <div class="card m-3" style="min-width: 12rem; ">
   <img src="images/pic1.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">this is a shortt description about this survey </p>
+    <input type="hidden" id="surveyID" value="surveyID">
     <a href="#" class="btn btn-primary">start</a>
 
   </div>

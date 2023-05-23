@@ -109,6 +109,11 @@ button.navbar-toggler{
     transition: 0.3s ease-out;
     overflow: visible;
    }
+
+   #survey-btn{
+    background-color: #EC255A;
+    color: #FAEDF0;
+   }
    
    
    
