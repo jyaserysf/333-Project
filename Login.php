@@ -109,7 +109,7 @@ elseif(isset($_POST['login'])) {
     
                             <div class="input-area">
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="password"
                                     minlength="4"
                                     class="input-field"
