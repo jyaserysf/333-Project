@@ -1,15 +1,4 @@
-<?php
- session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
-if(!isset($_SESSION['user'])) {
-    // js popup
-    header("location: Login.php");
-    exit();
-}
 
-//should not be accessible to non-users 
-var_dump($_POST);
-//print_r($_SESSION['username']);
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +14,18 @@ var_dump($_POST);
 <body>
     
     <div id="header"> <?php include 'header.php'?> </div>
+    <?php
+        //session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
+        if(!isset($_SESSION['user'])) {
+            // js popup
+            header("location: Login.php");
+            exit();
+        }
+
+        //should not be accessible to non-users 
+        //var_dump($_POST);
+        //print_r($_SESSION['username']);
+    ?>
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
     <div class='container' id='displaySurvey'>
