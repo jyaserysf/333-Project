@@ -1,3 +1,39 @@
+<?php
+    if (isset($_POST['surveyTitle']) && isset($_POST['surveyDesc']) 
+    && isset($_POST['surveyCat']) && isset($_POST['noOfQuestions'])) {
+
+        $surveyTitle = $_POST['surveyTitle'];
+        $surveyDesc = $_POST['surveyDesc'];
+        $surveyCat = $_POST['surveyCat'];
+        $noOfQuestions = $_POST['noOfQuestions']; 
+
+        $surveyTitlePattern = "/^[a-z]{3,20}(\s{1}[a-z]{3,20}){0,5}$/i";
+        $surveyCatPattern = "/^(work|student)$/";
+        $noOfQuestionsPattern = "/^(4-9|1[0-2]){1}$/";
+
+        if(!preg_match($surveyTitlePattern, $surveyTitle))
+            die ("Invalid Survey Title");
+        if(!preg_match($surveyCatPattern, $surveyCat))
+            die ("Invalid Survey Category");
+        // if(!preg_match($noOfQuestionsPattern, $noOfQuestions))
+        //     die ("Invalid Number Of Questions");
+
+        try {
+            require('database/connection.php');
+            $stmt = $db->prepare("INSERT INTO surveys VALUES(NULL, DEFAULT, ?, NOW(), ?, ?, ?)");
+            $stmt->execute(array($noOfQuestions, $surveyTitle, $surveyDesc, $surveyCat));
+            $db = null;
+            // TODO: Proper Success Message
+            // echo "<h2>New Survey Added Auccessfully!</h2>";
+        } 
+        catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
+        }
+    }
+    else {
+      header("location: createSurvey.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
