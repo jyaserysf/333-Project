@@ -67,10 +67,12 @@
 
                         <div class="carousel-inner">
                             <!-- this should be done with php -->
-                            <?php for($j=0; $j<2; $j++){?>
+                            
                                 <div class="carousel-item">
                                     <div class="row cardrow">
-                                        <?php for($i=0; $i<4; $i++){?>
+                                        <?php 
+                                        for($i=0; $i<4; $i++){
+                                            ?>
                                         <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
                                             <div class="card ">
                                                 <div class="card-pic"><img src="images/pic1.jpg"  > </div> 
@@ -78,16 +80,16 @@
                                                     <p class="text-title">Card title</p>
                                                     <p class="text-body">Here are the details of the card</p>
                                                 </div>
+                                                <input type="hidden" id="surveyID" value="surveyID">
                                                 <button class="card-button">start</button>
+
                                             </div>
                                         </div>
                                         <?php } ?>
 
                                     </div>
                                 </div>
-                            <?php 
-
-                        } ?>
+                            
                             <div class="carousel-item active">
                                 <div class="row cardrow">
 

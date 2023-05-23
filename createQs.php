@@ -20,11 +20,11 @@
     <h1>create your own Questions </h1>
 
     <form action="" id="questionare">
-      <input type="button" value="T/F" id="yes/no" onclick="addYesNO()">
-      <input type="button" value="MCQ" id="MCQ" onclick="addMCQ()">
-      <input type="button" value="short answer " id="shortA" onclick="addshortA()">
-      <input type="button" value="scale " id="Scale " onclick="addscale()">
-      <div id="questions">
+        <input type="button" value="T/F" id="yes/no" onclick="addYesNO()">
+        <input type="button" value="MCQ" id="MCQ" onclick="addMCQ()">
+        <input type="button" value="short answer " id="shortA" onclick="addshortA()">
+        <input type="button" value="scale " id="Scale " onclick="addscale()">
+        <div id="questions">
 
         <br>
         <br>
