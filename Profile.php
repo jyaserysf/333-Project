@@ -2,7 +2,6 @@
 session_start(); # prevent the user to come without premission to profile page (must be added to most pages)
 if(!isset($_SESSION['username'])) {
     header("Location: Login.php");
-    die();
 }
 try
 {   
@@ -223,7 +222,7 @@ die("Error Occured:".$e->getMessage());
             try {
                 require('database/connection.php');
                 $db->beginTransaction();
-                $stmt = $db->prepare("UPDATE users SET name=?, username=?, email=?,  phoneCode=?, phoneNumber=?  WHERE username=?");
+                $stmt = $db->prepare("update users set name=?, username=?, email=?,  phoneCode=?, phoneNumber=?  WHERE username=?");
                 $stmt->execute(array($name, $username, $email, $code, $number, $_SESSION['username']));
                 $db->commit();
                 echo "<span style='color:green;font-size:12px;'>Your Data Has Been Updated Successfully.</span>" ;
@@ -331,7 +330,7 @@ if(isset($_POST['oldpass']))
      die();
      }
     else
-    {
+    { #try and catch to do update password 
         echo "<span style='color:green;font-size:111px;'>Password has been updated sccessfully !</span>" ;
         echo '<style>'; include 'moveUpF.css';'</style>';
         die();
