@@ -140,6 +140,8 @@ INSERT INTO `users` (`userID`, `username`, `name`, `email`, `phoneCode`, `phoneN
 (1, 'sahmed', 'Ahmed Khalaf', 'abc@gmail.com', '', '', 'admin', '$2y$10$dnd54a5uXsZstLRejJH8T.ohSOPzwUbXmvHQS61wVcc2z72c6eZtm'),
 (2, 'jood', 'Jood Yaser', 'jood@gmail.com', '', '', 'user', '$2y$10$XAH92dl.sdyeFhc3wQ4B1.huxr8oD3qw.QNceiqTj09tyXYFRvtG.'),
 (3, 'ali1', 'Ali Majeed', 'ali@gmail.com', '', '', 'user', '$2y$10$Lf/ZHlhf0as.rjPkm9TNjOFTKmHzvPmKG0AWVsBMqaIqxICcZQf/m');
+(4, 'Muntadher', 'Muntadher', 'MJ@whatever.com', '', '', 'admin', '$2y$10$56QbPsUizKVRmaecF4FzDO0wuR8mOrmomHL9d9bxR9YGovXCy61l.');
+
 
 --
 -- Indexes for dumped tables

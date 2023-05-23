@@ -1,29 +1,3 @@
-<?php
-session_start(); # prevent the user to come without premission to profile page (must be added to most pages)
-if(!isset($_SESSION['username'])) {
-    header("Location: Login.php");
-}
-try
-{   
-    require('database/connection.php');
-    $sql=$db->prepare('select * from users where username=?');
-    $username = $_SESSION['username'];
-    $sql->execute(array($username)); # I need the username from the session
-    
-    if($row=$sql->fetch(PDO::FETCH_NUM))
-    {
-        $name=$row[2];
-        $email=$row[3];
-        $code=$row[4];
-        $number=$row[5];                        
-    }
-    $db=null;
-}
-catch(PDOException $e)
-{
-die("Error Occured:".$e->getMessage());
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +18,28 @@ die("Error Occured:".$e->getMessage());
 </head>
 <body>
     
-    <div id="header"> <?php include 'header.php'?> </div>
+    <div id="header"> <?php include 'header.php';
+    
+    try{ 
+    require('database/connection.php');
+    $sql=$db->prepare('select * from users where username=?');
+    $username = $_SESSION['username'];
+    $sql->execute(array($username)); # I need the username from the session
+    
+    if($row=$sql->fetch(PDO::FETCH_NUM))
+    {
+        $name=$row[2];
+        $email=$row[3];
+        $code=$row[4];
+        $number=$row[5];                        
+    }
+    $db=null;
+}
+catch(PDOException $e)
+{
+die("Error Occured:".$e->getMessage());
+}?> </div> <!--end of try catch for displaying profile information-->
+
     <!-- Page content in this external container -->
     <div class="cointainer" id="main">
     <div class="container">

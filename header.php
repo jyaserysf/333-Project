@@ -1,4 +1,3 @@
-
 <?php session_start(); ?>
     <nav class="navbar navbar-expand-lg  sticky-top" >
         <div class="container-fluid mx-5 my-3">
