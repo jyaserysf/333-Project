@@ -33,4 +33,18 @@
           </div>
         </div>
       </nav>
-   <script src="javascript\Search.js"></script>
+      
+   <script src="javascript\Search.js">
+    function Search(input){
+    const xhttp=new XMLHttpRequest();
+    xhttp.onload=myAJAXFunction;
+    xhttp.open("GET","Search.php?S="+input);
+    xhttp.send();
+
+    }
+
+    function myAJAXFunction(){
+    document.getElementById("results").innerHTML=this.responseText;
+    alert("meow");
+    }
+   </script>
