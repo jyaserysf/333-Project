@@ -14,7 +14,7 @@ session_start(); # open it later to prevent the user to come without premission 
     <link rel="stylesheet" href="css/generalstyle.css">
     <link rel="stylesheet" href="css/answerSurvey.css">
     <script>
-    // pop up to 
+    // pop up to lgin (MAYBE)
         
     function displayPopup() {
         // Display the popup

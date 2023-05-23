@@ -7,7 +7,8 @@ if(!isset($_SESSION['user'])) {
 }
 
 //should not be accessible to non-users 
-//var_dump($_POST);
+var_dump($_POST);
+//print_r($_SESSION['username']);
 ?>
 
 <!DOCTYPE html>
@@ -41,102 +42,138 @@ if(!isset($_SESSION['user'])) {
                     $displaySurvRec->execute();
                     $displaySurvey=$displaySurvRec->fetch();
                     // display survey title and description
-                    echo "  <form action='post'>
+                    echo "  <form method='post' action='submittedResponse.php' >
                         <div class=' id='surveyHead'>
                             <div> <h1>" .$displaySurvey['title']." </h1></div>
                             <div> <h5> " .$displaySurvey['description']." </h5></div>
                             <hr>
                         </div>";
-                    //  join survey with questions table through surveyID
-                    $questionDetailRec=$db->prepare("SELECT questions.* FROM questions WHERE SurveyID=:sID");
-                    $questionDetailRec->bindParam(':sID', $survID);
-                    $questionDetailRec->execute();
-                    $questionDetails=$questionDetailRec->fetchAll();
-                    //loop based on no. of questions
-                    // display question 
-                    echo "<div class=' id='surveyBody'>
-                           ";
-                    $qNo=1;
-                    foreach($questionDetails as $question){
-                        $type=$question['type'];
-                        $qID=$question['questionID'];
-                        $choicesRec=$db->prepare("SELECT choices.* FROM questions JOIN choices on questions.questionID=choices.questionID WHERE SurveyID=? and choices.questionID=?");
-                        $choicesRec->execute(array($survID,$qID));
-                        $choices=$choicesRec->fetchAll();
-                        if($type=='mcq'){
-                            
-                            echo " 
-                                <div class='question' id=''>
-                                    <div class='questionTitle' id=''><h3> $qNo. " .$question['content']." </h3> </div>
-                                    <div id='mcqChoices'>";
-                                    foreach($choices as $choice){
-                                        echo 
-                                        "<div class='form-check mcqOption' id=''>
-                                        <input class='form-check-input' type='radio' name='qID_$qID' value='".$choice['choiceID']."'> ".$choice['choice']."
-                                        </div>";
-                                    }
-                                    echo"</div>
+                        //  join survey with questions table through surveyID
+                        $questionDetailRec=$db->prepare("SELECT questions.* FROM questions WHERE SurveyID=:sID");
+                        $questionDetailRec->bindParam(':sID', $survID);
+                        $questionDetailRec->execute();
+                        $questionDetails=$questionDetailRec->fetchAll();
+                        //loop based on no. of questions
+                        // display question 
+                        echo "<div class=' id='surveyBody'>
+                               ";
+                        $qNo=1;
+                        $qIDarr=[];
+                        foreach($questionDetails as $question){
+                            $type=$question['type'];
+                            $qID=$question['questionID'];
+                            $qIDarr[]=$qID;
+                            $choicesRec=$db->prepare("SELECT choices.* FROM questions JOIN choices on questions.questionID=choices.questionID WHERE SurveyID=? and choices.questionID=?");
+                            $choicesRec->execute(array($survID,$qID));
+                            $choices=$choicesRec->fetchAll();
 
-                               </div>";
+                            if($type=='mcq'){
+
+                                echo " 
+                                    <div class='question' id=''>
+                                        <div class='questionTitle' id=''><h3> $qNo. " .$question['content']." </h3> </div>
+                                        <div class='row ms-2' id='mcqChoices'>";
+                                        foreach($choices as $choice){
+                                            echo 
+                                            "<div class='form-check mcqOption col-6' id=''>
+                                            <input class='form-check-input ' type='radio' name='qID_$qID' value='".$choice['choiceID']."'> ".$choice['choice']."
+                                            </div>";
+                                        }
+                                        echo"</div>
+
+                                   </div>";
+
+                            }
+                            elseif($type=='yes_no'){
+                                echo " 
+                                   <div class='question' id=''>
+                                   <div class='questionTitle' id=''><h3> $qNo. " .$question['content']."</h3>  </div>
+                                        <div class='t/fOption form-check' id=''>
+                                            <input type='radio' class='form-check-input' name='qID_$qID' value='yes'> Yes
+                                        </div>
+                                        <div class='t/fOption form-check' id=''>
+                                            <input type='radio' class='form-check-input' name='qID_$qID' value='no'> No
+                                        </div>
+
+                                   </div>";
+                            }
+                            elseif($type=='scale'){
+                                echo " 
+                                   <div class='question' id=''>
+                                   <div class='questionTitle' id=''><h3> $qNo. " .$question['content']."</h3>  </div>
+                                        <div class='row' id='rangeLabel'>
+                                            <div class='col'> <label for='rangeQ' class='form-label'>1</label> </div>
+                                            <div class='col text-end'> <label for='rangeQ' class='form-label'>5</label> </div>
+                                        </div>
+                                        <div class='rangeOption' id='rangeQ'>
+                                            <input type='range' class='form-range' name='qID_$qID' value='' min=1 max=5 step=1>
+                                        </div>
+                                   </div>";
+                            }
+                            else{
+                                echo " 
+                                   <div class='question' id=''>
+                                   <div class='questionTitle' id=''><h3> $qNo. " .$question['content']." </h3> </div>
+
+                                        <div class='shortAOption' id=''>
+                                        <input class='form-control' type='text' name='qID_$qID' placeholder='Answer Here' aria-label='default input example'>
+                                        </div>
+                                   </div>";
+                            }
+
+                            $qNo++;
 
                         }
-                        elseif($type=='yes_no'){
-                            echo " 
-                               <div class='question' id=''>
-                               <div class='questionTitle' id=''><h3> $qNo. " .$question['content']."</h3>  </div>
-                                    <div class='t/fOption form-check' id=''>
-                                        <input type='radio' class='form-check-input' name='qID_$qID' value='yes'> Yes
-                                    </div>
-                                    <div class='t/fOption form-check' id=''>
-                                        <input type='radio' class='form-check-input' name='qID_$qID' value='no'> No
-                                    </div>
-
-                               </div>";
-                        }
-                        elseif($type=='scale'){
-                            echo " 
-                               <div class='question' id=''>
-                               <div class='questionTitle' id=''><h3> $qNo. " .$question['content']."</h3>  </div>
-                                    <div class='row' id='rangeLabel'>
-                                        <div class='col'> <label for='rangeQ' class='form-label'>1</label> </div>
-                                        <div class='col text-end'> <label for='rangeQ' class='form-label'>5</label> </div>
-                                    </div>
-                                    <div class='rangeOption' id='rangeQ'>
-                                        <input type='range' class='form-range' name='qID_$qID' value='' min=1 max=5 step=1>
-                                    </div>
-                               </div>";
-                        }
-                        else{
-                            echo " 
-                               <div class='question' id=''>
-                               <div class='questionTitle' id=''><h3> $qNo. " .$question['content']." </h3> </div>
-                                    
-                                    <div class='shortAOption' id=''>
-                                    <input class='form-control' type='text' name='qID_$qID' placeholder='Default input' aria-label='default input example'>
-                                    </div>
-                               </div>";
-                        }
-
-                        $qNo++;
-
-                    }
                     
-                    
+                    $qIDarrSerialized = serialize($qIDarr);
                     // inner if based on type
                     // loop for mcq, maybe for t/f? 
                     // how to save the responses?? should be in array (like assignment)
- 
-                    echo"</div>
-                    <div id='submitResponse'> 
-                                <input type='hidden' id='surveyID' name='svID' value=".$displaySurvey['surveyID'].">
-                                <button class='btn' id='survey-btn' name='startsSurv'  type='submit'>Submit</button>
-                            
-                    </div> </form>
+                        
+                        echo"</div>
+                        <div id='submitResponse'> 
+                                    <input type='hidden' id='surveyID' name='svID' value=".$displaySurvey['surveyID'].">
+                                    <input type='hidden' id='surveyID' name='SrqID' value=".$qIDarrSerialized.">
+                                    <button class='btn' id='survey-btn' name='submitSurv'  type='submit'>Submit</button>
+
+                        </div> 
+                    </form>
                     ";
+                    
+                    
+                    //foreach($qIDarr as $qid)
+                    //echo $qid;
+
+                    if(isset($_POST['submitSurv'])){
+                        $userIDrec=$db->prepare("SELECT userID from users where username=?");
+                        $userIDrec->execute(array($_SESSION['username']));
+                        $userID=$userIDrec->fetch()['userID'];
+                        echo $userID;
+                        print_r($qIDarr);
+                        echo "<h3> ".$_POST["qID_1"]."</h3>";
+                        //echo count($qIDarr);
+                        $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
+                        $insertResponse->bindParam(':userID',$userID);
+                        $insertResponse->bindParam(':qID',$qIDarr[0]);
+                        $insertResponse->bindParam(':resp',$_POST["qID_1"]);
+                        $insertResponse->execute();
+                        foreach($qIDarr as $qid){
+                            
+                            //$insertResponse->execute(array($userID,$qid,$_POST["qID_".$qid]));
+                            //$insertResponse->bindParam(':userID',$userID);
+                            //$insertResponse->bindParam(':qID',$qid);
+                            //$insertResponse->bindParam(':resp',$_POST["qID_".$qid]);
+                            
+                        }
+                        
+                        
+                    }
+                    
                 }
 
 
                 $db->commit();
+                $db=null;
                 
 
         }

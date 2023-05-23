@@ -68,7 +68,7 @@
                         <div class="carousel-inner">
                             <!-- this should be done with php -->
                             <?php
-                                echo "<div class='carousel-item'>
+                                echo "<div class='carousel-item active'>
                                     <div class='row cardrow'>";
                                          
                                         try{
@@ -97,7 +97,7 @@
                                     echo "</div>
                                 </div>
                             
-                            <div class='carousel-item active'>
+                            <div class='carousel-item '>
                                 <div class='row cardrow'>";
 
                                  for($i=0; $i<4; $i++){
