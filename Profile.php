@@ -199,23 +199,17 @@ die("Error Occured:".$e->getMessage());
                     echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
                 }
-                else if($code=="+973"){
-                 if(!preg_match('/^(3|6)[0-9]{7}$/', $number))
+                else if($code=="+973" && !preg_match('/^(3|6)[0-9]{7}$/', $number))
                 {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid Bahraini phone number !</span>" ;
                     echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
                 }
-        }
-            else if($code!="+973") # general verification for the rest 5 countries
+            else if($code!="+973" && !preg_match('/^[0-9]{8,15}$/',$number)) # general verification for the rest 5 countries
             {
-                if(!preg_match('/^[0-9]{8,15}$/',$number))
-                {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid phone number !</span>" ;
                     echo '<style>'; include 'moveUpF.css';'</style>';
                     die();
-                }  
-
             }
          else # all input are valid => you can update data
         {
