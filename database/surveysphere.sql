@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 01:02 AM
+-- Generation Time: May 24, 2023 at 10:21 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -40,7 +40,7 @@ CREATE TABLE `choices` (
 --
 
 INSERT INTO `choices` (`MCQID`, `choice1`, `choice2`, `choice3`, `choice4`) VALUES
-(12, 'A1', 'A2', 'A3', 'A4');
+(12, '20 hours or less', 'Over 20 to 40 hours', 'Over 40 to 70 hours', 'More than 70 hours');
 
 -- --------------------------------------------------------
 
@@ -54,6 +54,15 @@ CREATE TABLE `participate` (
   `surveyID` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `participate`
+--
+
+INSERT INTO `participate` (`participateID`, `userID`, `surveyID`, `date`) VALUES
+(1, 2, 5, '0000-00-00'),
+(2, 2, 5, '0000-00-00'),
+(3, 2, 5, '2023-05-24');
 
 -- --------------------------------------------------------
 
@@ -73,10 +82,10 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`questionID`, `content`, `type`, `SurveyID`) VALUES
-(12, 'Who are you?', 'mcq', 5),
-(13, 'Really?', 'yes_no', 5),
-(14, 'Really?', 'short_answer', 5),
-(15, 'Rate?', 'scale', 5);
+(12, 'How many hours do you work per week?', 'mcq', 5),
+(13, 'Do you believe your current work hours are affecting your personal life?', 'yes_no', 5),
+(14, 'Give a suggestion on how to improve your current work. ', 'short_answer', 5),
+(15, 'How satisfied are you with your current work-life balance? (1 for unsatisfied, 5 for very satisfied)', 'scale', 5);
 
 -- --------------------------------------------------------
 
@@ -90,6 +99,24 @@ CREATE TABLE `responses` (
   `questionID` int(11) NOT NULL,
   `response` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `responses`
+--
+
+INSERT INTO `responses` (`responseID`, `userID`, `questionID`, `response`) VALUES
+(34, 2, 12, 'Over 40 to 70 hours'),
+(35, 2, 13, 'yes'),
+(36, 2, 14, 'Holidays'),
+(37, 2, 15, '2'),
+(38, 2, 12, 'More than 70 hours'),
+(39, 2, 13, 'yes'),
+(40, 2, 14, 'Holidays pls'),
+(41, 2, 15, '2'),
+(42, 2, 12, 'More than 70 hours'),
+(43, 2, 13, 'yes'),
+(44, 2, 14, 'Holidays pls'),
+(45, 2, 15, '2');
 
 -- --------------------------------------------------------
 
@@ -112,7 +139,7 @@ CREATE TABLE `surveys` (
 --
 
 INSERT INTO `surveys` (`surveyID`, `numQuestions`, `numResponses`, `date`, `title`, `description`, `category`) VALUES
-(5, 0, 4, '2023-05-24', 'SurveyOne', 'This is a survey after the editing', 'student');
+(5, 0, 3, '2023-05-24', 'Work-Life Balance', 'A survey that aims to study the impact of one\'s work on other aspects of their life and vice-versa', 'Work');
 
 -- --------------------------------------------------------
 
@@ -202,7 +229,7 @@ ALTER TABLE `choices`
 -- AUTO_INCREMENT for table `participate`
 --
 ALTER TABLE `participate`
-  MODIFY `participateID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `participateID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `questions`
@@ -214,7 +241,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `responses`
 --
 ALTER TABLE `responses`
-  MODIFY `responseID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `responseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `surveys`
