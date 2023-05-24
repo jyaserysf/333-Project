@@ -60,6 +60,7 @@
                                ";
                         $qNo=1;
                         $qIDarr=[];
+                        $atLeastOneAnswered = false;
                         foreach($questionDetails as $question){
                             $type=$question['type'];
                             $qID=$question['questionID'];
@@ -124,9 +125,25 @@
                                    </div>";
                             }
 
+                            // Check if the question has been answered
+                        
+
+
                             $qNo++;
 
                         }
+
+                        // if ($atLeastOneAnswered) {
+                        //     // At least one question has been answered
+                        //     echo "<div id='submitResponse'> 
+                        //         <input type='hidden' id='surveyID' name='svID' value=" . $displaySurvey['surveyID'] . ">
+                        //         <input type='hidden' id='surveyID' name='SrqID' value=" . serialize($qIDarr) . ">
+                        //         <button class='btn' id='survey-btn' name='submitSurv' type='submit'>Submit</button>
+                        //     </div>";
+                        // } else {
+                        //     // No question has been answered
+                        //     echo "<p>Please answer at least one question.</p>";
+                        // }
                     
                     $qIDarrSerialized = serialize($qIDarr);
                     // inner if based on type
@@ -137,9 +154,9 @@
                         <div id='submitResponse'> 
                                     <input type='hidden' id='surveyID' name='svID' value=".$displaySurvey['surveyID'].">
                                     <input type='hidden' id='surveyID' name='SrqID' value=".$qIDarrSerialized.">
-                                    <button class='btn' id='survey-btn' name='submitSurv'  type='submit'>Submit</button>
+                                    <button class='btn' id='survey-btn' name='submitSurv'  type='submit'>Submit</button>";
 
-                        </div> 
+                        echo"</div> 
                     </form>
                     ";
                     

@@ -1,6 +1,6 @@
 <?php
 
-//var_dump($_POST);
+var_dump($_POST);
 //print_r($_SESSION['username']);
 ?>
 <!DOCTYPE html>
@@ -36,17 +36,27 @@
                     $userID=$userIDrec->fetch()['userID'];
 
                     if(isset($_POST['submitSurv'])){
+
+
                         $surveyID=$_POST['svID'];
                         $surveyRec=$db->prepare('SELECT surveyID, numResponses from surveys where surveyID=? ');
                         $surveyRec->execute(array($surveyID));
 
                         
-                        
+                        $responded=true;
                         $qIDarrSerialized = $_POST['SrqID'];
                         $qIDarr = unserialize($qIDarrSerialized);
-                        if(!empty(($qIDarr))){
+                        for($i=0; $i<count($qIDarr); $i++){
+                            if (!isset($_POST["qID_".$qIDarr[$i]]) || $_POST["qID_".$qIDarr[$i]]==null) {
+                                   $responded=false; 
+                                }
+                        }
+                        
+                        
+                        if($responded){
                             $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
                             for($i=0; $i<count($qIDarr); $i++){
+                                
                                 // insert new response record
                                 $insertResponse->bindParam(':userID',$userID);
                                 $insertResponse->bindParam(':qID',$qIDarr[$i]);
@@ -70,7 +80,7 @@
                                 <div class='m-auto submitMsg' id=''>
                                     <div> <h2>Your response has been submitted succesfully! </h2></div>
                                     <div> <h4> Try another one of our surveys </h4></div>
-                                    <div> <a class='btn' id='headLogin' href='explorepage2.php'>Explore</a></div>
+                                    <div> <a class='btn' id='submitpagebtn' href='explorepage2.php'>Explore</a></div>
                                 </div>";
                             }
                             else{
@@ -81,7 +91,7 @@
                                     <div> 
                                         <form action='answerSurvey.php' method='POST'>
                                         <input type='hidden' id='surveyID' name='svID' value=".$_POST['svID'].">
-                                        <button class='btn' id='survey-btn' name='answerSurv'  type='submit'>Answer</button>
+                                        <button class='btn' id='submitpagebtn' name='answerSurv'  type='submit'>Answer</button>
                                         </form>
                                     </div>
                                 </div>";
@@ -96,7 +106,7 @@
                                 <div> 
                                 <form action='answerSurvey.php' method='POST'>
                                     <input type='hidden' id='surveyID' name='svID' value=".$_POST['svID'].">
-                                    <button class='btn' id='survey-btn' name='answerSurv'  type='submit'>Answer</button>
+                                    <button class='btn' id='submitpagebtn' name='answerSurv'  type='submit'>Answer</button>
                                 </form>
                                 </div>
                             </div>";

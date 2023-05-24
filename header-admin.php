@@ -26,6 +26,7 @@
               <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
               
             </form>
+            <a href='createSurvey.php'><button class='btn me-2' id='headCreate'> Create </button></a>
             <?php 
             // session is set -> show logout & profile, else show register & login 
               if (isset($_SESSION['user'])) {
