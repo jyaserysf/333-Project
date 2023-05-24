@@ -62,7 +62,7 @@
             }
             else
             {
-                $img = 'img\Customer Survey-amico (1).png';
+                $img = 'img\Students.jpg';
             }
         $info[] = [$Stitle, $date, $Scategory,$img];
         $db=null;
