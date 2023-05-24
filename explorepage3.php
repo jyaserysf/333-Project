@@ -199,6 +199,11 @@ h2{
 
 
 <?php $type=array("Explore","Student","Work");?>
+
+
+
+<div id="header"> <?php include 'header.php'?> </div>
+
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
 
