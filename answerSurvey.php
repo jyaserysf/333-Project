@@ -54,15 +54,9 @@
                         
                     // display survey title and description
                     echo "  <form method='post' action='submittedResponse.php' >
-<<<<<<< HEAD
                         <div class=' id='surveyHead'>
                             <div> <h1>" .$sTitle." </h1></div>
                             <div> <h5> " .$sDesc." </h5></div>
-=======
-                        <div class='row' id='surveyHead'>
-                            <div> <h1>" .$displaySurvey['title']." </h1></div>
-                            <div> <h5> " .$displaySurvey['description']." </h5></div>
->>>>>>> 6cfc11e57f6ca168e2867f5015bbc832d8dde152
                             <hr>
                         </div>";
                         //  join survey with questions table through surveyID
