@@ -128,7 +128,7 @@
                 </div>
                 </div> 
                 <div class="text-end morelink" >
-                    <a class="link-opacity-75 link-underline-opacity-0" href="explorepage2.php">More</a>
+                    <a class="link-opacity-75 link-underline-opacity-0" href="explorepage3.php">More</a>
                 </div>
             </div><!--end of row  -->
 
