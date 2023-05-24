@@ -154,6 +154,11 @@
 
                         function addYesNO() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("yes/no").disabled = true;
+                            return;
+                            }
 
                             yes_no = `<div class="question" id="question">
                             <ul type="none">
@@ -167,6 +172,11 @@
                         //each MCQ saved in the array MCQ[] followed by its 4 choices
                         function addMCQ() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("MCQ").disabled = true;
+                            return;
+                            }
 
                             MCQ = `<div class="question">
                             <ul type="none">
@@ -185,6 +195,11 @@
 
                         function addshortA() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("shortA").disabled = true;
+                            return;
+                            }
 
                             ShortA = `<div class="question">
                             <ul type="none">
@@ -198,6 +213,11 @@
 
                         function addscale() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("Scale").disabled = true;
+                            return;
+                            }
 
                             scale = `<div class="question">
                             <ul type="none">
