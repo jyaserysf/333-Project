@@ -173,11 +173,18 @@
                         echo '<div class="col">';
                         echo '<div class="row cardrow">';
                         $i=0;
-                        while($row=$stmt->fetch() && $i<4) {
+                        while($row=$stmt->fetch()) {
+
+                            if($i > 4)
+                                break;
                             try {
                                 require('database/connection.php');
                                 $pastSurveysSQL = $db->prepare("SELECT * FROM surveys WHERE surveyID=?");
                                 $pastSurveysSQL->execute(array($row['surveyID']));
+                                if($surveyInfo=$pastSurveysSQL->fetch()) {
+                                    $title = $surveyInfo['title'];
+                                    $desc = $surveyInfo['description'];
+                                } 
                                 $i++;
                                 $db=null;
                             }
@@ -188,10 +195,9 @@
                             <!-- user taken surveys : only most recent ones -->
                                     <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
                                             <div class="card ">
-                                                <div class="card-pic"><img src="images/pic1.jpg"  > </div> 
                                                 <div class="card-details">
-                                                    <p class="text-title"><?php $row['title'] ?></p>
-                                                    <p class="text-body">Here are the details of the card</p>
+                                                    <p class="text-title"><?php echo $title ?></p>
+                                                    <p class="text-body"><?php echo $desc ?></p>
                                                 </div>
                                                 <input type="hidden" id="surveyID" value="surveyID">
                                                 <button class="card-button"> Edit Response </button>
