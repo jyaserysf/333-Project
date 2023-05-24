@@ -59,8 +59,9 @@
                                 $updateResponseNo=$db->prepare("UPDATE surveys set numResponses=? where surveyID=?");
                                 $updateResponseNo->execute(array($numResp,$survey['surveyID']));
 
-                                $insertParticipate=$db->prepare("INSERT into participate (userID, surveyID, date) values (?,?,?)");
-                                $insertParticipate->execute(array($userID,$survey['surveyID'], date('d-m-Y') ));
+                                $insertParticipate=$db->prepare("INSERT into participate (userID, surveyID, date) values (?,?,NOW())");
+                                
+                                $insertParticipate->execute(array($userID,$survey['surveyID'] ));
                             }
 
                             // checking submission
