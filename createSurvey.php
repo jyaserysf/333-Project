@@ -40,7 +40,7 @@
 
         .button {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 10px;
         margin: 10px 0;
         border: 1px solid;
         border-radius: 5px;
@@ -65,7 +65,7 @@
             color: #fff;
             border: 1px solid;
             border-radius: 5px;
-            padding: 10px 20px;
+            padding: 5px 10px;
         }
 
         .btn-primary:hover {
