@@ -64,9 +64,10 @@
                             $type=$question['type'];
                             $qID=$question['questionID'];
                             $qIDarr[]=$qID;
-                            $choicesRec=$db->prepare("SELECT choices.* FROM questions JOIN choices on questions.questionID=choices.questionID WHERE SurveyID=? and choices.questionID=?");
-                            $choicesRec->execute(array($survID,$qID));
-                            $choices=$choicesRec->fetchAll();
+                            $choicesRec=$db->prepare("SELECT * FROM choices  WHERE choices.MCQID=?");
+                            $choicesRec->execute(array($qID));
+                            $choices=$choicesRec->fetch();
+                            print_r($choices);
 
                             if($type=='mcq'){
 
@@ -74,10 +75,11 @@
                                     <div class='question' id=''>
                                         <div class='questionTitle' id=''><h3> $qNo. " .$question['content']." </h3> </div>
                                         <div class='row ms-2' id='mcqChoices'>";
-                                        foreach($choices as $choice){
+                                        for($i=1; $i<=4; $i++ ){
+                                            //echo $choices[$i];
                                             echo 
                                             "<div class='form-check mcqOption col-6' id=''>
-                                            <input class='form-check-input ' type='radio' name='qID_$qID' value='".$choice['choiceID']."'> ".$choice['choice']."
+                                            <input class='form-check-input ' type='radio' name='qID_$qID' value='".$choices["choice$i"]."'> ".$choices["choice$i"]."
                                             </div>";
                                         }
                                         echo"</div>

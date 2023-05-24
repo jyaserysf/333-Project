@@ -1,12 +1,5 @@
 <?php
- session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
-if(!isset($_SESSION['user'])) {
-    // js popup
-    header("location: Login.php");
-    exit();
-}
 
-//should not be accessible to non-users 
 //var_dump($_POST);
 //print_r($_SESSION['username']);
 ?>
@@ -28,22 +21,28 @@ if(!isset($_SESSION['user'])) {
         <div class='container' id='displaySurvey'>
             <!-- <div> <h3> Hi </h3></div> -->
             <?php 
+              # prevent the user to come without premission to profile page (should be added most to all pages)
+             if(!isset($_SESSION['user'])) {
+                 // js popup
+                 header("location: Login.php");
+                 exit();
+             }
                 require('database/connection.php');
                 $db->beginTransaction();
                 try{
                     $userIDrec=$db->prepare("SELECT userID from users where username=?");
                     $userIDrec->execute(array($_SESSION['username']));
                     $userID=$userIDrec->fetch()['userID'];
-                    
-                    //print_r($qIDarr);
-                    //foreach($qIDarr as $qid)
-                    //echo $qid;
 
                     if(isset($_POST['submitSurv'])){
-                        //echo "<h3> ".$_POST["qID_1"]."</h3>";
+                        $surveyID=$_POST['svID'];
+                        $surveyRec=$db->prepare('SELECT surveyID, numResponses from surveys where surveyID=? ');
+                        $surveyRec->execute(array($surveyID));
+                        
+                        
                         $qIDarrSerialized = $_POST['SrqID'];
                         $qIDarr = unserialize($qIDarrSerialized);
-                        //echo count($qIDarr);
+                        
                         // insert new response record
                         $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
                         for($i=0; $i<count($qIDarr); $i++){
@@ -52,10 +51,15 @@ if(!isset($_SESSION['user'])) {
                             $insertResponse->bindParam(':qID',$qIDarr[$i]);
                             $insertResponse->bindParam(':resp',$_POST["qID_".$qIDarr[$i]]);
                             $insertResponse->execute();
-                            // update numResponses
-
-                            
                         }
+                        if($survey=$surveyRec->fetch()){
+                            
+                            $numResp=$survey['numResponses']+1;
+                            $updateResponseNo=$db->prepare("UPDATE surveys set numResponses=? where surveyID=?");
+                            $updateResponseNo->execute(array($numResp,$survey['surveyID']));
+                        }
+
+
                          if($insertResponse->rowCount()>0){
                             echo "
                             <div class='m-auto submitMsg' id=''>
