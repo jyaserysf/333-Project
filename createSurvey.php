@@ -9,7 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/generalstyle.css">
-
+    <!-- icons library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- .. -->
     <style>
         .container {
             justify-content: center;
@@ -159,10 +161,19 @@
                             <ul type="none">
                             <li> 
                             <label>Question ${questionCount}</label>
-                            <input type="text" name="TFQ[]" id="question" placeholder="True / False Question" class="form-control">  </li>
+                            <input type="text" name="TFQ[]" id="question" placeholder="True / False Question" class="form-control">  
+                            <button class="btn"><i class="fa fa-trash delete-question"></i></button>
+                            </li>
                             </div>`;
+                            
                             questions.insertAdjacentHTML("beforeend", yes_no);
+                            
+                          
+                        
+
                         }
+
+                      
 
                         //each MCQ saved in the array MCQ[] followed by its 4 choices
                         function addMCQ() {
@@ -173,13 +184,15 @@
 
                             <li>
                             <label>Question ${questionCount}</label>
-                            <input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control"></li> 
+                            <input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control">
+                            <button class="btn"><i class="fa fa-trash delete-question"></i></button>
                                 <br>
                             <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st Option" class="form-control"><br>
                             <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd Option" class="form-control"><br>
                             <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd Option" class="form-control"><br>
                             <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th Option" class="form-control">
                             </div>`;
+                            
                             questions.insertAdjacentHTML("beforeend", MCQ);
                         }
 
@@ -191,6 +204,7 @@
                             <li>
                                 <label>Question ${questionCount}</label>
                                 <input type="text" name="Short[]" id="question" placeholder="Short Answer Question" class="form-control">
+                                <button class="btn"><i class="fa fa-trash delete-question"></i></button>
                                 </li>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", ShortA);
@@ -203,16 +217,38 @@
                             <ul type="none">
                             <li>
                                 <label>Question ${questionCount}</label>
-                                <input type="text" name="Scale[]" id="question" placeholder="Scale Question" class="form-control"></li>
+                                <input type="text" name="Scale[]" id="question" placeholder="Scale Question" class="form-control">
+                                <button class="btn"><i class="fa fa-trash delete-question"></i></button>
+                                </li>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", scale);
                         }
+
+
+                      /*   delete question */
+
+                            
+                    questions.addEventListener("click", function(event) {
+                 if (event.target.classList.contains("delete-question")) {
+                  event.target.closest(".question").remove();
+                  questionCount--;
+                  updateQuestionNumbers();
+                     }
+                    });
+
+                    function updateQuestionNumbers(){
+                        var questionNumbers = document.querySelectorAll(".question label");
+                    for (var i = 0; i < questionNumbers.length; i++) {
+                    questionNumbers[i].textContent = "Question " + (i + 1);
+                        }
+                    }
 
 
                     </script>
                 </div>
                 <div>
                     <input type="submit" value="Create Survey" class="btn btn-primary">
+                    <input type="reset" value="Clear" class="btn btn-primary">
                 </div>
             </form>
         </div>
