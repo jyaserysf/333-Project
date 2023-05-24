@@ -143,35 +143,41 @@
    
 }
 
-.btn{           
-transform: translate(-50%, 125%);
-width: 60%;
-border-radius: 1.5rem;
-border:none;
-background-color: #292C6D;
-color: #fff;
-font-size: 1rem;
-padding: .5rem 1rem;
-position: absolute;
-left: 50%;
-bottom: 0;
-opacity: 0;
-transition: 0.3s ease-out;
-        }
+.btnn{           
+    transform: translate(-50%, 125%);
+    width: 60%;
+    border-radius: 1.5rem;
+    border:none;
+    background-color: #EC255A;
+    color: #fff;
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    opacity: 0;
+    transition: 0.3s ease-out;
+    text-align:center;
+    
+}
 
 .card:hover {
-border-color: #008bf8;
+border-color: #EC255A;
  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
 
 }
 
+.card a{
+    text-decoration:none;
+}
 
-.card:hover .btn {
+
+.card:hover .btnn {
     transform: translate(-50%, 50%);
     opacity: 1;
         }
 
- .btn:hover{
+ .btnn:hover{
 
     cursor: pointer;
   
@@ -202,7 +208,7 @@ h2{
 
 
 
-<div id="header"> <?php include 'header.php'?> </div>
+
 
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
@@ -239,7 +245,10 @@ h2{
             <div class="card-body">
              <h5 class="card-title"><?php echo $r['title']; ?> </h5>
              <p class="card-text"><?php echo $r['description']; ?></p>
-             <a href="#" class="btn btn-primary">start</a>
+             <form action='displaySurvey.php' method='POST'>
+                <input type='hidden' id='surveyID' name='svID' <?php echo " value='".$r['surveyID']."' ";?>>
+                <button class='card-button' name='startSurv' type='submit'>Answer</button>
+            </form>
         
             </div> 
             </div>

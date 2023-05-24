@@ -1,6 +1,6 @@
 <?php
 
-var_dump($_POST);
+//var_dump($_POST);
 //print_r($_SESSION['username']);
 ?>
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ var_dump($_POST);
                                 <div class='m-auto submitMsg' id=''>
                                     <div> <h2>Your response has been submitted succesfully! </h2></div>
                                     <div> <h4> Try another one of our surveys </h4></div>
-                                    <div> <a class='btn' id='submitpagebtn' href='explorepage2.php'>Explore</a></div>
+                                    <div> <a class='btn' id='submitpagebtn' href='explorepage3.php'>Explore</a></div>
                                 </div>";
                             }
                             else{

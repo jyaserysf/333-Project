@@ -35,8 +35,9 @@
               </li>
              
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex-wrap " role="search">
+              <input class="form-control me-2 search" type="text" placeholder="Search" aria-label="Search" onkeyup="search(this.value);" id="Search">
+              <div class="form-control me-2 search" id="results"> </div>
               
             </form>
             <?php 
@@ -65,6 +66,22 @@
                     };
                     xhr.send();
                 }
+
+                function search(user){
+                  if (user.length == 0){
+                      document.getElementById('results').innerText="";
+                      return;
+                  }
+                  const xHttp = new XMLHttpRequest();
+                  xHttp.onreadystatechange = function(){
+                      if (this.readyState==4 && this.status== 200){
+                          document.getElementById('results').innerHTML = this.responseText;
+                          
+                      }
+                  };
+                  xHttp.open("GET","Search.php?S="+user)
+                  xHttp.send(null);
+              }
             </script>
             
           </div>
