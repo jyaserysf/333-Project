@@ -28,10 +28,10 @@
                 
               ?>
               <li class="nav-item me-5">
-                <a class="nav-link" href="explorepage2.php">Student</a>
+                <a class="nav-link" href="explorepage3.php">Student</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="explorepage2.php">Work</a>
+                <a class="nav-link" href="explorepage3.php">Work</a>
               </li>
              
             </ul>
