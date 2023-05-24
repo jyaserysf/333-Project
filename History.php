@@ -58,7 +58,7 @@
     }
             if($Scategory=='Work')
             {
-                $img = 'img\Customer Survey-amico (1).png';
+                $img = 'img\Work.png';
             }
             else
             {
@@ -102,27 +102,37 @@
         </div>
 
         <div class="area2">
-            <table>
-                <tr>
-                <th>Survey Logo</th>
-                <th>Survey Title</th>
-                <th>Survey Category</th>
-                <th>Submitted On</th>
-                <th>Edit?</th>
-                </tr>
 
+
+                
                 <?php
-                foreach($information as $value)
+                if($information==null)
                 {
+                    echo "<h1 style='color: #EC255A'>No surveys available in the history.😕</h1>";
+                }
+                else{
                     echo
-                    "<tr>
-                     <td><img width='50' height='50' src='$value[3]'/></td>
-                     <td>$value[0]</td>
-                     <td>$value[2]</td>
-                     <td>$value[1]</td>
-                     <td><a href='answerSurvey.php?survID=$surveyID><span style='background-color:#161853' class='material-symbols-outlined'>edit_square</span></a></td>
-                     </tr>
-                     ";
+                "<table>                    
+                    <tr>
+                    <th>Survey Logo</th>
+                    <th>Survey Title</th>
+                    <th>Survey Category</th>
+                    <th>Submitted On</th>
+                    <th>Edit?</th>
+                    </tr>";
+
+                    foreach($information as $value)
+                    {
+                        echo
+                        "<tr>
+                            <td><img width='50' height='50' src='$value[3]'/></td>
+                            <td>$value[0]</td>
+                            <td>$value[2]</td>
+                            <td>$value[1]</td>
+                            <td><a href='answerSurvey.php?survID=$surveyID><span style='background-color:#161853' class='material-symbols-outlined'>edit_square</span></a></td>
+                            </tr>
+                            ";
+                    }
                 }
 
                 ?>
