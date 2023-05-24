@@ -35,9 +35,11 @@
               </li>
              
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
-              
+            <form class="d-flex-wrap" role="search">
+              <input class="form-control me-2 search" type="text" placeholder="Search" aria-label="Search"
+              onkeyup="Searchbar(this.value);" id="Search">
+              <div class="form-control me-2 search" id="results"></div>
+          
             </form>
             <?php 
             //print_r($_SESSION['user']);
@@ -65,6 +67,32 @@
                     };
                     xhr.send();
                 }
+
+
+ document.getElementById("results").style.display = "none";
+function Searchbar(input){
+    if (input.length==0){
+        document.getElementById("results").style.display = "none";
+        return;
+    }
+
+ const xhttp=new XMLHttpRequest();
+xhttp.onload=myAJAXFunction; 
+xhttp.open("GET","answerSurvey.php?S="+input);
+xhttp.open("GET","Search.php?S="+input);
+xhttp.send();
+
+//const xhttp=new XMLHttpRequest();
+//xhttp.onload=myAJAXFunction;
+//xhttp.open("GET","Search.php?S="+input);
+//xhttp.send();
+}
+function myAJAXFunction()
+{
+  document.getElementById("results").innerHTML=this.responseText;
+    document.getElementById("results").style.display = "block";
+   
+}
             </script>
             
           </div>
