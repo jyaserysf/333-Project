@@ -10,6 +10,20 @@ if(isset($_REQUEST['S'])){?>
         $SName->execute();
         $SurveysNames = $SName->fetchAll();
 
+        $stmt = $db->prepare("SELECT * FROM surveys WHERE title LIKE :title");
+        $stmt->bindValue(":title", "%{$S}%");
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+
+
+        foreach ($results as $result) {
+            echo "<a href='answerSurvey.php?id={$result["surveyID"]}'>{$result["title"]}</a><br>";
+          }
+
+
+
+
+
         if($S !== "") {
             $S = strtolower($S);
             $len = strlen($S);
@@ -23,6 +37,7 @@ if(isset($_REQUEST['S'])){?>
                 }
             }
         }
+        
 
         echo $hint === "" ? "no suggestion" : $hint;
     } catch(PDOException $e) {

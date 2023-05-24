@@ -1,13 +1,10 @@
 <?php 
-<<<<<<< HEAD
 /*session_start(); # open it later to prevent the user to come without premission to profile page (should be added to most pages)
 if(!isset($_SESSION['user'])) {
     header("location: Login.php");
     die();
 }*/
-=======
 session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
->>>>>>> c3d296a5f7bccf807d84dbec0985407dc1a58f93
 
 //var_dump($_POST);
 ?>
