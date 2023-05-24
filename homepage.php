@@ -160,7 +160,17 @@
                         $keys = array_keys($_SESSION['user']);
                         $userSQL->execute(array($keys[0]));
                         if($userID = $userSQL->fetch()) {
-                            $stmt = $db->prepare("SELECT * FROM participate WHERE userID=?");
+                            $stmt = $db->prepare("SELECT *
+                                FROM participate
+                                WHERE participateID IN (
+                                SELECT MAX(participateID)
+                                FROM participate
+                                WHERE userID=?
+                                GROUP BY surveyID
+                            )
+                            ORDER BY participateID DESC;
+                            ");
+                            //$stmt = $db->prepare("SELECT * FROM participate WHERE userID=? ORDER BY participate ID DESC");
                             $stmt->execute(array($userID['userID']));
                         }
                         $db=null;
