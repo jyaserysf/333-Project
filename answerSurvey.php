@@ -44,7 +44,7 @@
                     $displaySurvey=$displaySurvRec->fetch();
                     // display survey title and description
                     echo "  <form method='post' action='submittedResponse.php' >
-                        <div class=' id='surveyHead'>
+                        <div class='row' id='surveyHead'>
                             <div> <h1>" .$displaySurvey['title']." </h1></div>
                             <div> <h5> " .$displaySurvey['description']." </h5></div>
                             <hr>
@@ -56,7 +56,7 @@
                         $questionDetails=$questionDetailRec->fetchAll();
                         //loop based on no. of questions
                         // display question 
-                        echo "<div class=' id='surveyBody'>
+                        echo "<div class='row' id='surveyBody'>
                                ";
                         $qNo=1;
                         $qIDarr=[];
@@ -73,13 +73,13 @@
                             if($type=='mcq'){
 
                                 echo " 
-                                    <div class='question' id=''>
-                                        <div class='questionTitle' id=''><h3> $qNo. " .$question['content']." </h3> </div>
+                                    <div class='question col-12' id=''>
+                                        <div class='questionTitle row' id=''><h3> $qNo. " .$question['content']." </h3> </div>
                                         <div class='row ms-2' id='mcqChoices'>";
                                         for($i=1; $i<=4; $i++ ){
                                             //echo $choices[$i];
                                             echo 
-                                            "<div class='form-check mcqOption col-6' id=''>
+                                            "<div class='form-check mcqOption col-md-6 col-sm-12' id=''>
                                             <input class='form-check-input ' type='radio' name='qID_$qID' value='".$choices["choice$i"]."'> ".$choices["choice$i"]."
                                             </div>";
                                         }
