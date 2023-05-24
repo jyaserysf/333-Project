@@ -197,88 +197,56 @@ h2{
 </head>
 <body>
 
-<<<<<<< HEAD
-<div id="header"> <?php include 'header.php'?> </div>
-=======
+        <div id="header"> <?php include 'header.php'?> </div>
 
 
-<?php $type=array("Explore","Student","Work");?>
+        <?php $type=array("Explore","Student","Work");?>
 
 
-<div id="header"> <?php include 'header.html'?> </div>
->>>>>>> 202eafed5e27c86807e9c9ac972525d6c2180050
-    <!-- Page content in this container -->
-    <div class="cointainer" id="main">
+            <!-- Page content in this container -->
+            <div class="cointainer" id="main">
 
-    <?php foreach($type as $value){ ?>
-        <?php echo"<h2>". $value ."</h2>" ?>
-    <div class="wrapper"><!--  wrapper start -->
+            <?php foreach($type as $value){ ?>
+                <?php echo"<h2>". $value ."</h2>" ?>
+            <div class="wrapper"><!--  wrapper start -->
+                
+            
         
-       
-   
-        <div class="card-wrapper"> <!-- card wrapper start -->
+                <div class="card-wrapper"> <!-- card wrapper start -->
+
+                    
+                <?php for($x=0;$x<20;$x++){ ?>
+                    <div class="card">
+                
+                    <div class="card-body">
+                    <h5 class="card-title"><?php echo "Card title".$x ?> </h5>
+                    <p class="card-text">this is a shortt description about this survey </p>
+                    <a href="#" class="btn btn-primary">start</a>
+
+                
+                    </div> 
+                    </div>
+
+
+
+                    
+            <?php  } ?>
+
+                
+            <button class="arrow prev"><i class="icon ri-arrow-left-s-line"></i></button>
+                <button class="arrow next"><i class="icon ri-arrow-right-s-line"></i></button>
+                    
+                </div> <!-- card wrapper end  -->
 
             
-        <?php for($x=0;$x<20;$x++){ ?>
-            <div class="card">
-           
-            <div class="card-body">
-             <h5 class="card-title"><?php echo "Card title".$x ?> </h5>
-             <p class="card-text">this is a shortt description about this survey </p>
-             <a href="#" class="btn btn-primary">start</a>
-
-        
-            </div> 
-            </div>
-
+            </div> <!-- wrapper end  -->
+            <?php } ?>
 
 
             
-      <?php  } ?>
-
-          
-      <button class="arrow prev"><i class="icon ri-arrow-left-s-line"></i></button>
-        <button class="arrow next"><i class="icon ri-arrow-right-s-line"></i></button>
-               
-        </div> <!-- card wrapper end  -->
-
-     
-    </div> <!-- wrapper end  -->
-    <?php } ?>
-
-
-
-
-
-
-
-
-
-
-
-    
-<<<<<<< HEAD
-<h2>Explore</h2>
-  <div class="display">
-<div class="d-flex flex-row flex-nowrap">
-<?php for($x=0;$x<10;$x++){
-  // add survey ID in hidden input so it can be displayed
-  ?>
-  <div class="col"></div>
-<div class="card m-3" style="min-width: 12rem; ">
-  <img src="images/pic1.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">this is a shortt description about this survey </p>
-    <input type="hidden" id="surveyID" value="surveyID">
-    <a href="#" class="btn btn-primary">start</a>
-=======
->>>>>>> 202eafed5e27c86807e9c9ac972525d6c2180050
-
-    </div>
-    </div>
-    <div > <?php include 'footer.html'?> </div>
+        
+            <div > <?php include 'footer.html'?> </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="javascript/explorepage.js"></script>
-</body>
+    </body>
 </html>
