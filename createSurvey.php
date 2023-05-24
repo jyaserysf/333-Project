@@ -87,6 +87,11 @@
             color: rgba(0, 0, 0, 0.7);
             margin-bottom: 1.1rem;
         }
+
+        #trash {
+            float: right;
+        }
+
     </style>
 </head>
 <body>
@@ -166,10 +171,11 @@
                             yes_no = `<div class="question" id="question">
                             <ul type="none">
                             <li> 
+
                             <label>Question ${questionCount}</label>
+                            <button class="btn" id="trash"><i class="fa fa-trash delete-question"></i></button><p>
 
                             <input type="text" name="TFQ[]" id="question" placeholder="True / False Question" class="form-control">  
-                            <button class="btn"><i class="fa fa-trash delete-question"></i></button>
                             </li>
 
                             </div>`;
@@ -197,9 +203,9 @@
 
                             <li>
                             <label>Question ${questionCount}</label>
+                            <button class="btn" id="trash"><i class="fa fa-trash delete-question"></i></button>
 
                             <input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control">
-                            <button class="btn"><i class="fa fa-trash delete-question"></i></button>
 
                                 <br>
                             <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st Option" class="form-control" id="input-area"><br>
@@ -223,9 +229,9 @@
                             <ul type="none">
                             <li>
                                 <label>Question ${questionCount}</label>
+                                <button class="btn" id="trash"><i class="fa fa-trash delete-question"></i></button>
 
                                 <input type="text" name="Short[]" id="question" placeholder="Short Answer Question" class="form-control">
-                                <button class="btn"><i class="fa fa-trash delete-question"></i></button>
 
                                 </li>
                             </div>`;
@@ -244,9 +250,9 @@
                             <ul type="none">
                             <li>
                                 <label>Question ${questionCount}</label>
+                                <button class="btn" id="trash"><i class="fa fa-trash delete-question"></i></button>
 
                                 <input type="text" name="Scale[]" id="question" placeholder="Scale Question" class="form-control">
-                                <button class="btn"><i class="fa fa-trash delete-question"></i></button>
                                 </li>
 
                             </div>`;
