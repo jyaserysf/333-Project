@@ -27,6 +27,7 @@
               
             </form>
             <?php 
+            // session is set -> show logout & profile, else show register & login 
               if (isset($_SESSION['user'])) {
                 echo " 
                 <a href='#' onclick='logout()'> <button class='btn me-2' id='headLogin'> <i class='fa fa-sign-out'> </i> Logout </button></a>
@@ -39,12 +40,12 @@
             ?>
             <script>
                 function logout() {
-                    // Send an AJAX request to the server to destroy the session
+                    // send AJAX request to the server to destroy the session
                     var xhr = new XMLHttpRequest();
                     xhr.open('POST', 'logout.php');
                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     xhr.onload = function() {
-                        // Redirect the user to the login page
+                        // redirect the user to homepage
                         window.location.href = 'homepage.php';
                     };
                     xhr.send();
