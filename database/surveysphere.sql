@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 10:41 PM
+-- Generation Time: May 24, 2023 at 01:02 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -29,20 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `choices` (
   `MCQID` int(11) NOT NULL,
-  `Question` varchar(200) NOT NULL,
   `choice1` varchar(200) NOT NULL,
   `choice2` varchar(200) NOT NULL,
   `choice3` varchar(200) NOT NULL,
-  `choice4` varchar(200) NOT NULL,
-  `surveyID` int(11) NOT NULL
+  `choice4` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `choices`
 --
 
-INSERT INTO `choices` (`MCQID`, `Question`, `choice1`, `choice2`, `choice3`, `choice4`, `surveyID`) VALUES
-(10, 'Who are you?', 'A1', 'A2', 'A3', 'A4', 4);
+INSERT INTO `choices` (`MCQID`, `choice1`, `choice2`, `choice3`, `choice4`) VALUES
+(12, 'A1', 'A2', 'A3', 'A4');
 
 -- --------------------------------------------------------
 
@@ -75,9 +73,10 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`questionID`, `content`, `type`, `SurveyID`) VALUES
-(9, 'Really?', 'trueORfalse', 4),
-(10, 'Really?', 'ShortAnswer', 4),
-(11, 'Rate?', 'Scale', 4);
+(12, 'Who are you?', 'mcq', 5),
+(13, 'Really?', 'yes_no', 5),
+(14, 'Really?', 'short_answer', 5),
+(15, 'Rate?', 'scale', 5);
 
 -- --------------------------------------------------------
 
@@ -113,7 +112,7 @@ CREATE TABLE `surveys` (
 --
 
 INSERT INTO `surveys` (`surveyID`, `numQuestions`, `numResponses`, `date`, `title`, `description`, `category`) VALUES
-(4, 0, 4, '2023-05-23', 'SurveyOne', 'This is the first survey', 'work');
+(5, 0, 4, '2023-05-24', 'SurveyOne', 'This is a survey after the editing', 'student');
 
 -- --------------------------------------------------------
 
@@ -139,9 +138,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userID`, `username`, `name`, `email`, `phoneCode`, `phoneNumber`, `role`, `password`) VALUES
 (1, 'sahmed', 'Ahmed Khalaf', 'abc@gmail.com', '', '', 'admin', '$2y$10$dnd54a5uXsZstLRejJH8T.ohSOPzwUbXmvHQS61wVcc2z72c6eZtm'),
 (2, 'jood', 'Jood Yaser', 'jood@gmail.com', '', '', 'user', '$2y$10$XAH92dl.sdyeFhc3wQ4B1.huxr8oD3qw.QNceiqTj09tyXYFRvtG.'),
-(3, 'ali1', 'Ali Majeed', 'ali@gmail.com', '', '', 'user', '$2y$10$Lf/ZHlhf0as.rjPkm9TNjOFTKmHzvPmKG0AWVsBMqaIqxICcZQf/m');
-(4, 'Muntadher', 'Muntadher', 'MJ@whatever.com', '', '', 'admin', '$2y$10$56QbPsUizKVRmaecF4FzDO0wuR8mOrmomHL9d9bxR9YGovXCy61l.');
-
+(3, 'ali1', 'Ali Majeed', 'ali@gmail.com', '', '', 'user', '$2y$10$Lf/ZHlhf0as.rjPkm9TNjOFTKmHzvPmKG0AWVsBMqaIqxICcZQf/m'),
+(4, 'muntadher', 'Muntadher', '202002103@stu.uob.edu.bh', '+973', '33000001', 'admin', '$2y$10$gmZuqBZ4xLNCSBZVWYlkHeBCt/Lk3BGP5prJCDNyJ8SrFneIdTqyW');
 
 --
 -- Indexes for dumped tables
@@ -151,8 +149,7 @@ INSERT INTO `users` (`userID`, `username`, `name`, `email`, `phoneCode`, `phoneN
 -- Indexes for table `choices`
 --
 ALTER TABLE `choices`
-  ADD PRIMARY KEY (`MCQID`),
-  ADD KEY `surveyID` (`surveyID`);
+  ADD PRIMARY KEY (`MCQID`);
 
 --
 -- Indexes for table `participate`
@@ -199,7 +196,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `choices`
 --
 ALTER TABLE `choices`
-  MODIFY `MCQID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `MCQID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `participate`
@@ -211,7 +208,7 @@ ALTER TABLE `participate`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `responses`
@@ -223,13 +220,13 @@ ALTER TABLE `responses`
 -- AUTO_INCREMENT for table `surveys`
 --
 ALTER TABLE `surveys`
-  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -239,7 +236,7 @@ ALTER TABLE `users`
 -- Constraints for table `choices`
 --
 ALTER TABLE `choices`
-  ADD CONSTRAINT `choices_ibfk_1` FOREIGN KEY (`surveyID`) REFERENCES `surveys` (`surveyID`);
+  ADD CONSTRAINT `choices_ibfk_1` FOREIGN KEY (`MCQID`) REFERENCES `questions` (`questionID`);
 
 --
 -- Constraints for table `participate`
