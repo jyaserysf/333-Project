@@ -21,7 +21,7 @@ var_dump($_POST);
         <div class='container' id='displaySurvey'>
             <!-- <div> <h3> Hi </h3></div> -->
             <?php 
-              # prevent the user to come without premission to profile page (should be added most to all pages)
+              # prevent the user to come without premission to profile page (should be added to all pages)
              if(!isset($_SESSION['user'])) {
                  // js popup
                  header("location: Login.php");
@@ -36,8 +36,7 @@ var_dump($_POST);
                     $userID=$userIDrec->fetch()['userID'];
 
                     if(isset($_POST['submitSurv'])){
-
-
+                        
                         $surveyID=$_POST['svID'];
                         $surveyRec=$db->prepare('SELECT surveyID, numResponses from surveys where surveyID=? ');
                         $surveyRec->execute(array($surveyID));

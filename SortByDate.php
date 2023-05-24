@@ -6,7 +6,7 @@ function SortOldest(&$array)
     {
         for($j=$i+1;$j<$n;$j++)
         {
-            if(strtotime($array[$i][2]) > strtotime($array[$j][2]))
+            if(strtotime($array[$i][1]) > strtotime($array[$j][1]))
             {
                 $temp = $array[$i];
                 $array[$i] = $array[$j];
@@ -24,7 +24,7 @@ function SortLatest(&$array)
     {
         for($j=$i+1;$j<$n;$j++)
         {
-            if(strtotime($array[$i][2]) < strtotime($array[$j][2]))
+            if(strtotime($array[$i][1]) < strtotime($array[$j][1]))
             {
                 $temp = $array[$i];
                 $array[$i] = $array[$j];

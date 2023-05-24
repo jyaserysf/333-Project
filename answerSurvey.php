@@ -30,23 +30,33 @@
     <div class="cointainer" id="main">
     <div class='container' id='displaySurvey'>
         <?php 
-        try{
-                
-                
+        try{ 
                 require('database/connection.php');
                $db->beginTransaction();
-                if(isset($_POST['answerSurv'])){
+                if(isset($_POST['answerSurv'])||isset($_GET['survID'])){
                      // grab surveyID from displaySurvey 
-                    $survID=$_POST['svID'];
+                     if(isset($_POST['answerSurv']))
+                        $survID=$_POST['svID'];
+                    else
+                        {
+                            $survID = $_GET['survID']; # came from the history page link
+                        }
                     $displaySurvRec=$db->prepare("SELECT * from surveys where surveyID=:svID");
                     $displaySurvRec->bindParam(':svID', $survID);
                     $displaySurvRec->execute();
-                    $displaySurvey=$displaySurvRec->fetch();
+                    $sTitle = '';
+                    $sDesc = '';
+                    if($displaySurvey=$displaySurvRec->fetch())
+                        {
+                            $sTitle = $displaySurvey['title'];
+                            $sDesc = $displaySurvey['description'];
+                        }   
+                        
                     // display survey title and description
                     echo "  <form method='post' action='submittedResponse.php' >
                         <div class=' id='surveyHead'>
-                            <div> <h1>" .$displaySurvey['title']." </h1></div>
-                            <div> <h5> " .$displaySurvey['description']." </h5></div>
+                            <div> <h1>" .$sTitle." </h1></div>
+                            <div> <h5> " .$sDesc." </h5></div>
                             <hr>
                         </div>";
                         //  join survey with questions table through surveyID
@@ -152,7 +162,7 @@
                         
                         echo"</div>
                         <div id='submitResponse'> 
-                                    <input type='hidden' id='surveyID' name='svID' value=".$displaySurvey['surveyID'].">
+                                    <input type='hidden' id='surveyID' name='svID' value=". $survID.">
                                     <input type='hidden' id='surveyID' name='SrqID' value=".$qIDarrSerialized.">
                                     <button class='btn' id='survey-btn' name='submitSurv'  type='submit'>Submit</button>";
 
