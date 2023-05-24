@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 09:53 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: May 24, 2023 at 10:21 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,24 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `choices` (
-  `choiceID` int(11) NOT NULL,
-  `choice` varchar(200) NOT NULL,
-  `questionID` int(11) NOT NULL
+  `MCQID` int(11) NOT NULL,
+  `choice1` varchar(200) NOT NULL,
+  `choice2` varchar(200) NOT NULL,
+  `choice3` varchar(200) NOT NULL,
+  `choice4` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `choices`
 --
 
-INSERT INTO `choices` (`choiceID`, `choice`, `questionID`) VALUES
-(1, '20-40 hours', 1),
-(2, '40-60 hours', 1),
-(3, '60-80 hours', 1),
-(4, '80-100 hours', 1),
-(5, 'Less than 4 hours', 2),
-(6, '4-6 hours', 2),
-(7, '6-8 hours', 2),
-(8, '8-10 hours', 2);
+INSERT INTO `choices` (`MCQID`, `choice1`, `choice2`, `choice3`, `choice4`) VALUES
+(12, '20 hours or less', 'Over 20 to 40 hours', 'Over 40 to 70 hours', 'More than 70 hours');
 
 -- --------------------------------------------------------
 
@@ -59,6 +54,15 @@ CREATE TABLE `participate` (
   `surveyID` int(11) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `participate`
+--
+
+INSERT INTO `participate` (`participateID`, `userID`, `surveyID`, `date`) VALUES
+(1, 2, 5, '0000-00-00'),
+(2, 2, 5, '0000-00-00'),
+(3, 2, 5, '2023-05-24');
 
 -- --------------------------------------------------------
 
@@ -78,11 +82,10 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`questionID`, `content`, `type`, `SurveyID`) VALUES
-(1, 'How many hours is your typical work week?', 'mcq', 1),
-(2, 'How many hours do you sleep on a typical work night?', 'mcq', 1),
-(3, 'Have you recently missed a personal event because of work?', 'yes_no', 1),
-(4, 'How satisfied are you with your current work-life balance?', 'scale', 1),
-(5, 'What can we do to give you a better work-life balance?', 'short_answer', 1);
+(12, 'How many hours do you work per week?', 'mcq', 5),
+(13, 'Do you believe your current work hours are affecting your personal life?', 'yes_no', 5),
+(14, 'Give a suggestion on how to improve your current work. ', 'short_answer', 5),
+(15, 'How satisfied are you with your current work-life balance? (1 for unsatisfied, 5 for very satisfied)', 'scale', 5);
 
 -- --------------------------------------------------------
 
@@ -96,6 +99,24 @@ CREATE TABLE `responses` (
   `questionID` int(11) NOT NULL,
   `response` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `responses`
+--
+
+INSERT INTO `responses` (`responseID`, `userID`, `questionID`, `response`) VALUES
+(34, 2, 12, 'Over 40 to 70 hours'),
+(35, 2, 13, 'yes'),
+(36, 2, 14, 'Holidays'),
+(37, 2, 15, '2'),
+(38, 2, 12, 'More than 70 hours'),
+(39, 2, 13, 'yes'),
+(40, 2, 14, 'Holidays pls'),
+(41, 2, 15, '2'),
+(42, 2, 12, 'More than 70 hours'),
+(43, 2, 13, 'yes'),
+(44, 2, 14, 'Holidays pls'),
+(45, 2, 15, '2');
 
 -- --------------------------------------------------------
 
@@ -118,7 +139,7 @@ CREATE TABLE `surveys` (
 --
 
 INSERT INTO `surveys` (`surveyID`, `numQuestions`, `numResponses`, `date`, `title`, `description`, `category`) VALUES
-(1, 5, 0, '2023-05-23', 'Work-Life Balance', 'The purpose of this survey is to find whether work-life balance is contributing to dissatisfaction among employees or not. ', 'work');
+(5, 0, 3, '2023-05-24', 'Work-Life Balance', 'A survey that aims to study the impact of one\'s work on other aspects of their life and vice-versa', 'Work');
 
 -- --------------------------------------------------------
 
@@ -144,7 +165,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userID`, `username`, `name`, `email`, `phoneCode`, `phoneNumber`, `role`, `password`) VALUES
 (1, 'sahmed', 'Ahmed Khalaf', 'abc@gmail.com', '', '', 'admin', '$2y$10$dnd54a5uXsZstLRejJH8T.ohSOPzwUbXmvHQS61wVcc2z72c6eZtm'),
 (2, 'jood', 'Jood Yaser', 'jood@gmail.com', '', '', 'user', '$2y$10$XAH92dl.sdyeFhc3wQ4B1.huxr8oD3qw.QNceiqTj09tyXYFRvtG.'),
-(3, 'ali1', 'Ali Majeed', 'ali@gmail.com', '', '', 'user', '$2y$10$Lf/ZHlhf0as.rjPkm9TNjOFTKmHzvPmKG0AWVsBMqaIqxICcZQf/m');
+(3, 'ali1', 'Ali Majeed', 'ali@gmail.com', '', '', 'user', '$2y$10$Lf/ZHlhf0as.rjPkm9TNjOFTKmHzvPmKG0AWVsBMqaIqxICcZQf/m'),
+(4, 'muntadher', 'Muntadher', '202002103@stu.uob.edu.bh', '+973', '33000001', 'admin', '$2y$10$gmZuqBZ4xLNCSBZVWYlkHeBCt/Lk3BGP5prJCDNyJ8SrFneIdTqyW');
 
 --
 -- Indexes for dumped tables
@@ -154,8 +176,7 @@ INSERT INTO `users` (`userID`, `username`, `name`, `email`, `phoneCode`, `phoneN
 -- Indexes for table `choices`
 --
 ALTER TABLE `choices`
-  ADD PRIMARY KEY (`choiceID`),
-  ADD KEY `questionID` (`questionID`);
+  ADD PRIMARY KEY (`MCQID`);
 
 --
 -- Indexes for table `participate`
@@ -202,37 +223,37 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `choices`
 --
 ALTER TABLE `choices`
-  MODIFY `choiceID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MCQID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `participate`
 --
 ALTER TABLE `participate`
-  MODIFY `participateID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `participateID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `questionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `responses`
 --
 ALTER TABLE `responses`
-  MODIFY `responseID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `responseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `surveys`
 --
 ALTER TABLE `surveys`
-  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -242,7 +263,7 @@ ALTER TABLE `users`
 -- Constraints for table `choices`
 --
 ALTER TABLE `choices`
-  ADD CONSTRAINT `choices_ibfk_1` FOREIGN KEY (`questionID`) REFERENCES `questions` (`questionID`);
+  ADD CONSTRAINT `choices_ibfk_1` FOREIGN KEY (`MCQID`) REFERENCES `questions` (`questionID`);
 
 --
 -- Constraints for table `participate`

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Homepage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
    
 </head>
 <body>
-    <div id="header"> <?php include 'header.html'?> </div>
+    <div id="header"> <?php include 'header.php'?> </div>
     <!-- Page content in this container -->
     <div class="cointainer " id="main">
         <div class="seperate">
@@ -68,7 +68,7 @@
                         <div class="carousel-inner">
                             <!-- this should be done with php -->
                             <?php
-                                echo "<div class='carousel-item'>
+                                echo "<div class='carousel-item active'>
                                     <div class='row cardrow'>";
                                          
                                         try{
@@ -76,6 +76,7 @@
                                             $surveysrec=$db->prepare("SELECT * from surveys");
                                             $surveysrec->execute();
                                             $surveys=$surveysrec->fetchAll();
+                                            $db=null;
                                             //print_r($surveys);
                                             foreach($surveys as $surv){
                                                 // create form for button and hidden input then redirect to displaySu
@@ -97,7 +98,7 @@
                                     echo "</div>
                                 </div>
                             
-                            <div class='carousel-item active'>
+                            <div class='carousel-item '>
                                 <div class='row cardrow'>";
 
                                  for($i=0; $i<4; $i++){
@@ -127,7 +128,7 @@
                 </div>
                 </div> 
                 <div class="text-end morelink" >
-                    <a class="link-opacity-75 link-underline-opacity-0" href="explorepage2.php">More</a>
+                    <a class="link-opacity-75 link-underline-opacity-0" href="explorepage3.php">More</a>
                 </div>
             </div><!--end of row  -->
 
@@ -140,40 +141,96 @@
                 <div class="col-12 mb-5">
                     <h2 class="mb-3"> Past Surveys </h2>
                 </div>
-               
-                <div class="row  d-flex flex-column align-items-center justify-content-center surveydisplay text-center "> 
+                <div class="row  d-flex flex-column align-items-center justify-content-center surveydisplay text-center ">
+                    
+                <?php if(!isset($_SESSION['user'])) { ?>
                     <!-- if no sign up/login -->
                     <div class="col " style="font-size: 1.5rem">
-                       Please <a href="Login.php"> Login </a> to see your past surveys!
+                        Please <a href="Login.php"> Login </a> to see your past surveys!
                     </div>
                     <div class="col " style="font-size: 1.25rem">
                         Don't have an account? <a href="Signup.php">Register now!</a>
                     </div>
-                    <!-- if new user -->
+                <?php 
+                }
+                else {
+                    try {
+                        require('database/connection.php');
+                        $userSQL = $db->prepare("SELECT userID FROM users WHERE username=?");
+                        $keys = array_keys($_SESSION['user']);
+                        $userSQL->execute(array($keys[0]));
+                        if($userID = $userSQL->fetch()) {
+                            $stmt = $db->prepare("SELECT *
+                                FROM participate
+                                WHERE participateID IN (
+                                SELECT MAX(participateID)
+                                FROM participate
+                                WHERE userID=?
+                                GROUP BY surveyID
+                            )
+                            ORDER BY participateID DESC;
+                            ");
+                            //$stmt = $db->prepare("SELECT * FROM participate WHERE userID=? ORDER BY participate ID DESC");
+                            $stmt->execute(array($userID['userID']));
+                        }
+                        $db=null;
+                    }
+                    catch(PDOException $e) {
+                        die("Error: " . $e->getMessage());
+                    }
+
+                    if($stmt->rowCount() > 0) {
+                        echo '<div class="col">';
+                        echo '<div class="row cardrow">';
+                        $i=0;
+                        while($row=$stmt->fetch()) {
+
+                            if($i > 4)
+                                break;
+                            try {
+                                require('database/connection.php');
+                                $pastSurveysSQL = $db->prepare("SELECT * FROM surveys WHERE surveyID=?");
+                                $pastSurveysSQL->execute(array($row['surveyID']));
+                                if($surveyInfo=$pastSurveysSQL->fetch()) {
+                                    $title = $surveyInfo['title'];
+                                    $desc = $surveyInfo['description'];
+                                } 
+                                $i++;
+                                $db=null;
+                            }
+                            catch(PDOException $e) {
+                                die("Error: " . $e->getMessage());
+                            }
+                            ?>
+                            <!-- user taken surveys : only most recent ones -->
+                                    <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
+                                            <div class="card ">
+                                                <div class="card-details">
+                                                    <p class="text-title"><?php echo $title ?></p>
+                                                    <p class="text-body"><?php echo $desc ?></p>
+                                                </div>
+                                                <input type="hidden" id="surveyID" value="surveyID">
+                                                <button class="card-button"> Edit Response </button>
+                                            </div>
+                                    </div>
+                        <?php
+                        }
+                        echo '</div></div>';
+                    }
+
+                    else {
+                    ?>
+                        <!-- if new user -->
                     <div class="col" style="font-size: 1.5rem">
                        Welcome to <span style="color: #EC255A" style="text-decoration:"> SurveySphere</span>! 
                     </div>
                     <div class="col " style="font-size: 1.25rem">
                         You haven't taken any survey yet. <a href="#explore" style="font-size: 1.25rem">Explore</a> our surveys!
                     </div>
-                    <!-- user taken surveys : only most recent ones -->
-                    <div class="col">
-                        <div class="row cardrow">
-                            <?php for($i=0; $i<4; $i++){?>
-                                <div class="col-lg-3 col-md-4 col-sm-8 mb-3">
-                                        <div class="card ">
-                                            <div class="card-pic"><img src="images/pic1.jpg"  > </div> 
-                                            <div class="card-details">
-                                                <p class="text-title">Card title</p>
-                                                <p class="text-body">Here are the details of the card</p>
-                                            </div>
-                                            <input type="hidden" id="surveyID" value="surveyID">
-                                            <button class="card-button"> Edit Response </button>
-                                        </div>
-                                </div>
-                            <?php } ?>
-                        </div>
-                    </div>
+                <?php }
+                } 
+                ?>
+               
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>History</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/generalstyle.css">
     <link rel="stylesheet" href="css/History.css">
@@ -14,7 +14,7 @@
 </head>
 <body>
     
-    <div id="header"> <?php include 'header.html'?> </div>
+    <div id="header"> <?php include 'header.php'?> </div>
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
     <div class="container">
@@ -27,13 +27,52 @@
       # save information in numeric array when selecting them from the database by a loop
       # the needed information surveytitle, firstresponse, lastresponse, category, image of that survey
       # then sort them by date whether latest/oldest according to the button choice of the list then print the array in table
-        $d1=mktime(0,0,0,date('m'),date('d')+23,date('y'));
-        $d2=mktime(0,0,0,date('m'),date('d')-23,date('y'));
-        $info[] = ['surveytitle', date('l, d-m-Y'), date('l, d-m-Y'),'category','img\Customer Survey-amico (1).png'];
-        $info[] = ['surveytitle', date('l, d-m-Y'), date('l, d-m-Y',$d1),'category','img\Customer Survey-amico (1).png'];
-        $info[] = ['surveytitle', date('l, d-m-Y'), date('l, d-m-Y',$d2),'category','img\Customer Survey-amico (1).png'];
-        $info[] = ['surveytitle', date('l, d-m-Y'), date('l, d-m-Y'),'category','img\Customer Survey-amico (1).png'];
-        #sort
+      try
+      {
+        require('database/connection.php');
+        $stmt = $db->prepare("SELECT * FROM participate WHERE userID=?");
+        $keys=array_keys($_SESSION['user']);
+        $userIDrec=$db->prepare("SELECT userID from users where username=?");
+        $userIDrec->execute(array($keys[0]));
+        $userID=$userIDrec->fetch()['userID'];
+        $stmt->execute(array($userID));
+        $db=null;
+      }
+      catch(PDOException $e)
+      {
+        die('error:'.$e->getMessage());
+      }
+
+      while($participateData=$stmt->fetch())
+      {
+        $surveyID = $participateData[2];
+        $date = $participateData[3];
+        try
+        {
+        require('database/connection.php');
+        $stmt1 = $db->prepare("SELECT * FROM surveys WHERE surveyID=?");
+        $stmt1->execute(array($surveyID));
+        if($surveyInfo=$stmt1->fetch()){
+        $Stitle = $surveyInfo[4];
+        $Scategory = $surveyInfo[6];
+    }
+            if($Scategory=='Work')
+            {
+                $img = 'img\Work.png';
+            }
+            else
+            {
+                $img = 'img\Students.jpg';
+            }
+        $info[] = [$Stitle, $date, $Scategory,$img];
+        $db=null;
+        }
+        catch(PDOException $e)
+        {
+            die('error:'.$e->getMessage());
+        }
+      }
+
         
         if(isset($_POST['oldest']))
             {
@@ -63,29 +102,37 @@
         </div>
 
         <div class="area2">
-            <table>
-                <tr>
-                <th>Survey Logo</th>
-                <th>Survey Title</th>
-                <th>Survey Category</th>
-                <th>First Response</th>
-                <th>Last Edit</th>
-                <th>Edit?</th>
-                </tr>
 
+
+                
                 <?php
-                foreach($information as $value)
+                if($information==null)
                 {
+                    echo "<h1 style='color: #EC255A'>No surveys available in the history.😕</h1>";
+                }
+                else{
                     echo
-                    "<tr>
-                     <td><img width='50' height='50' src='$value[4]'/></td>
-                     <td>$value[0]</td>
-                     <td>$value[3]</td>
-                     <td>$value[1]</td>
-                     <td>$value[2]</td>
-                     <td><a href='#'><span style='background-color:#161853' class='material-symbols-outlined'>edit_square</span></a></td>
-                     </tr>
-                     ";
+                "<table>                    
+                    <tr>
+                    <th>Survey Logo</th>
+                    <th>Survey Title</th>
+                    <th>Survey Category</th>
+                    <th>Submitted On</th>
+                    <th>Edit?</th>
+                    </tr>";
+
+                    foreach($information as $value)
+                    {
+                        echo
+                        "<tr>
+                            <td><img width='50' height='50' src='$value[3]'/></td>
+                            <td>$value[0]</td>
+                            <td>$value[2]</td>
+                            <td>$value[1]</td>
+                            <td><a href='answerSurvey.php?survID=$surveyID><span style='background-color:#161853' class='material-symbols-outlined'>edit_square</span></a></td>
+                            </tr>
+                            ";
+                    }
                 }
 
                 ?>

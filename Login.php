@@ -36,7 +36,6 @@ elseif(isset($_POST['login'])) {
         if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if(password_verify($password, $row['password'])) {
                 $_SESSION['user'][$row['username']] = $row['role'];
-                $_SESSION['username']=$row['username'];
                 if(isset($remember_me)) {
                     $data = ["username"=>$row['username'], "password"=>$row['password'], "role"=>$row['role']];
                     setcookie('remember_me',json_encode($data), time() + 5*60);
@@ -65,7 +64,7 @@ elseif(isset($_POST['login'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/signup-login.css">
 </head>
 <body>
@@ -109,7 +108,7 @@ elseif(isset($_POST['login'])) {
     
                             <div class="input-area">
                                 <input
-                                    type="text"
+                                    type="password"
                                     name="password"
                                     minlength="4"
                                     class="input-field"
