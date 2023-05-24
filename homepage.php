@@ -104,13 +104,15 @@
                                  for($i=0; $i<4; $i++){
                                        echo" <div class='col-lg-3 col-md-4 col-sm-8 mb-3'>
                                             <div class='card '>
-                                                <div class='card-pic'><img src='images/pic1.jpg'  > </div> 
+                                                 
                                                 <div class='card-details'>
                                                     <p class='text-title'>Card title</p>
                                                     <p class='text-body'>Here are the details of the card</p>
                                                 </div>
+                                                <form action='displaySurvey.php' method='POST'>
                                                 <input type='hidden' id='surveyID' value='surveyID'>
-                                                <button class='card-button'>Answer</button>
+                                                <button class='card-button'  name='startSurv' type='submit'>Answer</button>
+                                                </form>
                                             </div>
                                         </div>";
                                          } 
@@ -209,8 +211,10 @@
                                                     <p class="text-title"><?php echo $title ?></p>
                                                     <p class="text-body"><?php echo $desc ?></p>
                                                 </div>
-                                                <input type="hidden" id="surveyID" value="surveyID">
-                                                <button class="card-button"> Edit Response </button>
+                                                <form action='answerSurvey.php' method='get'>
+                                                <!-- <input type="hidden" id="surveyID" <?php echo "value=".$row['surveyID']; ?> > -->
+                                                <button class="card-button" name='survID' <?php echo "value=".$row['surveyID']; ?> type='submit'> Edit Response </button>
+                                            </form>
                                             </div>
                                     </div>
                         <?php
