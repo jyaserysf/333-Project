@@ -19,7 +19,7 @@
         .inner-container {
             background-color: rgba(255, 255, 255, 0.7);
             padding: 2rem;
-            border: solid 2px rgba(22, 24, 83, 0.3);
+            border: solid 1px rgba(22, 24, 83, 0.3);
             border-radius: 20px;
             margin: 0 auto;
         }
@@ -40,23 +40,49 @@
 
         .button {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 10px;
         margin: 10px 0;
-        border: 1px solid #ccc;
+        border: 1px solid;
         border-radius: 5px;
-        background-color: #ffffff;
-        color: #333333;
+        background-color: #EC255A;
+        color: #fff;
         font-size: 16px;
         cursor: pointer;
+        transition: 0.3s;
         }
 
         .button:hover {
-        background-color: #e6e6e6;
-        color: #000000;
+        background-color: #fff;
+        color: #EC255A;
         }
 
         .button:active {
         background-color: #cccccc;
+        }
+
+        .btn-primary {
+            background-color: #292C6D/*#161853*/;
+            color: #fff;
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            color: #292C6D;
+            border: 1px solid;
+        }
+
+        #space {
+            margin: 2rem 0 2rem 0;
+        }
+
+        .form-control {
+            background: none;
+            font-size: 0.95rem;
+            transition: 0.4s;
+            color: #fff;
         }
     </style>
 </head>
@@ -108,13 +134,13 @@
                     </div>
 
                     <!--Create questions start-->
-
+                    <div id="space"></div>
                     <h5>Create Your Own Questions </h5>
 
-                    <input class="button" type="button" value="T/F" id="yes/no" onclick="addYesNO()">
+                    <input class="button" type="button" value="TRUE / FALSE" id="yes/no" onclick="addYesNO()">
                     <input class="button" type="button" value="MCQ" id="MCQ" onclick="addMCQ()">
-                    <input class="button" type="button" value="short answer " id="shortA" onclick="addshortA()">
-                    <input class="button" type="button" value="scale " id="Scale " onclick="addscale()">
+                    <input class="button" type="button" value="SHORT ANSWER" id="shortA" onclick="addshortA()">
+                    <input class="button" type="button" value="SCALE" id="Scale " onclick="addscale()">
                     <div id="questions">
 
                         <br>
@@ -124,50 +150,60 @@
                     <script>
 
                         questions = document.getElementById("questions");
+                        var questionCount = 0
 
                         function addYesNO() {
+                            questionCount++;
+
                             yes_no = `<div class="question" id="question">
-                            <ul type="disc">
-                            <li > <input type="text" name="TFQ[]" id="question" placeholder="True/False Question" class="form-control">  </li> <br>
-                            <br>
+                            <ul type="none">
+                            <li> 
+                            <label>Question ${questionCount}</label>
+                            <input type="text" name="TFQ[]" id="question" placeholder="True / False Question" class="form-control">  </li>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", yes_no);
                         }
 
+                        //each MCQ saved in the array MCQ[] followed by its 4 choices
+                        function addMCQ() {
+                            questionCount++;
 
-                        function addMCQ() //each MCQ saved in the array MCQ[] followed by its 4 choices
-                        {
                             MCQ = `<div class="question">
-                            <ul type="disc">
+                            <ul type="none">
 
-                            <li><input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control"></li> 
+                            <li>
+                            <label>Question ${questionCount}</label>
+                            <input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control"></li> 
                                 <br>
-                            <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st option " class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd option " class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd option " class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th option " class="form-control"><br>
-                            <br>
+                            <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st Option" class="form-control"><br>
+                            <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd Option" class="form-control"><br>
+                            <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd Option" class="form-control"><br>
+                            <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th Option" class="form-control">
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", MCQ);
                         }
 
                         function addshortA() {
+                            questionCount++;
+
                             ShortA = `<div class="question">
-                            <ul type="disc">
+                            <ul type="none">
                             <li>
+                                <label>Question ${questionCount}</label>
                                 <input type="text" name="Short[]" id="question" placeholder="Short Answer Question" class="form-control">
                                 </li>
-                            <br>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", ShortA);
                         }
 
                         function addscale() {
+                            questionCount++;
+
                             scale = `<div class="question">
-                            <ul type="disc">
+                            <ul type="none">
                             <li>
+                                <label>Question ${questionCount}</label>
                                 <input type="text" name="Scale[]" id="question" placeholder="Scale Question" class="form-control"></li>
-                                <br>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", scale);
                         }
