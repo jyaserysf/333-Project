@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:ital,wght@1,100&display=swap');
+
 
 
 *{
@@ -9,20 +8,6 @@
     box-sizing: border-box;
 	
 }
-
-
-body,input
-{
-    font-family: "Poppins", sans-serif;
-}
-
-body
-{
-	background-image: linear-gradient(to left bottom, rgb(248, 196, 65), rgb(252, 232, 232));
-	background-repeat: no-repeat;
-    
-}
-
 
 
 .container
@@ -36,13 +21,13 @@ body
 .outer
 {
     position: relative;
-	background-image: linear-gradient(to top right,#fdf1a1,#fff7c5);
+	background-image: linear-gradient(to top right,#161853,#292C6D);
 	border-radius: 2rem;
 	width: 85%;
 	height:90%;
 	width: 100%;
 	min-height: 460px;
-    box-shadow: 0 60px 40px -30px rgba(0, 0, 0, 0.27);
+    
 
 }
 
@@ -62,14 +47,15 @@ body
 .one
 {
 	height: 100%;
-	width: 33.33%;
+	min-width: 30%;
 	/* border-right: #c4c0c07d 2px solid; */
 }
 
 .two
 {
+    padding-left: 20px;
 	height: 100%;
-	width: 66.67%;
+	width: 66%;
 }
 
 
@@ -82,29 +68,30 @@ body
 
 .two1
 {
-	height: 65%;
+	height: 50%;
 	width: 100%;
+    border-bottom:#c4c0c07d 2px solid ;
+    
+    transition-duration: 0.6s;
 }
 
 form
 {
 	display:flex;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	flex-wrap: wrap;
 	margin-top: -7%;
 }
 
-#form1
-{
-	margin-top: -9%;
-}
 
 
 .myprofile
 {
-	margin-top: 2%;
+    color: #FAEDF0;
+	margin-top: 0%;
 	margin-left: 2%;
-	width: 100%;
+    max-height: 60px;
+	
 }
 
 .field
@@ -118,7 +105,7 @@ form
 label
 {
 	font-size: 0.7rem;
-	color: #bbb;
+	color: #FAEDF0;
 	pointer-events: none;
 	position:absolute;
 	left: 4.75%;
@@ -137,9 +124,9 @@ label
 
 .lastrowform1
 {
-	width: 100%;
+	
 	height: 25%;
-	display: flex;
+	
 	padding-left: 3.5%;
 }
 
@@ -154,7 +141,7 @@ label
 {
 	height: 80%;
 	width: 25%;
-	margin-right: 27%;
+	
 	padding: 0.5%;
 }
 
@@ -182,7 +169,7 @@ select
 {
 	cursor: pointer;
 	bottom: 8%;
-	width: 15%;
+	margin-right: 10px;
 	height: 70%;
 	border-radius: 0.8rem;
 	position: absolute;
@@ -195,11 +182,11 @@ select
 
 .two2
 {
-	height: 40%;
+	height: 50%;
 	width: 100%;
 	position: relative;
 	margin-left: 2%;
-	border-top: #c4c0c07d 2px solid;
+	margin-top: 10px;
 	transition-duration: 0.6s;
 }
 
@@ -275,6 +262,7 @@ input
 .phone-number input
 {
 	padding-left: 2%;
+    margin-left: 10px;
 }
 
 input[type=text],input[type=email]
@@ -318,11 +306,11 @@ input[type=password]
 	display: none;
 }
 
-.one
+/* .one
 {
 	display:flex;
 	flex-wrap: wrap;
-}
+} */
 
 #display_name
 {

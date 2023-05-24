@@ -1,8 +1,7 @@
-
-
+<?php session_start(); ?>
     <nav class="navbar navbar-expand-lg  sticky-top" >
         <div class="container-fluid mx-5 my-3">
-            <a class="navbar-brand me-4 ms-4 " href="#">
+            <a class="navbar-brand me-4 ms-4 " href="homepage.php">
                 <img src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                 <span>SurveySphere </span>
               </a>
@@ -27,8 +26,32 @@
               <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
               
             </form>
-            <a href="Login.php"><button class="btn me-2" id="headLogin"> Login </button></a>
-            <a href="Login.php"><button class="btn  me-2" id="headRegister"> Register </button></a>
+            <?php 
+            // session is set -> show logout & profile, else show register & login 
+              if (isset($_SESSION['user'])) {
+                echo " 
+                <a href='#' onclick='logout()'> <button class='btn me-2' id='headLogin'> <i class='fa fa-sign-out'> </i> Logout </button></a>
+                <a href='Profile.php'><button class='btn  me-2' id='headRegister'> Profile </button></a>";
+              }else{
+                    echo "
+                    <a href='Login.php'><button class='btn me-2' id='headLogin'> Login </button></a>
+                    <a href='Login.php'><button class='btn  me-2' id='headRegister'> Register </button></a>";
+                }
+            ?>
+            <script>
+                function logout() {
+                    // send AJAX request to the server to destroy the session
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'logout.php');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        // redirect the user to homepage
+                        window.location.href = 'homepage.php';
+                    };
+                    xhr.send();
+                }
+            </script>
+            
           </div>
         </div>
       </nav>

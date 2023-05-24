@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Explore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/generalstyle.css"> 
     <!-- <link rel="stylesheet" href="cardstyle.css"> 
@@ -87,7 +87,7 @@ h2{
 
 <body>
 
-<div id="header"> <?php include 'header.html'?> </div>
+<div id="header"> <?php include 'header.php'?> </div>
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
 
@@ -96,13 +96,16 @@ h2{
 <h2>Explore</h2>
   <div class="display">
 <div class="d-flex flex-row flex-nowrap">
-<?php for($x=0;$x<10;$x++){?>
+<?php for($x=0;$x<10;$x++){
+  // add survey ID in hidden input so it can be displayed
+  ?>
   <div class="col"></div>
 <div class="card m-3" style="min-width: 12rem; ">
   <img src="images/pic1.jpg" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">this is a shortt description about this survey </p>
+    <input type="hidden" id="surveyID" value="surveyID">
     <a href="#" class="btn btn-primary">start</a>
 
   </div>

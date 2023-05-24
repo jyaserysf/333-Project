@@ -10,7 +10,10 @@
 </head>
 <body>
 
-    <div id="header"> <?php include 'header.php'?> </div>
+    <div id="header"> <?php include 'header-admin.php'?> </div>
+    <?php 
+    
+    ?>
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
         add content here
