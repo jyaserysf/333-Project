@@ -100,28 +100,36 @@ if(isset($_POST['signup'])) {
                                 <input
                                     type="text"
                                     name="username"
+
                                   
+
                                     class="input-field"
                                     autocomplete="off"
                                    
                                     id="username"
                                 >
+
                                 <label for='username'>User Name</label>
                                 <small ></small>
+
                             </div>
 
                             <div class="input-area">
                                 <input
                                     type="text"
                                     name="email"
+
                                   
+
                                     class="input-field"
                                     autocomplete="off"
                                    
                                     id="email"
                                 >
                                 <label>Email Address</label>
+
                                 <small></small>
+
                             </div>
 
     
@@ -129,28 +137,36 @@ if(isset($_POST['signup'])) {
                                 <input
                                     type="password"
                                     name="password"
+
                                     
+
                                     class="input-field"
                                     autocomplete="off"
                                    
                                     id="userpassword"
                                 >
                                 <label>Password</label>
+
                                 <small ></small>
+
                             </div>
 
                             <div class="input-area">
                                 <input
                                     type="password"
                                     name="cpassword"
+
                                    
+
                                     class="input-field"
                                     autocomplete="off"
                                     
                                     id="cpassword"
                                 >
                                 <label>Re-enter Password</label>
+
                                 <small></small>
+
                             </div>
     
                             <div class="input-area" id="rememberMeBtn">

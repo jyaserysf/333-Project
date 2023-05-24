@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,9 @@
             margin-bottom: 3rem;
         }
         .inner-container {
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.65);
             padding: 2rem;
-            border: solid 1px rgba(22, 24, 83, 0.3);
+            border: solid 1px rgba(211, 214, 219, 0.7);
             border-radius: 20px;
             margin: 0 auto;
         }
@@ -31,7 +31,7 @@
         }
 
         label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.55rem;
             font-size: 1rem;
             color: rgba(0, 0, 0, 0.7)
         }
@@ -80,11 +80,12 @@
             margin: 2rem 0 2rem 0;
         }
 
-        .form-control {
+        #input-area {
             background: none;
             font-size: 0.95rem;
             transition: 0.4s;
-            color: #fff;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 1.1rem;
         }
     </style>
 </head>
@@ -97,7 +98,7 @@
             <form class="form-horizontal" id="form1" method='post'>
                 <div class="form-group">
                     <td>
-                        <h3>Enter Survey Information</h3>
+                        <h3><b>Enter Survey Information</b></h3>
                     </td>
                 </div>
 
@@ -107,7 +108,7 @@
                     </div>
                     <div class="col-sm-10">
                         <input type="text" name="surveyTitle" maxlength="100"
-                            placeholder="Please enter a survey title !" required class="form-control">
+                            placeholder="Please enter a survey title !" required class="form-control" id="input-area">
                     </div>
                 </div>
 
@@ -117,7 +118,7 @@
                     </div>
                     <div class="col-sm-10">
                         <textarea name="surveyDesc" rows="5" cols="auto" maxlength="300" form="form1"
-                            placeholder="Please enter survey description !" required class="form-control"></textarea>
+                            placeholder="Please enter survey description !" required class="form-control" id="input-area"></textarea>
                     </div>
                 </div>
 
@@ -127,7 +128,7 @@
                             <label for="surveyCat" class="col-sm-2 control-label">Survey Category</label>
                         </div>
                         <div class="col-sm-10">
-                            <select name='surveyCat' class="form-control">
+                            <select name='surveyCat' class="form-control" id="input-area">
                                 <option disabled selected>Select Survey Category</option>
                                 <option value='work'>Work</option>
                                 <option value='student'>Student</option>
@@ -156,14 +157,21 @@
 
                         function addYesNO() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("yes/no").disabled = true;
+                            return;
+                            }
 
                             yes_no = `<div class="question" id="question">
                             <ul type="none">
                             <li> 
                             <label>Question ${questionCount}</label>
+
                             <input type="text" name="TFQ[]" id="question" placeholder="True / False Question" class="form-control">  
                             <button class="btn"><i class="fa fa-trash delete-question"></i></button>
                             </li>
+
                             </div>`;
                             
                             questions.insertAdjacentHTML("beforeend", yes_no);
@@ -178,19 +186,26 @@
                         //each MCQ saved in the array MCQ[] followed by its 4 choices
                         function addMCQ() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("MCQ").disabled = true;
+                            return;
+                            }
 
                             MCQ = `<div class="question">
                             <ul type="none">
 
                             <li>
                             <label>Question ${questionCount}</label>
+
                             <input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control">
                             <button class="btn"><i class="fa fa-trash delete-question"></i></button>
+
                                 <br>
-                            <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st Option" class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd Option" class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd Option" class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th Option" class="form-control">
+                            <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st Option" class="form-control" id="input-area"><br>
+                            <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd Option" class="form-control" id="input-area"><br>
+                            <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd Option" class="form-control" id="input-area"><br>
+                            <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th Option" class="form-control" id="input-area">
                             </div>`;
                             
                             questions.insertAdjacentHTML("beforeend", MCQ);
@@ -198,13 +213,20 @@
 
                         function addshortA() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("shortA").disabled = true;
+                            return;
+                            }
 
                             ShortA = `<div class="question">
                             <ul type="none">
                             <li>
                                 <label>Question ${questionCount}</label>
+
                                 <input type="text" name="Short[]" id="question" placeholder="Short Answer Question" class="form-control">
                                 <button class="btn"><i class="fa fa-trash delete-question"></i></button>
+
                                 </li>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", ShortA);
@@ -212,14 +234,21 @@
 
                         function addscale() {
                             questionCount++;
+                            if (questionCount > 20) {
+                            // disable the button if the limit is reached
+                            document.getElementById("Scale").disabled = true;
+                            return;
+                            }
 
                             scale = `<div class="question">
                             <ul type="none">
                             <li>
                                 <label>Question ${questionCount}</label>
+
                                 <input type="text" name="Scale[]" id="question" placeholder="Scale Question" class="form-control">
                                 <button class="btn"><i class="fa fa-trash delete-question"></i></button>
                                 </li>
+
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", scale);
                         }

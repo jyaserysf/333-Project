@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <title>Touch Slider With Arrow</title>
+    <title>Explore</title>
 
      <link rel="stylesheet" href="css/generalstyle.css">
-     <link rel="stylesheet" href="css/explorepage.css">    
+     <!-- <link rel="stylesheet" href="css/explorepage.css">     -->
     <style>
 
 * {
@@ -195,13 +195,15 @@ h2{
     </style>
 </head>
 <body>
-
+<div id="header"><?php include('header.php') ?></div>
 
 
 <?php $type=array("Explore","Student","Work");?>
 
 
+
 <div id="header"> <?php include 'header.php'?> </div>
+
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
 
@@ -209,49 +211,48 @@ h2{
         <?php echo"<h2>". $value ."</h2>" ?>
     <div class="wrapper"><!--  wrapper start -->
         
-       
+       <?php 
+        try {
+            require('database/connection.php');
+            if($value == "Explore") {
+                $stmt = $db->prepare("SELECT * FROM surveys ORDER BY numResponses DESC LIMIT 20");
+                $stmt->execute();
+            }
+            else {
+                $stmt = $db->prepare("SELECT * FROM surveys WHERE category=? ORDER BY surveyID DESC LIMIT 20");
+                $stmt->execute(array($value));
+            }
+            
+            $db=null;
+          }
+          catch(PDOException $e) {
+            die("Error: " . $e->getMessage());
+          }
+       ?>
    
         <div class="card-wrapper"> <!-- card wrapper start -->
-
-            
-        <?php for($x=0;$x<20;$x++){ ?>
+        
+        <?php $rs = $stmt->fetchAll() ?>
+        <?php foreach($rs as $r){ ?>
             <div class="card">
            
             <div class="card-body">
-             <h5 class="card-title"><?php echo "Card title".$x ?> </h5>
-             <p class="card-text">this is a shortt description about this survey </p>
+             <h5 class="card-title"><?php echo $r['title']; ?> </h5>
+             <p class="card-text"><?php echo $r['description']; ?></p>
              <a href="#" class="btn btn-primary">start</a>
-
         
             </div> 
             </div>
-
-
-
-            
-      <?php  } ?>
-
+    
+    <?php  }  ?>
           
       <button class="arrow prev"><i class="icon ri-arrow-left-s-line"></i></button>
         <button class="arrow next"><i class="icon ri-arrow-right-s-line"></i></button>
                
-        </div> <!-- card wrapper end  -->
-
-     
+        </div> <!-- card wrapper end  --> 
     </div> <!-- wrapper end  -->
     <?php } ?>
 
-
-
-
-
-
-
-
-
-
-
-    
 
     </div>
     </div>

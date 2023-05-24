@@ -80,7 +80,7 @@ border:none;
     border-top-right-radius:0.8rem;
     display: flex; 
     overflow: hidden;
-    position: relative;"
+    position: relative;
    
  
 }

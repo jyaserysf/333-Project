@@ -11,6 +11,29 @@
         #adminpage{
             margin: 50px 100px;
         }
+        #title{
+            margin-bottom: 30px;
+        }
+        #resultbtn{
+            background-color: #161853;
+            color: #FAEDF0;
+        }
+        #resultbtn:hover{
+            color: #161853;
+            background-color: #FAEDF0;
+            border-color:#161853; 
+        }
+
+        #surveybox{
+            min-height:100px;
+        }
+        #surveybox p{
+            margin-bottom:0;
+        }
+        h4,h6{
+            font-weight: bold;
+        }
+
     </style>
 
 </head>
@@ -21,20 +44,60 @@
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
         <div id='adminpage'>
-            <div class='row' id='title'>
+            <div class='row border-bottom' id='title'>
                 <h1>Dahsboard</h1>
             </div>
             <div class='row' id='body'>
-                <div class='col'>
-                    <div class='row  justify-content-end' id='surveySec'>
-                        <div class='col-lg-10 col-sm-8' >
-                            <h3>Surveys</h3>
+                <div class='col' id='surveySec'>
+                    <div class='row  justify-content-end' >
+                        <div class='col-lg-10 col-sm-8 ' >
+                            <h2>Surveys</h2>
                         </div>
                         <div class='col ' >
                             <a href='createSurvey.php'><button class='btn  me-2' id='createbtn'> Create </button></a>
                         </div>
                     </div>
                 </div>
+                <div class='col-12' id=''>
+                    <?php 
+                        try{
+
+                            require('database/connection.php');
+                            $surveysrec=$db->prepare("SELECT * from surveys");
+                            $surveysrec->execute();
+                            $surveys=$surveysrec->fetchAll();
+                            foreach($surveys as $survey){
+                                echo "  
+                                <div class='row border flex-wrap align-items-center align-content-center p-3' id='surveybox'>
+                                    <div class='col-9'>
+                                        <div><h4> ".$survey['title']." </h4></div>
+                                        <div><h5> Category: ".$survey['category']." </h5></div>
+                                        <div><p> ".$survey['description']." </p></div>
+                                    </div>
+                                    <div class='col-2'>
+                                        <div> <h6>No. of Responses: </h6></div>
+                                        <div><p>".$survey['numResponses']."</p></div>
+                                        <div><h6>Date Created:</h6></div>
+                                        <div><p>".$survey['date']."</p></div>
+                                    </div>
+                                    <div class='col-1'>
+                                        <form action='showResult.php' method='post'>
+                                        <div> <button class='btn' id='resultbtn' name='showResult' value='".$survey['surveyID']."'> Results </button></div>
+                                        </form>
+                                    </div>
+                                </div>";
+                            }
+                        }catch(PDOException $e){
+                            die($e->getMessage());
+                        }
+                        
+                      
+                    
+                    ?>
+
+                    
+                </div>
+
             </div>
         </div>
     </div>

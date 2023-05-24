@@ -58,7 +58,7 @@ die("Error Occured:".$e->getMessage());
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file">
               </div>
               <div class="col">
-                <a class="history" href="history.php">View History</a>
+                <a class="history" href="History.php">View History</a>
               </div>
               <div class="col">
                 <form method="post">
