@@ -17,9 +17,9 @@
             margin-bottom: 3rem;
         }
         .inner-container {
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.65);
             padding: 2rem;
-            border: solid 1px rgba(22, 24, 83, 0.3);
+            border: solid 1px rgba(211, 214, 219, 0.7);
             border-radius: 20px;
             margin: 0 auto;
         }
@@ -29,7 +29,7 @@
         }
 
         label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.55rem;
             font-size: 1rem;
             color: rgba(0, 0, 0, 0.7)
         }
@@ -82,7 +82,8 @@
             background: none;
             font-size: 0.95rem;
             transition: 0.4s;
-            color: #fff;
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 1.1rem;
         }
     </style>
 </head>
