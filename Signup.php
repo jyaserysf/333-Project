@@ -59,7 +59,7 @@ if(isset($_POST['signup'])) {
                 <!-- Form Area -->
                 <div class="forms-area">
                     <!-- The Login Form -->
-                    <form action="Signup.php" method="post" autocomplete="off" class="login-form">
+                    <form action="Signup.php" method="post" autocomplete="off" class="login-form" id="form">
                         
                         <div class="logo">
                            <!-- <img src="./img/logo.png" alt="SurveySphere"> -->
@@ -79,48 +79,56 @@ if(isset($_POST['signup'])) {
                                 <input
                                     type="text"
                                     name="username"
+                                    id="username"
                                     minlength="4"
                                     class="input-field"
                                     autocomplete="off"
                                     required
                                 >
                                 <label>User Name</label>
+                                <small>error message</small>
                             </div>
 
                             <div class="input-area">
                                 <input
                                     type="text"
                                     name="email"
+                                    id="email"
                                     minlength="4"
                                     class="input-field"
                                     autocomplete="off"
                                     required
                                 >
                                 <label>Email Address</label>
+                                <small>error message</small>
                             </div>
     
                             <div class="input-area">
                                 <input
                                     type="password"
                                     name="password"
+                                    id="password"
                                     minlength="8"
                                     class="input-field"
                                     autocomplete="off"
                                     required
                                 >
                                 <label>Password</label>
+                                <small>error message</small>
                             </div>
 
                             <div class="input-area">
                                 <input
                                     type="password"
                                     name="cpassword"
+                                    id="cpassword"
                                     minlength="8"
                                     class="input-field"
                                     autocomplete="off"
                                     required
                                 >
                                 <label>Re-enter Password</label>
+                                <small>error message</small>
                             </div>
     
                             <div class="input-area" id="rememberMeBtn">

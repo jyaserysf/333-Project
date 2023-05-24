@@ -26,15 +26,15 @@ a.nav-link:hover{
     color: #EC255A;
 }
 
-#headCreate{
+#createbtn{
     background-color: #EC255A;
     color:#FAEDF0;
 }
 
-#headCreate:hover{
+#createbtn:hover{
     color: #EC255A;
     border-color: #EC255A;
-    background-color: #161853;
+    background-color: #FAEDF0;
 }
 
 
