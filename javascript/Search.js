@@ -12,7 +12,4 @@ document.getElementById("results").innerHTML=this.responseText;
 }
 
 
-document.getElementById("results").style.display = "none";
 
-
-document.getElementById("results").style.visibility = "hidden".innerHTML=this.responseText;
