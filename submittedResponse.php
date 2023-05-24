@@ -30,57 +30,79 @@
                 require('database/connection.php');
                 $db->beginTransaction();
                 try{
+                    $keys=array_keys($_SESSION['user']);
                     $userIDrec=$db->prepare("SELECT userID from users where username=?");
-                    $userIDrec->execute(array($_SESSION['username']));
+                    $userIDrec->execute(array($keys[0]));
                     $userID=$userIDrec->fetch()['userID'];
 
                     if(isset($_POST['submitSurv'])){
                         $surveyID=$_POST['svID'];
                         $surveyRec=$db->prepare('SELECT surveyID, numResponses from surveys where surveyID=? ');
                         $surveyRec->execute(array($surveyID));
+
                         
                         
                         $qIDarrSerialized = $_POST['SrqID'];
                         $qIDarr = unserialize($qIDarrSerialized);
-                        
-                        // insert new response record
-                        $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
-                        for($i=0; $i<count($qIDarr); $i++){
-                            
-                            $insertResponse->bindParam(':userID',$userID);
-                            $insertResponse->bindParam(':qID',$qIDarr[$i]);
-                            $insertResponse->bindParam(':resp',$_POST["qID_".$qIDarr[$i]]);
-                            $insertResponse->execute();
-                        }
-                        if($survey=$surveyRec->fetch()){
-                            
-                            $numResp=$survey['numResponses']+1;
-                            $updateResponseNo=$db->prepare("UPDATE surveys set numResponses=? where surveyID=?");
-                            $updateResponseNo->execute(array($numResp,$survey['surveyID']));
-                        }
+                        if(!empty(($qIDarr))){
+                            $insertResponse=$db->prepare("INSERT into responses (userID, questionID, response) values (:userID, :qID, :resp) ");
+                            for($i=0; $i<count($qIDarr); $i++){
+                                // insert new response record
+                                $insertResponse->bindParam(':userID',$userID);
+                                $insertResponse->bindParam(':qID',$qIDarr[$i]);
+                                $insertResponse->bindParam(':resp',$_POST["qID_".$qIDarr[$i]]);
+                                $insertResponse->execute();
+                            }
+                            if($survey=$surveyRec->fetch()){
+                                // increase no. of responses
+                                $numResp=$survey['numResponses']+1;
+                                $updateResponseNo=$db->prepare("UPDATE surveys set numResponses=? where surveyID=?");
+                                $updateResponseNo->execute(array($numResp,$survey['surveyID']));
 
+                                $insertParticipate=$db->prepare("INSERT into participate (userID, surveyID, date) values (?,?,?)");
+                                $insertParticipate->execute(array($userID,$survey['surveyID'], date('d-m-Y') ));
+                            }
 
-                         if($insertResponse->rowCount()>0){
-                            echo "
+                            // checking submission
+                            if($insertResponse->rowCount()>0){
+                                echo "
+                                <div class='m-auto submitMsg' id=''>
+                                    <div> <h2>Your response has been submitted succesfully! </h2></div>
+                                    <div> <h4> Try another one of our surveys </h4></div>
+                                    <div> <a class='btn' id='headLogin' href='explorepage2.php'>Explore</a></div>
+                                </div>";
+                            }
+                            else{
+                                echo "
+                                <div class='m-auto submitMsg' id=''>
+                                    <div> <h2> Apologies... Your response has not been submitted. </h2></div>
+                                    <div> <h4> Try taking the survey again! </h4></div>
+                                    <div> 
+                                        <form action='answerSurvey.php' method='POST'>
+                                        <input type='hidden' id='surveyID' name='svID' value=".$_POST['svID'].">
+                                        <button class='btn' id='survey-btn' name='answerSurv'  type='submit'>Answer</button>
+                                        </form>
+                                    </div>
+                                </div>";
+                            }
+
+                        }
+                        else{ // check if response is empty
+                            echo"
                             <div class='m-auto submitMsg' id=''>
-                                <div> <h2>Your response has been submitted succesfully! </h2></div>
-                                <div> <h4> Try another one of our surveys </h4></div>
-                                <div> <a class='btn' id='headLogin' href='explorepage2.php'>Explore</a></div>
-                            </div>";
-                         }
-                         else{
-                            echo "
-                            <div class='m-auto submitMsg' id=''>
-                                <div> <h2> Apologies... Your response has not been submitted. </h2></div>
-                                <div> <h4> Try taking the survey again! </h4></div>
+                                <div> <h2> You did not answer any of the survey questions </h2></div>
+                                <div>  <h4> Try taking the survey again! </h4> </div>
                                 <div> 
-                                    <form action='answerSurvey.php' method='POST'>
+                                <form action='answerSurvey.php' method='POST'>
                                     <input type='hidden' id='surveyID' name='svID' value=".$_POST['svID'].">
                                     <button class='btn' id='survey-btn' name='answerSurv'  type='submit'>Answer</button>
-                                    </form>
+                                </form>
                                 </div>
                             </div>";
-                         }
+                        }
+                        
+                        
+                        
                         
                         
                     }

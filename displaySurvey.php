@@ -54,7 +54,7 @@
                     echo "<div class='container' id='displaySurvey'>
                     <div class=' id='surveyHead'>
                         <div> <h1>".$displaySurvey['title']."</h1></div>";
-                        if ($displaySurvey['category']=='work'){
+                        if ($displaySurvey['category']=='work' || $displaySurvey['category']=='Work' ){
                             echo"<div> <h3> Category: Work </h3></div>";
                         }else{
                             echo"<div> <h3> Category: Student </h3></div>";

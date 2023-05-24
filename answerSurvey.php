@@ -67,7 +67,7 @@
                             $choicesRec=$db->prepare("SELECT * FROM choices  WHERE choices.MCQID=?");
                             $choicesRec->execute(array($qID));
                             $choices=$choicesRec->fetch();
-                            print_r($choices);
+                            //print_r($choices);
 
                             if($type=='mcq'){
 
