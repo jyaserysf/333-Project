@@ -40,9 +40,9 @@
 
         .button {
         display: inline-block;
-        padding: 10px 20px;
+        padding: 5px 10px;
         margin: 10px 0;
-        border: 1px solid #ccc;
+        border: 1px solid;
         border-radius: 5px;
         background-color: #EC255A;
         color: #fff;
@@ -63,13 +63,15 @@
         .btn-primary {
             background-color: #292C6D/*#161853*/;
             color: #fff;
-            border: 1px solid #D3D6DB;
+            border: 1px solid;
+            border-radius: 5px;
+            padding: 5px 10px;
         }
 
         .btn-primary:hover {
             background-color: #fff;
             color: #292C6D;
-            border: 1px solid #D3D6DB;
+            border: 1px solid;
         }
 
         #space {
@@ -135,10 +137,10 @@
                     <div id="space"></div>
                     <h5>Create Your Own Questions </h5>
 
-                    <input class="button" type="button" value="T/F" id="yes/no" onclick="addYesNO()">
+                    <input class="button" type="button" value="TRUE / FALSE" id="yes/no" onclick="addYesNO()">
                     <input class="button" type="button" value="MCQ" id="MCQ" onclick="addMCQ()">
-                    <input class="button" type="button" value="short answer " id="shortA" onclick="addshortA()">
-                    <input class="button" type="button" value="scale " id="Scale " onclick="addscale()">
+                    <input class="button" type="button" value="SHORT ANSWER" id="shortA" onclick="addshortA()">
+                    <input class="button" type="button" value="SCALE" id="Scale " onclick="addscale()">
                     <div id="questions">
 
                         <br>
@@ -157,7 +159,7 @@
                             <ul type="none">
                             <li> 
                             <label>Question ${questionCount}</label>
-                            <input type="text" name="TFQ[]" id="question" placeholder="True/False Question" class="form-control">  </li>
+                            <input type="text" name="TFQ[]" id="question" placeholder="True / False Question" class="form-control">  </li>
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", yes_no);
                         }
@@ -173,10 +175,10 @@
                             <label>Question ${questionCount}</label>
                             <input type="text" name="MCQ[]" id="question" placeholder="MCQ Question" class="form-control"></li> 
                                 <br>
-                            <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st option " class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd option " class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd option " class="form-control"><br>
-                            <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th option " class="form-control">
+                            <input type="text" name="MCQ[]" id="MCQop1" placeholder="1st Option" class="form-control"><br>
+                            <input type="text" name="MCQ[]" id="MCQop2"  placeholder="2nd Option" class="form-control"><br>
+                            <input type="text" name="MCQ[]" id="MCQop3" placeholder="3rd Option" class="form-control"><br>
+                            <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th Option" class="form-control">
                             </div>`;
                             questions.insertAdjacentHTML("beforeend", MCQ);
                         }

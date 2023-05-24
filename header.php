@@ -15,18 +15,33 @@
               <li class="nav-item me-5 ms-4">
                 <a class="nav-link " aria-current="page" href="homepage.php">Home</a>
               </li>
+              <?php 
+              if (isset($_SESSION['user'])){
+                $keys=array_keys($_SESSION['user']);
+                $role= $_SESSION['user']["$keys[0]"];
+                if($role=='admin'){
+                  echo " <li class='nav-item me-5'>
+                <a class='nav-link ' aria-current='page' href='adminDash.php'>Dashboard</a>
+                  </li>";
+                }
+              }
+                
+              ?>
               <li class="nav-item me-5">
                 <a class="nav-link" href="explorepage2.php">Student</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="explorepage2.php">Work</a>
               </li>
+             
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
               
             </form>
             <?php 
+            //print_r($_SESSION['user']);
+            
             // session is set -> show logout & profile, else show register & login 
               if (isset($_SESSION['user'])) {
                 echo " 
