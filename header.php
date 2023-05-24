@@ -50,7 +50,7 @@
               }else{
                     echo "
                     <a href='Login.php'><button class='btn me-2' id='headLogin'> Login </button></a>
-                    <a href='Login.php'><button class='btn  me-2' id='headRegister'> Register </button></a>";
+                    <a href='Signup.php'><button class='btn  me-2' id='headRegister'> Register </button></a>";
                 }
             ?>
             <script>

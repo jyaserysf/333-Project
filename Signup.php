@@ -48,6 +48,7 @@ if(isset($_POST['signup'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="css/signup-login.css">
+    
  </head>
  <body>
    
@@ -59,7 +60,7 @@ if(isset($_POST['signup'])) {
                 <!-- Form Area -->
                 <div class="forms-area">
                     <!-- The Login Form -->
-                    <form action="Signup.php" method="post" autocomplete="off" class="login-form">
+                    <form action="Signup.php" method="post" autocomplete="off" class="login-form" id="form">
                         
                         <div class="logo">
                            <!-- <img src="./img/logo.png" alt="SurveySphere"> -->
@@ -83,8 +84,10 @@ if(isset($_POST['signup'])) {
                                     class="input-field"
                                     autocomplete="off"
                                     required
+                                    id="username"
                                 >
-                                <label>User Name</label>
+                                <label for='username'>User Name</label>
+                                <small>Error message</small>
                             </div>
 
                             <div class="input-area">
@@ -95,8 +98,10 @@ if(isset($_POST['signup'])) {
                                     class="input-field"
                                     autocomplete="off"
                                     required
+                                    id="email"
                                 >
                                 <label>Email Address</label>
+                                <small>Error message</small>
                             </div>
     
                             <div class="input-area">
@@ -107,8 +112,10 @@ if(isset($_POST['signup'])) {
                                     class="input-field"
                                     autocomplete="off"
                                     required
+                                    id="userpassword"
                                 >
                                 <label>Password</label>
+                                <small>Error message</small>
                             </div>
 
                             <div class="input-area">
@@ -119,8 +126,10 @@ if(isset($_POST['signup'])) {
                                     class="input-field"
                                     autocomplete="off"
                                     required
+                                    id="cpassword"
                                 >
                                 <label>Re-enter Password</label>
+                                <small>Error message</small>
                             </div>
     
                             <div class="input-area" id="rememberMeBtn">
@@ -157,6 +166,145 @@ if(isset($_POST['signup'])) {
     </main>
     
     <script src="javascript/Login.js"></script>
+    <script>
+            window.addEventListener('DOMContentLoaded', function() {
+
+                const form =document.getElementById('form');
+                //console.log(form);
+                const username= document.getElementById("username");
+                //console.log(username);
+                const email = document.getElementById("email");
+                //console.log(email);
+                const userpassword =document.getElementById("userpassword");
+                //console.log(userpassword);
+                const passwordVerify=document.getElementById("cpassword");
+                //console.log(passwordVerify);
+                
+                function showError(input,message){
+                    const inputarea=input.parentElement;
+                    inputarea.className='input-area error';
+                    const small =inputarea.querySelector('small');
+                    small.innerText=message;
+
+
+                }
+
+                function showSuccess(input){
+                    const inputarea=input.parentElement;
+                inputarea.className='input-area success';
+                }
+
+                
+                function checkEmail(input){
+
+                    let error=0;
+
+                    const ex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                    if(ex.test(input.value.trim())){
+                        showSuccess(input);
+                    }else{
+                        showError(input,'Email is not valid');
+                        ++error;
+                    }
+                    return error;
+                }
+
+
+                function checkRequired(userinputARR){
+                let error=0;
+                userinputARR.forEach(function(input){
+
+                    if(input.value.trim() === ''){
+
+                            showError(input, `${getFieldName(input)} is required `);
+                            ++error;
+                    }else{
+                        showSuccess(input);
+                    }
+
+                });
+                    return error;
+                }
+
+                function checkLength(input,min,max){
+                    let error=0;
+
+                    if(input.value.length < min ){
+
+                        showError(
+                            input,`${getFieldName(input)} must be atleast ${min} characters `
+                        );
+                        ++error;
+                    }else if(input.value.length>max){
+                        showError(
+                            input, `${getFieldName(input) } must be less tha ${max} charachters ` );
+
+                            ++error;
+                        }
+                    else{
+                        showSuccess(input);
+                    }
+                    
+                    return error;
+                }
+
+                function checkPasswrodsMatch(input1,input2){
+                    let error=0;
+                    if(input1.value !== input2.value){
+                        showError(input2 , 'password do not match');
+                        ++error;
+                    }
+                    return error;
+                }
+
+
+                function getFieldName(input){
+                    
+                    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+                }
+
+                //event listener for submit 
+
+                form.addEventListener('submit',function(e) {
+                e.preventDefault();
+                let errors=0;
+                    //validate all inputs 
+                    errors+=checkRequired([username,email,userpassword,passwordVerify]);
+                    errors+=checkLength(username,3,14);
+                    errors+=checkLength(userpassword,8,24);
+                    errors+=checkEmail(email);
+                    errors+=checkPasswrodsMatch(userpassword,passwordVerify);
+
+
+                    //if there is no errors submit 
+                    if(errors==0){
+                        form.submit();
+                    }
+            });
+
+                
+
+                
+
+                
+
+                //get field name 
+
+               
+
+                //check input length 
+
+                
+
+                //check if email is valid
+
+
+                
+            });
+            
+    </script>
 
  </body>
+
  </html>
