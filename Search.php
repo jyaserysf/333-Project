@@ -6,9 +6,7 @@ if(isset($_REQUEST['S'])){?>
     $hint = "";
     try {
         require('database/connection.php');
-        $SName = $db->prepare("SELECT * from surveys");
-        $SName->execute();
-        $SurveysNames = $SName->fetchAll();
+     
 
         $stmt = $db->prepare("SELECT * FROM surveys WHERE title LIKE :title");
         $stmt->bindValue(":title", "%{$S}%");
@@ -17,17 +15,13 @@ if(isset($_REQUEST['S'])){?>
 
 
         foreach ($results as $result) {
-            echo "<a href='answerSurvey.php?id={$result["surveyID"]}'>{$result["title"]}</a><br>";
+            echo "<a href='answerSurvey.php?link={$result["surveyID"]}'>{$result["title"]}</a><br>";
           }
-
-
-
-
 
         if($S !== "") {
             $S = strtolower($S);
             $len = strlen($S);
-            foreach($SurveysNames as $serv) {
+            foreach($results as $serv) {
                 if($S == strtolower(substr($serv[4], 0, $len))) {
                     if($hint === "") {
                         $hint = $serv[4];
@@ -45,3 +39,15 @@ if(isset($_REQUEST['S'])){?>
     }
 }
 ?>
+<style>
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    a:hover{
+
+       
+        color: grey;
+    }
+</style>
