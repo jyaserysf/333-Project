@@ -59,7 +59,8 @@
       color: #fff;
       border: 1px solid;
       border-radius: 5px;
-      padding: 5px 10px;
+      padding: 10px 10px;
+      text-decoration:none;
     }
 
     .btn-primary:hover {
@@ -87,6 +88,22 @@
     .submitArea {
       float: left;
       margin-bottom: 3rem;
+    }
+
+    form{
+      margin-bottom:10px;
+    }
+
+    #code{
+      padding: 6px;
+      border-radius: 5px;
+      border-color:#292C6D;
+      color:#292C6D;
+      background-color: rgba(255, 255, 255, 0.65);
+    }
+
+    #number {
+      border-radius:5px;
     }
 
   </style>
@@ -122,10 +139,10 @@
       
       <div class="inner row">
         
-        <div class="one col-6">
-          <div class="profile-image">
+        <div class="one col-lg-5 col-md-12 mb-4  ">
+          <div class="profile-image ps-5 d-flex flex-column justify-content-center">
   
-            <div id="profilePictureArea">
+            <div id="profilePictureArea" class="col-12">
               <h3 style='color:rgba(0, 0, 0, 0.8)' id="display_name"> <?php echo strtoupper($name);?></h3>
               <p id="profileUserName">@<?php echo ucfirst($username)?></p>
               <img src="img/profile-pic-male.png" alt="The profile image should be here" id="profilePicture">
@@ -133,20 +150,20 @@
             
             <div class="row">
               
-              <div class="col" id="upload-img-div">
+              <div class="col-12" id="upload-img-div">
                 <label id="profile-label" for="image-file"><b>Update Image</b></label>
-                <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control">
+                <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
               </div>
              
               <div class="col">
-                <a class="history" href="History.php">View History</a>
+                <a class="history btn-primary" href="History.php">View History</a>
               </div>
 
             </div> 
           </div>
         </div>
           
-        <div class="two col">
+        <div class="two col-lg-7 col-md-12 pt-md-3">
           
           <div class="two1 row">
            
@@ -177,55 +194,56 @@
                 <input size="30" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] :$email;?>"  type="text"  autocomplete="off" class="form-control" id="input-area">
               </div>
                     
-              <div>
-                <div class="phone row" id="phoneNO">
-                  <div class="country col">
-                    <select id="code" name="code" class="button">
-                      <option value="
-                      <?php
-                        if  (isset($_POST['sf1'])&&isset($_POST['code'])) {
-                          echo $_POST['code'];
-                        }
-                        else if ($code!="") {
-                          echo $code;
-                        }
-                        else  {
-                          echo "Code";
-                        }
-                      ?>">
-                      <?php
-                        if  (isset($_POST['sf1'])&&isset($_POST['code'])) {
-                          echo $_POST['code'];
-                        }
-                        else if($code!="")  {
-                          echo $code;
-                        }
-                        else  {
-                          echo "Code";
-                        }
-                      ?>
-                      </option>
-                            
-                      <option value="+965">+965</option>
-                      <option value="+966">+966</option>
-                      <option value="+968">+968</option>
-                      <option value="+971">+971</option>
-                      <option value="+973">+973</option>
-                      <option value="+974">+974</option>
-                    </select>
-                </div>
-              </div>
-
-              <div class="form-group col-9">
-                <label for="phoneNO" class="col-5">Phone number</label>
-                <input size="30" id="number" name="number" value="<?php echo isset($_POST['number']) ? $_POST['number'] :$number;?>" type="text" autocomplete="off" class="form-control" id="input-area">
-              </div>
               
+                <div class="phone col-9 " id="phoneNO">
+                  <div class="row d-flex flex-wrap align-items-center">
+                  <label for="phoneNO" class="">Phone number</label>
+                      <div class="country col-lg-2 col-3">
+                        <select id="code" name="code" class="button mb-3">
+                          <option value="
+                          <?php
+                            if  (isset($_POST['sf1'])&&isset($_POST['code'])) {
+                              echo $_POST['code'];
+                            }
+                            else if ($code!="") {
+                              echo $code;
+                            }
+                            else  {
+                              echo "Code";
+                            }
+                          ?>">
+                          <?php
+                            if  (isset($_POST['sf1'])&&isset($_POST['code'])) {
+                              echo $_POST['code'];
+                            }
+                            else if($code!="")  {
+                              echo $code;
+                            }
+                            else  {
+                              echo "Code";
+                            }
+                          ?>
+                          </option>
+                                
+                          <option value="+965">+965</option>
+                          <option value="+966">+966</option>
+                          <option value="+968">+968</option>
+                          <option value="+971">+971</option>
+                          <option value="+973">+973</option>
+                          <option value="+974">+974</option>
+                        </select>
+                      </div>
+                    <div class="form-group col input-group">
+                      
+                      <input size="30" id="number" name="number" value="<?php echo isset($_POST['number']) ? $_POST['number'] :$number;?>" type="text" autocomplete="off" class="form-control" id="input-area">
+                    </div>
+                  </div>
+                </div>
 
-              <div class="submitArea col-7">
-                <input name="sf1" type="submit" value="Save Changes" class="btn btn-primary">
-              </div>
-              </div>
+                <div class="submitArea col-7">
+                 <input name="sf1" type="submit" value="Save Changes" class="btn btn-primary">
+                </div>
+             
                 
               <?php
               include('test_input.php');
