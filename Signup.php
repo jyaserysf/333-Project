@@ -4,6 +4,24 @@ require("test_input.php");
 
 if(isset($_POST['signup'])) {
 
+    try
+    {
+        require('database/connection.php');
+        $sql = 'select * from users where username = ?';
+        $statement = $db->prepare($sql);
+        $statement->execute(array($_POST['username']));
+        if(0<$statement->rowCount())
+        {
+            # change this error by javascript
+            die("The user is already exists !");
+        }
+        $db=null;
+    }
+    catch(PDOException $e)
+    {
+        die($e->getMessage());
+    }
+    
     extract($_POST);
     $username = test_input($username);
     $email = test_input($email);
