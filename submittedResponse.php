@@ -1,8 +1,3 @@
-<?php
-
-var_dump($_POST);
-//print_r($_SESSION['username']);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
