@@ -12,10 +12,10 @@ if(isset($_REQUEST['S'])){?>
         $stmt->bindValue(":title", "%{$S}%");
         $stmt->execute();
         $results = $stmt->fetchAll();
-
+        //print_r($results);
 
         foreach ($results as $result) {
-            echo "<a href='answerSurvey.php?link={$result["surveyID"]}'>{$result["title"]}</a><br>";
+            echo "<a href='answerSurvey.php?survID={$result["surveyID"]}'>{$result["title"]}</a><br>";
           }
 
         if($S !== "") {
@@ -32,8 +32,15 @@ if(isset($_REQUEST['S'])){?>
             }
         }
         
+        // $stmt2=$db->prepare("SELECT surveyID from surveys where title='?'");
+        // if($result=$stmt->fetch()){
+        //     $stmt2->execute
+        // }
 
-        echo $hint === "" ? "no suggestion" : $hint;
+        if($hint==="")
+        echo "No result, try looking for something else";
+
+        
     } catch(PDOException $e) {
         die($e->getMessage());
     }
