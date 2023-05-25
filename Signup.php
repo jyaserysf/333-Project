@@ -30,19 +30,19 @@ if(isset($_POST['signup'])) {
 
     $pattern_user = '/^[a-z0-9.]{4,20}$/i';
     if(!preg_match($pattern_user, $username))
-        die("Please enter a valid username");
+      /*   die("Please enter a valid username"); */
 
     $pattern_email = '/^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,}$/i';
     if(!preg_match($pattern_email, $email))
-        die("Please enter a valid email address");
+       /*  die("Please enter a valid email address"); */
 
     $pattern_password = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#@%\*\-.!$^?])[A-Za-z0-9_#@%.!$^\*\-?]{8,24}$/';
     if(!preg_match($pattern_password, $password))
-        die("Please enter a valid password");
+      /*   die("Please enter a valid password"); */
 
     if($password != $cpassword)
-        die("The entered passwords do not match");
-
+    /*     die("The entered passwords do not match");
+ */
     try {
         require('database/connection.php');
         $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -66,6 +66,27 @@ if(isset($_POST['signup'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="css/signup-login.css">
+
+    <style>
+    
+    .input-area small{
+    
+    position: absolute;
+   
+   top: 2.5rem;
+    left: 0;
+    
+    visibility: hidden;
+  
+
+} 
+ .input-area.error small{
+   
+    visibility: visible;
+    color: red;
+}  
+
+    </style>
  </head>
  <body>
    
@@ -97,56 +118,73 @@ if(isset($_POST['signup'])) {
                                 <input
                                     type="text"
                                     name="username"
-                                    id="username"
-                                    minlength="4"
+
+                                  
+
                                     class="input-field"
                                     autocomplete="off"
-                                    required
+                                   
+                                    id="username"
                                 >
-                                <label>User Name</label>
-                                <small>error message</small>
+
+                                <label for='username'>User Name</label>
+                                <small ></small>
+
                             </div>
 
                             <div class="input-area">
                                 <input
                                     type="text"
                                     name="email"
-                                    id="email"
-                                    minlength="4"
+
+                                  
+
                                     class="input-field"
                                     autocomplete="off"
-                                    required
+                                   
+                                    id="email"
                                 >
                                 <label>Email Address</label>
-                                <small>error message</small>
+
+                                <small></small>
+
                             </div>
+
     
                             <div class="input-area">
                                 <input
                                     type="password"
                                     name="password"
-                                    id="password"
-                                    minlength="8"
+
+                                    
+
                                     class="input-field"
                                     autocomplete="off"
-                                    required
+                                   
+                                    id="userpassword"
                                 >
                                 <label>Password</label>
-                                <small>error message</small>
+
+                                <small ></small>
+
                             </div>
 
                             <div class="input-area">
                                 <input
                                     type="password"
                                     name="cpassword"
-                                    id="cpassword"
-                                    minlength="8"
+
+                                   
+
                                     class="input-field"
                                     autocomplete="off"
-                                    required
+                                    
+                                    id="cpassword"
                                 >
                                 <label>Re-enter Password</label>
-                                <small>error message</small>
+
+                                <small></small>
+
                             </div>
     
                             <div class="input-area" id="rememberMeBtn">
@@ -183,6 +221,174 @@ if(isset($_POST['signup'])) {
     </main>
     
     <script src="javascript/Login.js"></script>
+    <script>
+            window.addEventListener('DOMContentLoaded', function() {
+
+                const form =document.getElementById('form');
+                //console.log(form);
+                const username= document.getElementById("username");
+                //console.log(username);
+                const email = document.getElementById("email");
+                //console.log(email);
+                const userpassword =document.getElementById("userpassword");
+                //console.log(userpassword);
+                const passwordVerify=document.getElementById("cpassword");
+                //console.log(passwordVerify);
+                
+                function showError(input,message){
+                    const inputarea=input.parentElement;
+                    inputarea.className='input-area error';
+                    const small =inputarea.querySelector('small');
+                    small.innerText=message;
+
+
+                }
+
+                function showSuccess(input){
+                    const inputarea=input.parentElement;
+                inputarea.className='input-area success';
+                }
+
+
+                form.addEventListener('submit',function(e) {
+                e.preventDefault();
+                let errors=0;
+                    //validate all inputs 
+                   /*  errors+=checkRequired([username,email,userpassword,passwordVerify]); */
+                    errors+=checkLength(username,3,14);
+                    errors+=checkLength(userpassword,8,24);
+                    errors+=checkEmail(email);
+                    errors+=checkPasswrodsMatch(userpassword,passwordVerify);
+
+
+                    //if there is no errors submit 
+                    if(errors==0){
+                        form.submit();
+                    }
+            });
+
+
+
+/*                 
+                function checkRequired(userinputARR){
+                let error=0;
+                userinputARR.forEach(function(input){
+
+                    if(input.value.trim() === ''){
+
+                            showError(input, `${getFieldName(input)} is required `);
+                            ++error;
+                           
+                    }else{
+                         showSuccess(input); 
+                       
+                    }
+
+                });
+                    return error;
+                }
+ */
+                
+                
+              
+                function checkEmail(input){
+
+                    let error=0;
+                    
+                     if(input.value.trim() === ''){
+
+                            showError(input, `*${getFieldName(input)} is required `);
+                            ++error;
+                     }else{
+                    const ex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                    if(ex.test(input.value.trim())){
+                        showSuccess(input);
+                    }else{
+                        showError(input,'Email is not valid');
+                        ++error;
+                    }
+                    return error;}
+                }
+
+
+
+                function checkLength(input,min,max){
+                    let error=0;
+
+                    if(input.value.trim() === ''){
+
+                       showError(input, `*${getFieldName(input)} is required `);
+                        ++error;
+                        }else{
+
+                    if(input.value.length < min ){
+
+                        showError(
+                            input,`*${getFieldName(input)} must be atleast ${min} characters `
+                        );
+                        ++error;
+                    }else if(input.value.length>max){
+                        showError(
+                            input, `*${getFieldName(input) } must be less tha ${max} charachters ` );
+
+                            ++error;
+                        }
+                    else{
+                        showSuccess(input);
+                    }
+                    
+                    return error;
+                }
+                }
+                
+
+                function checkPasswrodsMatch(input1,input2){
+                    let error=0;
+                     if(input1.value.trim() === ''){
+
+                            showError(input, `*${getFieldName(input)} is required `);
+                            ++error;
+                     }else{
+                    if(input1.value !== input2.value){
+                        showError(input2 , 'password do not match');
+                        ++error;
+                    }
+                    return error;
+                }
+                }
+
+
+                function getFieldName(input){
+                    
+                    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+                }
+
+                //event listener for submit 
+
+               
+                
+
+                
+
+                
+
+                //get field name 
+
+               
+
+                //check input length 
+
+                
+
+                //check if email is valid
+
+
+                
+            });
+            
+    </script>
 
  </body>
+
  </html>

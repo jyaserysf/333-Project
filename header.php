@@ -28,15 +28,16 @@
                 
               ?>
               <li class="nav-item me-5">
-                <a class="nav-link" href="explorepage2.php">Student</a>
+                <a class="nav-link" href="explorepage3.php">Student</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="explorepage2.php">Work</a>
+                <a class="nav-link" href="explorepage3.php">Work</a>
               </li>
              
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex-wrap " role="search">
+              <input class="form-control me-2 search" type="text" placeholder="Search" aria-label="Search" onkeyup="search(this.value);" id="Search">
+              <div class="form-control me-2 search" id="results"> </div>
               
             </form>
             <?php 
@@ -50,7 +51,7 @@
               }else{
                     echo "
                     <a href='Login.php'><button class='btn me-2' id='headLogin'> Login </button></a>
-                    <a href='Login.php'><button class='btn  me-2' id='headRegister'> Register </button></a>";
+                    <a href='Signup.php'><button class='btn  me-2' id='headRegister'> Register </button></a>";
                 }
             ?>
             <script>
@@ -65,6 +66,22 @@
                     };
                     xhr.send();
                 }
+
+                function search(user){
+                  if (user.length == 0){
+                      document.getElementById('results').innerText="";
+                      return;
+                  }
+                  const xHttp = new XMLHttpRequest();
+                  xHttp.onreadystatechange = function(){
+                      if (this.readyState==4 && this.status== 200){
+                          document.getElementById('results').innerHTML = this.responseText;
+                          
+                      }
+                  };
+                  xHttp.open("GET","Search.php?S="+user)
+                  xHttp.send(null);
+              }
             </script>
             
           </div>

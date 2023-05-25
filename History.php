@@ -129,7 +129,7 @@
                             <td>$value[0]</td>
                             <td>$value[2]</td>
                             <td>$value[1]</td>
-                            <td><a href='answerSurvey.php?survID=$surveyID><span style='background-color:#161853' class='material-symbols-outlined'>edit_square</span></a></td>
+                            <td><a href='answerSurvey.php?survID=$surveyID><span style='' class='material-symbols-outlined'>edit_square</span></a></td>
                             </tr>
                             ";
                     }
