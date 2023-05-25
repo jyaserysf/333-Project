@@ -41,7 +41,7 @@
     }
 
     .myprofile {
-      color: rgba(0, 0, 0, 0.8);
+      color: rgba(0, 0, 0, 0.7);
       margin-bottom: 2rem;
     }
 
@@ -52,6 +52,7 @@
 
     #profileUserName {
       font-size: 1.3rem;
+      color: rgba(0, 0, 0, 0.7);
     }
 
     .btn-primary {
@@ -59,7 +60,7 @@
       color: #fff;
       border: 1px solid;
       border-radius: 5px;
-      padding: 10px 10px;
+      padding: 6px 10px;
       text-decoration:none;
     }
 
@@ -87,7 +88,7 @@
 
     .submitArea {
       float: left;
-      margin-bottom: 3rem;
+      margin-top: 0.5rem;
     }
 
     form{
@@ -112,6 +113,14 @@
       border: solid 1px rgba(211, 214, 219, 0.7);
       border-radius: 20px;
       margin: 0 auto;
+    }
+
+    #display_name {
+      margin-top: 0.85rem;
+    }
+
+    #space {
+      margin: 7rem 0 7rem 0;
     }
 
   </style>
@@ -151,14 +160,14 @@
           <div class="profile-image ps-5 d-flex flex-column justify-content-center">
   
             <div id="profilePictureArea" class="col-12">
-              <h3 style='color:rgba(0, 0, 0, 0.8)' id="display_name"> <?php echo strtoupper($name);?></h3>
+              <h3 style='color:rgba(0, 0, 0, 0.7)' id="display_name"> <?php echo strtoupper($name);?></h3>
               <p id="profileUserName">@<?php echo ucfirst($username)?></p>
               <img src="img/profile-pic-male.png" alt="The profile image should be here" id="profilePicture">
             </div>
             
             <div class="row">
               
-              <div class="col-12" id="upload-img-div">
+              <div class="col-10" id="upload-img-div">
                 <label id="profile-label" for="image-file"><b>Update Image</b></label>
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
               </div>
@@ -186,24 +195,24 @@
               # write a code here to retrieve the information from the database instead of null in echo isset($_POST['fullname']) ? $_POST['fullname']:null;
               ?>
               
-              <div class="form-group col-9">
-                <label class="col-4">Name</label>
+              <div class="form-group col-11">
+                <label class="col-3">Name</label>
                 <input size="30" name="name" value="<?php echo isset($_POST['name']) ? $_POST['name']:$name;?>"   type="text"  autocomplete="off" class="form-control" id="input-area">
               </div>
               
 
-              <div class="form-group col-9">
-                <label class="col-4">User Name</label>
+              <div class="form-group col-11">
+                <label class="col-3">User Name</label>
                 <input size="30" name="username" value="<?php echo isset($_POST['username']) ? $_POST['username'] :$username;?>"  type="text"  autocomplete="off" class="form-control" id="input-area">
               </div>
         
-              <div class="form-group col-9">
-                <label class="col-4" id="lable">Email Address</label>
+              <div class="form-group col-11">
+                <label class="col-3" id="lable">Email Address</label>
                 <input size="30" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] :$email;?>"  type="text"  autocomplete="off" class="form-control" id="input-area">
               </div>
                     
               
-                <div class="phone col-9 " id="phoneNO">
+                <div class="phone col-11 " id="phoneNO">
                   <div class="row d-flex flex-wrap align-items-center">
                   <label for="phoneNO" class="">Phone number</label>
                       <div class="country col-lg-2 col-3">
@@ -251,6 +260,8 @@
                 <div class="submitArea col-7">
                  <input name="sf1" type="submit" value="Save Changes" class="btn btn-primary">
                 </div>
+
+                <div id="space"></div>
              
                 
               <?php
@@ -325,18 +336,18 @@
             
             <form method='post' class="form2" id='f2'>
               
-              <div class="form-group col-9" id="oldpass" class="pass">
-                <label class="col-4" class="pl">Old Password</label>
+              <div class="form-group col-11" id="oldpass" class="pass">
+                <label class="col-3" class="pl">Old Password</label>
                 <input size="30" name='oldpass' type="password" autocomplete="off" class="form-control" id="input-area">
               </div>
               
-              <div class="form-group col-9" id="newpass" class="pass">
-                <label class="col-4" class="pl">New Password</label>
+              <div class="form-group col-11" id="newpass" class="pass">
+                <label class="col-3" class="pl">New Password</label>
                 <input size="30" name='newpass' type="password" autocomplete="off" class="form-control" id="input-area">
               </div>
 
-              <div class="form-group col-9" id="verifynewpass" class="pass">
-                <label class="col-4" class="pl">Verify New Password</label>
+              <div class="form-group col-11" id="verifynewpass" class="pass">
+                <label class="col-3" class="pl">Verify New Password</label>
                 <input size="30" name='cnewpass' type="password" autocomplete="off" class="form-control" id="input-area">
               </div>
 
