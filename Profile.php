@@ -106,6 +106,14 @@
       border-radius:5px;
     }
 
+    #myProfile-container {
+      background-color: rgba(250, 237, 240, 0.1);
+      padding: 2rem;
+      border: solid 1px rgba(211, 214, 219, 0.7);
+      border-radius: 20px;
+      margin: 0 auto;
+    }
+
   </style>
 
 </head>
@@ -163,7 +171,7 @@
           </div>
         </div>
           
-        <div class="two col-lg-7 col-md-12 pt-md-3">
+        <div class="two col-lg-7 col-md-12 pt-md-3" id="myProfile-container">
           
           <div class="two1 row">
            
