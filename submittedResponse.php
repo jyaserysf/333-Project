@@ -73,6 +73,7 @@
                                 echo "
                                 <div class='m-auto submitMsg' id=''>
                                     <div> <h2>Your response has been submitted succesfully! </h2></div>
+                                    <div> <img src='img\Done-rafiki.png' > </div>
                                     <div> <h4> Try another one of our surveys </h4></div>
                                     <div> <a class='btn' id='submitpagebtn' href='explorepage3.php'>Explore</a></div>
                                 </div>";
@@ -81,6 +82,7 @@
                                 echo "
                                 <div class='m-auto submitMsg' id=''>
                                     <div> <h2> Apologies... Your response has not been submitted. </h2></div>
+                                    <div> <img src='img\Computer troubleshooting-amico.svg' > </div>
                                     <div> <h4> Try taking the survey again! </h4></div>
                                     <div> 
                                         <form action='answerSurvey.php' method='POST'>
@@ -96,6 +98,7 @@
                             echo"
                             <div class='m-auto submitMsg' id=''>
                                 <div> <h2> You did not answer any of the survey questions </h2></div>
+                                <div> <img src='img\Computer troubleshooting-amico.svg' > </div>
                                 <div>  <h4> Try taking the survey again! </h4> </div>
                                 <div> 
                                 <form action='answerSurvey.php' method='POST'>

@@ -19,7 +19,7 @@
     <div class="cointainer" id="main">
     <div class="container">
     <div class="outer">
-      <div class="inner">
+      <div class="inner pt-2 px-2">
   
       <?php
       include ('SortByDate.php');
@@ -85,10 +85,10 @@
         
       ?>
       
-        <div class="area1">
-            <h1>Past Surveys</h1> 
-            <div class="surveys_no"><h6>313</h6></div>
-            <div class="dropdown">
+        <div class="area1 row">
+            <h1 class="col-lg-9 col-12">Past Surveys</h1> 
+            <div class="surveys_no col-lg-1 col-2"><h6>313</h6></div>
+            <div class="dropdown col text-end">
             <button class="dropbtn">Sort By</button>
             <div class="dropdown-content">
 
@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <div class="area2">
+        <div class="area2 row">
 
 
                 
@@ -112,7 +112,7 @@
                 }
                 else{
                     echo
-                "<table>                    
+                "<table class='col'>                    
                     <tr>
                     <th>Survey Logo</th>
                     <th>Survey Title</th>
@@ -150,5 +150,8 @@
     
   <script src="javascript/Common(History and Profile).js">
   </script>
+  <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
+    <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 </html>

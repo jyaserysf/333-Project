@@ -1,9 +1,4 @@
-<?php 
 
-
-
-//var_dump($_POST);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +31,7 @@
 
     <div id="header"> <?php include 'header.php'?> </div>
     <!-- Page content in this container -->
-    <div class="cointainer" id="main">
+    <div class="cointainer " id="main">
         <?php 
             try{
                 
@@ -62,8 +57,8 @@
                             
                         
                         echo"<div> <h5> ".$displaySurvey['description']."</h5></div>
-                                <div> Created on: ".$displaySurvey['date']."</div>
-                                <div>Total Responses: ".$displaySurvey['numResponses']." </div> 
+                                <div> <p> Created on: ".$displaySurvey['date']."</p></div>
+                                <div><p>Total Responses: ".$displaySurvey['numResponses']." </p></div> 
                     </div>";
                    
 
@@ -73,6 +68,15 @@
                     </form>
                     </div>";
                     //send survey id to answerSurvey.php again
+                }else{
+                    echo"<div class='container' id='displaySurvey'>
+                        <div class='m-auto submitMsg' id=''>
+                        <div> <h2> Please select a survey to respond to first. </h2></div>
+                        <div> <img src='img\Computer troubleshooting-amico.svg' > </div>
+                        
+                        <div> <h4> Go back to <a href='homepage.php'style='text-decoration:none;'>Home</a>  </h4></div>
+                </div>
+                    </div>";
                 }
 
                 $db->commit();

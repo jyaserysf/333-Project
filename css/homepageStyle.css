@@ -91,6 +91,7 @@ hr{
 }
 
 .surveydisplay{
+    border-radius: 6px;
     background-color: #292C6D;
     padding: 5% 6%;
     min-height: 250px;

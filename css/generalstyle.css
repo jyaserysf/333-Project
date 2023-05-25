@@ -124,6 +124,8 @@ button.navbar-toggler{
    }
 
    #survey-btn{
+    padding: 10px 30px;
+    
     background-color: #EC255A;
     color: #FAEDF0;
    }
@@ -174,12 +176,19 @@ button.navbar-toggler{
     margin: 70px auto;
     max-width:1000px;
     padding: 100px;
-    /* color: #FAEDF0; */
     color: rgba(0, 0, 0, 0.7);
     border: solid 2px rgba(22, 24, 83, 0.3);
             border-radius: 20px;
     
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #FAEDF0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#displaySurvey h1,p{
+    font-weight: bold;
 }
 
 .form-check-input:checked{
@@ -196,6 +205,7 @@ button.navbar-toggler{
 }
 
 #submitpagebtn{
+    padding: 10px 30px;
     background-color: #EC255A;
     color: #FAEDF0;
 }
@@ -211,7 +221,9 @@ button.navbar-toggler{
     
 }
 
-
+.submitMsg{
+    text-align: center;
+}
 
 /* ------------------- footer styling --------------- */
 #footer{

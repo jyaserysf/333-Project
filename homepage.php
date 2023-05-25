@@ -25,13 +25,18 @@
         <div class="top-display d-flex justify-content-center
          ">
             
-            <div class="displaysection d-flex flex-column align-items-center justify-content-center " id="tagline">
-             <h1 class="m-5"> Something about surveys </h1>
+            <div class="displaysection d-flex flex-column align-items-center justify-content-center m-5" id="tagline">
+             <h1 class=" text-center"> Your <span style="color:#EC255A">No.1 </span> source for surveys and questionnaires </h1>
              <div> 
-                <h2 class="mb-4"> Create an account now! </h2> 
-                <div class="d-grid gap-2 col-6 mx-auto my-2">
-                    <button class="btn p-2 create" type="button"> <a href="Signup.php">Register </a></button>
-                </div>
+                <?php 
+                if(!isset($_SESSION['user'])){?>
+
+                    <h2 class="mb-4 text-center"> Create an account now! </h2> 
+                    <div class="d-grid gap-2 col-6 mx-auto my-2">
+                        <button class="btn p-2 create" type="button"> <a href="Signup.php">Register </a></button>
+                    </div>
+                <?php 
+                }?>
              </div>
             </div>
             <div class="displaysection flex-grow-2 me-5 p-2" id="displayImg">
