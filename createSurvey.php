@@ -18,6 +18,7 @@
             margin-top: 3rem;
             margin-bottom: 3rem;
         }
+
         .inner-container {
             background-color: rgba(255, 255, 255, 0.65);
             padding: 2rem;

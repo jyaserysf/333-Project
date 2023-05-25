@@ -1,14 +1,15 @@
 
 
 
-*{
-    /* get rid of all padding & margin */
-    padding: 0;
+/*{
+    /* get rid of all padding & margin */ /*
+    padding: 0; 
     margin: 0;
     box-sizing: border-box;
 	
 }
 
+*/
 
 .container
 {
@@ -48,7 +49,7 @@
 {
 	height: 100%;
 	min-width: 30%;
-	/* border-right: #c4c0c07d 2px solid; */
+	/* border-right: #c4c0c07d 2px solid; */ 
 }
 
 .two
@@ -177,8 +178,8 @@ select
 	font-size: 0.7rem;
 	font-weight: bold;
 	text-align: center;
-	/**font-family: "Roboto";*/
-}
+	/**font-family: "Roboto";*/ 
+} 
 
 .two2
 {
@@ -200,7 +201,7 @@ select
 	transform: translateY(-20%);
 }
 
-.pass /*contains password fields*/
+.pass /*contains password fields*/ 
 {
 	width: 100%;
 	display:flex;
@@ -306,7 +307,7 @@ input[type=password]
 	display: none;
 }
 
-/* .one
+ .one
 {
 	display:flex;
 	flex-wrap: wrap;
@@ -702,7 +703,3 @@ input[type=password]
     
 
 }
-
-
-
-
