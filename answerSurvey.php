@@ -33,7 +33,7 @@
         try{ 
                 require('database/connection.php');
                $db->beginTransaction();
-                if(isset($_POST['answerSurv'])||isset($_GET['survID'])){
+                if(isset($_POST['answerSurv'])||isset($_GET['survID']) ){
                      // grab surveyID from displaySurvey 
                      if(isset($_POST['answerSurv']))
                         $survID=$_POST['svID'];

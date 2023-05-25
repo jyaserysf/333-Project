@@ -36,7 +36,7 @@
              
             </ul>
             <form class="d-flex-wrap " role="search">
-              <input class="form-control me-2 search" type="text" placeholder="Search" aria-label="Search" onkeyup="search(this.value);" id="Search">
+              <input class="form-control me-2 search" type="text" placeholder="Search" aria-label="Search" onkeyup="Searchbar(this.value);" id="Search">
               <div class="form-control me-2 search" id="results"> </div>
               
             </form>
@@ -67,21 +67,30 @@
                     xhr.send();
                 }
 
-                function search(user){
-                  if (user.length == 0){
-                      document.getElementById('results').innerText="";
-                      return;
-                  }
-                  const xHttp = new XMLHttpRequest();
-                  xHttp.onreadystatechange = function(){
-                      if (this.readyState==4 && this.status== 200){
-                          document.getElementById('results').innerHTML = this.responseText;
-                          
+                document.getElementById("results").style.display = "none";
+                  function Searchbar(input){
+                      if (input.length==0){
+                          document.getElementById("results").style.display = "none";
+                          return;
                       }
-                  };
-                  xHttp.open("GET","Search.php?S="+user)
-                  xHttp.send(null);
-              }
+                      const xhttp=new XMLHttpRequest();
+                  xhttp.onload=myAJAXFunction;
+                  xhttp.open("GET","answerSurvey.php?id="+input);
+                  xhttp.open("GET","Search.php?S="+input);
+                  xhttp.send();
+
+                  //const xhttp=new XMLHttpRequest();
+                  //xhttp.onload=myAJAXFunction;
+                  //xhttp.open("GET","Search.php?S="+input);
+                  //xhttp.send();
+                  }
+                  function myAJAXFunction(){
+                    var resultsDiv = document.getElementById("results");
+                    resultsDiv.innerHTML = ""; // Clear the contents of the div
+                    resultsDiv.style.display = "block";
+                    resultsDiv.innerHTML = this.responseText;
+                  }
+
             </script>
             
           </div>
