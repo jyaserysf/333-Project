@@ -102,6 +102,20 @@
             margin: 1rem 0 2rem 0;
         }
 
+        .qCounter {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 10px 0;
+            border: 1px solid #EC255A;
+            border-radius: 5px;
+            
+            color:#EC255A;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            float: right;
+        }
+
     </style>
 </head>
 <body>
@@ -159,9 +173,9 @@
                     <input class="button" type="button" value="MCQ" id="MCQ" onclick="addMCQ()">
                     <input class="button" type="button" value="SHORT ANSWER" id="shortA" onclick="addshortA()">
                     <input class="button" type="button" value="SCALE" id="Scale " onclick="addscale()">
+                    <span id="q" class="qCounter"></span>
                     <div id="questions">
-    
-                        <br>
+                        
                     </div>
 
                     
@@ -169,7 +183,9 @@
 
                         questions = document.getElementById("questions");
                         var questionCount = 0
-        
+                        var max=" / 20"
+
+                        document.getElementById("q").innerHTML=questionCount+max;
                         function addYesNO() {
                             questionCount++;
                             if (questionCount > 20) {
@@ -190,6 +206,7 @@
 
                             </div>`;
                             
+                            document.getElementById("q").innerHTML=questionCount+max;
                             questions.insertAdjacentHTML("beforeend", yes_no);
                             
                           
@@ -224,6 +241,7 @@
                             <input type="text" name="MCQ[]" id="MCQop4"placeholder="4th Option" class="form-control" id="input-area">
                             </div>`;
                             
+                            document.getElementById("q").innerHTML=questionCount+max;
                             questions.insertAdjacentHTML("beforeend", MCQ);
                         }
 
@@ -245,6 +263,8 @@
 
                                 </li>
                             </div>`;
+
+                            document.getElementById("q").innerHTML=questionCount+max;
                             questions.insertAdjacentHTML("beforeend", ShortA);
                         }
 
@@ -266,6 +286,8 @@
                                 </li>
 
                             </div>`;
+
+                            document.getElementById("q").innerHTML=questionCount+max;
                             questions.insertAdjacentHTML("beforeend", scale);
                         }
 
@@ -277,6 +299,7 @@
                  if (event.target.classList.contains("delete-question")) {
                   event.target.closest(".question").remove();
                   questionCount--;
+                  document.getElementById("q").innerHTML=questionCount+max;
                   updateQuestionNumbers();
                      }
                     });
