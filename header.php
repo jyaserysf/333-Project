@@ -2,8 +2,8 @@
     <nav class="navbar navbar-expand-lg  sticky-top" >
         <div class="container-fluid mx-lg-5 my-3">
             <a class="navbar-brand me-4 ms-4 " href="homepage.php">
-                <img src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-                <span>SurveySphere </span>
+                <!-- <img src="" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
+                <span>SurveySphere</span>
               </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
