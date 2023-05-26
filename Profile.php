@@ -33,7 +33,7 @@
     label {
       margin-bottom: 0.55rem;
       font-size: 1rem;
-      color: rgba(0, 0, 0, 0.7);
+      color: rgba(0, 0, 0, 0.55);
     }
 
     input {
@@ -101,6 +101,8 @@
       border-color:#292C6D;
       color:#292C6D;
       background-color: rgba(255, 255, 255, 0.65);
+      width: 4.65rem;
+      float: left;
     }
 
     #number {
@@ -168,7 +170,7 @@
             <div class="row">
               
               <div class="col-10" id="upload-img-div">
-                <label id="profile-label" for="image-file"><b>Update Image</b></label>
+                <label id="profile-label" for="image-file">Update picture</label>
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
               </div>
              
@@ -210,12 +212,11 @@
                 <label class="col-3" id="lable">Email Address</label>
                 <input size="30" name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] :$email;?>"  type="text"  autocomplete="off" class="form-control" id="input-area">
               </div>
-                    
               
-                <div class="phone col-11 " id="phoneNO">
-                  <div class="row d-flex flex-wrap align-items-center">
-                  <label for="phoneNO" class="">Phone number</label>
-                      <div class="country col-lg-2 col-3">
+                <div class="phone col-11" id="phoneNO">
+                <div class="row d-flex flex-wrap align-items-center">
+                  <label class="col-4" for="phoneNO" class="">Phone number</label>
+                  <div class="country col-lg-1 col-3">
                         <select id="code" name="code" class="button mb-3">
                           <option value="
                           <?php
@@ -251,8 +252,7 @@
                         </select>
                       </div>
                     <div class="form-group col input-group">
-                      
-                      <input size="30" id="number" name="number" value="<?php echo isset($_POST['number']) ? $_POST['number'] :$number;?>" type="text" autocomplete="off" class="form-control" id="input-area">
+                      <input size="30" name="number" value="<?php echo isset($_POST['number']) ? $_POST['number'] :$number;?>" type="text" autocomplete="off" class="form-control" id="input-area">
                     </div>
                   </div>
                 </div>
