@@ -17,11 +17,14 @@
             <!-- <div> <h3> Hi </h3></div> -->
             <?php 
               # prevent the user to come without premission to profile page (should be added to all pages)
-             if(!isset($_SESSION['user'])) {
-                 // js popup
-                 header("location: Login.php");
-                 exit();
-             }
+              if(!isset($_SESSION['user'])) {
+                // js popup
+                ?><script>
+                        window.location.href = "Login.php";
+                </script>
+                <!-- header("location: Login.php");
+                exit(); -->
+           <?php }
                 require('database/connection.php');
                 $db->beginTransaction();
                 try{
@@ -73,7 +76,7 @@
                                 echo "
                                 <div class='m-auto submitMsg' id=''>
                                     <div> <h2>Your response has been submitted succesfully! </h2></div>
-                                    <div> <img src='img\Done-rafiki.png' > </div>
+                                    <div> <img src='img\Done-rafiki.svg' > </div>
                                     <div> <h4> Try another one of our surveys </h4></div>
                                     <div> <a class='btn' id='submitpagebtn' href='explorepage3.php'>Explore</a></div>
                                 </div>";
@@ -113,6 +116,14 @@
                         
                         
                         
+                    }else{
+                        echo"
+                            <div class='m-auto submitMsg' id=''>
+                                <div> <h2> You have not chosen a survey to take. </h2></div>
+                                <div> <img src='img\Computer troubleshooting-amico.svg' > </div>
+                                <div>   </div>
+                                
+                            </div>";
                     }
                     $db->commit();
                     $db=null;
