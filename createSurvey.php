@@ -67,6 +67,20 @@
         transition: 0.3s;
 
         }
+        .s{
+
+display: inline-block;
+padding: 5px 10px;
+margin: 10px 0;
+border: 1px solid #EC255A;
+border-radius: 5px;
+
+color:#EC255A;
+font-size: 16px;
+cursor: pointer;
+transition: 0.3s;
+
+}
 
         .button:hover {
         background-color: #fff;
