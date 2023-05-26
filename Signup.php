@@ -4,6 +4,7 @@ require("test_input.php");
 
 if(isset($_POST['signup'])) {
 
+ 
     extract($_POST);
     $username = test_input($username);
     $email = test_input($email);
@@ -57,8 +58,9 @@ if(isset($_POST['signup'])) {
    
    top: 2.5rem;
     left: 0;
+    color: red;
     
-    visibility: hidden;
+    /* visibility: hidden; */
   
 
 } 
@@ -67,6 +69,7 @@ if(isset($_POST['signup'])) {
     visibility: visible;
     color: red;
 }  
+
 
     </style>
  </head>
@@ -100,17 +103,17 @@ if(isset($_POST['signup'])) {
                                 <input
                                     type="text"
                                     name="username"
-
-                                  
-
                                     class="input-field"
                                     autocomplete="off"
-                                   
                                     id="username"
+                                    onkeyup="checkunique(this.value)"
                                 >
 
                                 <label for='username'>User Name</label>
-                                <small ></small>
+                                <small id="useruser"></small> 
+                                <span ></span>
+                              
+                                
 
                             </div>
 
@@ -118,17 +121,15 @@ if(isset($_POST['signup'])) {
                                 <input
                                     type="text"
                                     name="email"
-
-                                  
-
                                     class="input-field"
                                     autocomplete="off"
-                                   
                                     id="email"
+                                    oninput="checkuniqueEmail(this.value)"
+
                                 >
                                 <label>Email Address</label>
 
-                                <small></small>
+                                <small id="emailemail" ></small>
 
                             </div>
 
@@ -237,11 +238,14 @@ if(isset($_POST['signup'])) {
                 let errors=0;
                     //validate all inputs 
                    /*  errors+=checkRequired([username,email,userpassword,passwordVerify]); */
+                  
                     errors+=checkLength(username,3,14);
+                  
                     errors+=checkLength(userpassword,8,24);
                     errors+=checkEmail(email);
                     errors+=checkPasswrodsMatch(userpassword,passwordVerify);
-
+                    errors+=checkunique(username);
+                    errors+=checkuniqueEmail(email);
 
                     //if there is no errors submit 
                     if(errors==0){
@@ -251,26 +255,11 @@ if(isset($_POST['signup'])) {
 
 
 
-/*                 
-                function checkRequired(userinputARR){
-                let error=0;
-                userinputARR.forEach(function(input){
 
-                    if(input.value.trim() === ''){
 
-                            showError(input, `${getFieldName(input)} is required `);
-                            ++error;
-                           
-                    }else{
-                         showSuccess(input); 
-                       
-                    }
 
-                });
-                    return error;
-                }
- */
-                
+
+                /*  trial */
                 
               
                 function checkEmail(input){
@@ -287,12 +276,14 @@ if(isset($_POST['signup'])) {
                     if(ex.test(input.value.trim())){
                         showSuccess(input);
                     }else{
-                        showError(input,'Email is not valid');
+                        showError(input,'*Email is not valid');
                         ++error;
                     }
                     return error;}
                 }
 
+         
+            
 
 
                 function checkLength(input,min,max){
@@ -346,30 +337,97 @@ if(isset($_POST['signup'])) {
                     return input.id.charAt(0).toUpperCase() + input.id.slice(1);
                 }
 
-                //event listener for submit 
-
-               
                 
-
-                
-
-                
-
-                //get field name 
-
-               
-
-                //check input length 
-
-                
-
-                //check if email is valid
-
-
-                
+        
             });
+
+              
+function checkunique(str){
+          let error=0;
+          console.log(str.length)
+          if(str.length==0){
+              document.getElementById("useruser").innerHTML="";
+              return;
+          }
+          let xhttp = new XMLHttpRequest();
+          
+           xhttp.onload = function() {
+              responce=this.responseText;
+             
+
+              if(responce=="exists"){
+
+                
+                  /* alert("fuckkkkkkkkkkkkk") */
+              
+                  // Change this error message to something more user-friendly
+                  document.getElementById("useruser").innerHTML="*username already taken!";
+                  error++;
+                 
+              }else{
+                
+                  document.getElementById("useruser").innerHTML="";
+              }
+              return error;
+                   
+          }
+
+          xhttp.open("GET","checkusername.php?u="+str,true)
+          xhttp.send();
+      
+          
+      }
             
+
+      
+               /*  trial */
+
+
+                       
+              
+         function checkuniqueEmail(str){
+            
+            let error=0;
+            console.log(str.length)
+            
+             
+             if(str.length==0){
+                 document.getElementById("emailemail").innerHTML="";
+                 return;
+             }
+             let xhttp2 = new XMLHttpRequest();
+             
+              xhttp2.onload = function() {
+                 responce=this.responseText;
+                
+   
+                 if(responce=="exists"){
+   
+                   
+                   
+   
+                     // Change this error message to something more user-friendly
+                     document.getElementById("emailemail").innerHTML="*email already registred!";
+                     error++;
+                    
+                 }else{
+                   
+                     document.getElementById("emailemail").innerHTML="";
+                 }
+                 return error;
+                      
+             }
+   
+             xhttp2.open("GET","checkemail.php?e="+str,true)
+             xhttp2.send();
+         
+             
+         }
+
+           
     </script>
+
+    
 
  </body>
 
