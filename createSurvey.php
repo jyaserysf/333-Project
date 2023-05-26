@@ -297,10 +297,15 @@
         $surveyTitle = test_input($_POST['surveyTitle']);
         $surveyDesc = test_input($_POST['surveyDesc']);
         $surveyCat = test_input($_POST['surveyCat']);
-        $MCQ = $_POST['MCQ'];
-        $TFQ = $_POST['TFQ'];
-        $Short = $_POST['Short'];
-        $Scale = $_POST['Scale'];
+        $MCQ = isset($_POST['MCQ'])?$_POST['MCQ']:null;
+        $TFQ = isset($_POST['TFQ'])?$_POST['TFQ']:null;
+        $Short = isset($_POST['Short'])?$_POST['Short']:null;
+        $Scale = isset($_POST['Scale'])?$_POST['Scale']:null;
+        $mcqloopcount = isset($_POST['MCQ'])?count($MCQ):0;
+        $TFQC = isset($_POST['TFQ'])?count($TFQ):0;
+        $ShortC = isset($_POST['Short'])?count($Short):0;
+        $ScaleC = isset($_POST['Scale'])?count($Scale):0;
+
         $surveyTitlePattern = "/^[a-z]{3,20}(\s{1}[a-z]{3,20}){0,5}$/i";
         $surveyCatPattern = "/^(work|student)$/";
         $questionsPattern = "/^[a-z0-9\?\s]{3,100}$/i";
@@ -312,7 +317,6 @@
         else if (!preg_match($surveyCatPattern, $surveyCat))
             echo "<span style='color:red;font-size:12px;'>Please, choose a category !</span>";
         else {
-            $mcqloopcount = count($MCQ);
             if ($mcqloopcount != 0)
                 $mcqloopcount = $mcqloopcount / 5;
             for ($i = 0; $i < $mcqloopcount; $i++) {
@@ -328,21 +332,18 @@
                 }
             }
 
-            $TFQC = count($TFQ);
             for ($i = 0; $i < $TFQC; $i++) {
                 if (!preg_match($questionsPattern, $TFQ[$i])) {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format !</span>";
                     die();
                 }
             }
-            $ShortC = count($Short);
             for ($i = 0; $i < $ShortC; $i++) {
                 if (!preg_match($questionsPattern, $Short[$i])) {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format !</span>";
                     die();
                 }
             }
-            $ScaleC = count($Scale);
             for ($i = 0; $i < $ScaleC; $i++) {
                 if (!preg_match($questionsPattern, $Scale[$i])) {
                     echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format !</span>";

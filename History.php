@@ -87,7 +87,7 @@
       
         <div class="area1 row">
             <h1 class="col-lg-9 col-12">Past Surveys</h1> 
-            <div class="surveys_no col-lg-1 col-2"><h6>313</h6></div>
+            <div class="surveys_no col-lg-1 col-2"><h6><?php echo count($information);?></h6></div>
             <div class="dropdown col text-end">
             <button class="dropbtn">Sort By</button>
             <div class="dropdown-content">
@@ -120,7 +120,6 @@
                     <th>Submitted On</th>
                     <th>Edit?</th>
                     </tr>";
-
                     foreach($information as $value)
                     {
                         echo
