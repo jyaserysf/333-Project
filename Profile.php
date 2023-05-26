@@ -46,7 +46,7 @@
     }
 
     #profilePicture {
-      width: 11rem;
+      width: 9.5rem;
       margin: 1rem 0;
     }
 
@@ -164,7 +164,7 @@
             <div id="profilePictureArea" class="col-12">
               <h3 style='color:rgba(0, 0, 0, 0.7)' id="display_name"> <?php echo strtoupper($name);?></h3>
               <p id="profileUserName">@<?php echo ucfirst($username)?></p>
-              <img src="img/profile-pic-male.png" alt="The profile image should be here" id="profilePicture">
+              <img src="img/undraw_male_avatar.svg" alt="The profile image should be here" id="profilePicture">
             </div>
             
             <div class="row">
