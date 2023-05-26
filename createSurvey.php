@@ -29,12 +29,13 @@
 
         .form-group {
             margin-bottom: 1rem;
+            color: rgba(0, 0, 0, 0.7);
         }
 
         label {
             margin-bottom: 0.55rem;
             font-size: 1rem;
-            color: rgba(0, 0, 0, 0.7)
+            color: rgba(0, 0, 0, 0.65)
         }
 
         input {
@@ -42,21 +43,21 @@
         }
 
         .button {
-        display: inline-block;
-        padding: 5px 10px;
-        margin: 10px 0;
-        border: 1px solid;
-        border-radius: 5px;
-        background-color: #EC255A;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.3s;
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 10px 0;
+            border: 1px solid;
+            border-radius: 5px;
+            background-color: rgba(236, 37, 90, 0.9);
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .button:hover {
         background-color: #fff;
-        color: #EC255A;
+        color: rgba(236, 37, 90, 0.9);
         }
 
         .button:active {
@@ -64,7 +65,7 @@
         }
 
         .btn-primary {
-            background-color: #292C6D/*#161853*/;
+            background-color: rgba(41, 44, 109, 0.9);
             color: #fff;
             border: 1px solid;
             border-radius: 5px;
@@ -73,7 +74,7 @@
 
         .btn-primary:hover {
             background-color: #fff;
-            color: #292C6D;
+            color: rgba(41, 44, 109, 0.9);
             border: 1px solid;
         }
 
@@ -91,6 +92,14 @@
 
         #trash {
             float: right;
+        }
+
+        #questions {
+            background-color: rgba(250, 237, 240, 0.1);
+            padding: 2rem;
+            border: solid 1px rgba(211, 214, 219, 0.7);
+            border-radius: 20px;
+            margin: 1rem 0 2rem 0;
         }
 
     </style>
@@ -151,16 +160,16 @@
                     <input class="button" type="button" value="SHORT ANSWER" id="shortA" onclick="addshortA()">
                     <input class="button" type="button" value="SCALE" id="Scale " onclick="addscale()">
                     <div id="questions">
-
+    
                         <br>
                     </div>
 
-
+                    
                     <script>
 
                         questions = document.getElementById("questions");
                         var questionCount = 0
-
+        
                         function addYesNO() {
                             questionCount++;
                             if (questionCount > 20) {
@@ -286,7 +295,9 @@
                     <input type="submit" value="Create Survey" class="btn btn-primary">
                     <input type="reset" value="Clear" class="btn btn-primary">
                 </div>
+                
             </form>
+            
         </div>
     </div>
     <!------------------------------------------------------------------------------------------>
