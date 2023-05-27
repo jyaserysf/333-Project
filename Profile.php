@@ -58,7 +58,7 @@
     .btn-primary {
       background-color: #292C6D/*#161853*/;
       color: #fff;
-      border: 1px solid;
+      border: 1px solid #292C6D;
       border-radius: 5px;
       padding: 6px 10px;
       text-decoration:none;
@@ -136,9 +136,10 @@
       color: #292C6D;
       border: 1px solid;
       border-radius: 5px;
-      padding: 6px 10px;
+      padding: 4.17px 6px;
       text-decoration:none;
       cursor: pointer;
+      margin-bottom: 0.8rem
     }
 
     .btn-changePicture:hover {
@@ -194,11 +195,12 @@
               <div class="col-10" id="upload-img-div">
                 <input type="button" class="btn-changePicture" for-="image-file" value="Change Picture" onclick="changePicture()">
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
+                
+                <a class="history btn-primary" href="History.php">View History</a>
+              
               </div>
              
-              <div class="col">
-                <a class="history btn-primary" href="History.php">View History</a>
-              </div>
+              
 
             </div> 
           </div>
