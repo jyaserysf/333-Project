@@ -1,60 +1,63 @@
 <?php
 
 require("test_input.php");
+//var_dump($_POST);
+    if(isset($_POST['cpassword'])) {
 
-if(isset($_POST['signup'])) {
+            try
+            {
+                require('database/connection.php');
+                $sql = 'select * from users where username = ?';
+                $statement = $db->prepare($sql);
+                $statement->execute(array($_POST['username']));
+                if(0<$statement->rowCount())
+                {
+                    # change this error by javascript
+                    die("The user is already exists !");
+                }
+                $db=null;
+            }
+            catch(PDOException $e)
+            {
+                die($e->getMessage());
+            }
+            
+            extract($_POST);
+            var_dump($_POST);
+            echo "hi";
 
-    try
-    {
-        require('database/connection.php');
-        $sql = 'select * from users where username = ?';
-        $statement = $db->prepare($sql);
-        $statement->execute(array($_POST['username']));
-        if(0<$statement->rowCount())
-        {
-            # change this error by javascript
-            die("The user is already exists !");
-        }
-        $db=null;
-    }
-    catch(PDOException $e)
-    {
-        die($e->getMessage());
-    }
-    
-    extract($_POST);
-    $username = test_input($username);
-    $email = test_input($email);
-    $password = test_input($password);
-    $cpassword = test_input($cpassword);
+            $username = test_input($username);
+            $email = test_input($email);
+            $password = test_input($password);
+            $cpassword = test_input($cpassword);
 
-    $pattern_user = '/^[a-z0-9.]{4,20}$/i';
-    if(!preg_match($pattern_user, $username))
-      /*   die("Please enter a valid username"); */
+            $pattern_user = '/^[a-z0-9.]{4,20}$/i';
+            if(!preg_match($pattern_user, $username))
+            die("Please enter a valid username"); 
 
-    $pattern_email = '/^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,}$/i';
-    if(!preg_match($pattern_email, $email))
-       /*  die("Please enter a valid email address"); */
+            $pattern_email = "/^[a-z0-9.-_]+@[a-z0-9.-]+\.[a-z]{2,}$/i";
+            if(!preg_match($pattern_email, $email))
+            die("Please enter a valid email address");
 
-    $pattern_password = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#@%\*\-.!$^?])[A-Za-z0-9_#@%.!$^\*\-?]{8,24}$/';
-    if(!preg_match($pattern_password, $password))
-      /*   die("Please enter a valid password"); */
+            $pattern_password = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_#@%\*\-.!$^?])[A-Za-z0-9_#@%.!$^\*\-?]{8,24}$/';
+            if(!preg_match($pattern_password, $password))
+            die("Please enter a valid password"); 
 
-    if($password != $cpassword)
-    /*     die("The entered passwords do not match");
- */
-    try {
-        require('database/connection.php');
-        $hash = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $db->prepare("INSERT INTO users (username,email,password) VALUES(?,?,?)");
-        $stmt->execute(array(strtolower($username), $email, $hash));
-        $db=null;
-        header("location: Login.php");
-        die();
-    }
-    catch(PDOException $e) {
-        die($e->getMessage());
-    }
+            if($password != $cpassword)
+             die("The entered passwords do not match");
+        
+            try {
+                require('database/connection.php');
+                $hash = password_hash($password, PASSWORD_DEFAULT);
+                $stmt = $db->prepare("INSERT INTO users (username,email,password) VALUES (?,?,?)");
+                $stmt->execute(array(strtolower($username), $email, $hash));
+                $db=null;
+                header("location: Login.php");
+                die();
+            }
+            catch(PDOException $e) {
+                die($e->getMessage());
+            }
 }
 ?>
 
@@ -219,6 +222,8 @@ if(isset($_POST['signup'])) {
             </div>
         </div>
     </main>
+
+
     
     <script src="javascript/Login.js"></script>
     <script>
