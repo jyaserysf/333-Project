@@ -8,7 +8,87 @@
     <title>Survey</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="css/generalstyle.css">
-    <link rel="stylesheet" href="css/answerSurvey.css">
+    <!-- <link rel="stylesheet" href="css/answerSurvey.css"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+        font-family: 'Nunito', sans-serif;
+        }
+
+        .container {
+        width: 90%;
+        margin: 30px auto;
+        padding: 2%;
+        font-size: 1.2em;
+        }
+
+        #displaySurvey {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 1);
+            padding: 0 0 1.5rem 0;
+            border-radius: 5px;
+            background-image: url("img/undraw_survey.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 5px;
+            background-size: 70%;
+        }
+
+        #displaySurvey h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #displaySurvey h3 {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        #displaySurvey h5 {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        #displaySurvey p {
+            font-size: 1rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        #survey-btn {
+            background-color: #161853;
+            border: 1px solid #161853;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #survey-btn:hover {
+            background-color: #fff;
+            color: #161853;
+        }
+
+        #surveyHead {
+            background-color: rgba(255, 255, 255, 0.93);
+            width: 100%;
+            height: 100%;
+            padding: 12rem;
+            border: none;
+        }
+
+        
+    </style>
     <script>
     // pop up to lgin (MAYBE)
         
@@ -47,7 +127,7 @@
                     $displaySurvRec->execute();
                     $displaySurvey=$displaySurvRec->fetch();
                     echo "<div class='container' id='displaySurvey'>
-                    <div class=' id='surveyHead'>
+                    <div id='surveyHead'>
                         <div> <h1>".$displaySurvey['title']."</h1></div>";
                         if ($displaySurvey['category']=='work' || $displaySurvey['category']=='Work' ){
                             echo"<div> <h3> Category: Work </h3></div>";
