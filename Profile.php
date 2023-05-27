@@ -58,16 +58,18 @@
     .btn-primary {
       background-color: #292C6D/*#161853*/;
       color: #fff;
-      border: 1px solid;
+      border: 1px solid #292C6D;
       border-radius: 5px;
       padding: 6px 10px;
       text-decoration:none;
+      transition: 0.2s;
     }
 
     .btn-primary:hover {
       background-color: #fff;
       color: #292C6D;
       border: 1px solid;
+      transition: 0.2s;
     }
 
     #input-area {
@@ -125,6 +127,27 @@
       margin: 7rem 0 7rem 0;
     }
 
+    #image-file {
+      display: none;
+    }
+
+    .btn-changePicture {
+      background: none;
+      color: #292C6D;
+      border: 1px solid;
+      border-radius: 5px;
+      padding: 4.17px 6px;
+      text-decoration:none;
+      cursor: pointer;
+      margin-bottom: 0.8rem
+    }
+
+    .btn-changePicture:hover {
+      background-color: #292C6D;
+      color:#fff;
+      transition: 0.2s;
+    }
+
   </style>
 
 </head>
@@ -170,13 +193,14 @@
             <div class="row">
               
               <div class="col-10" id="upload-img-div">
-                <label id="profile-label" for="image-file">Update picture</label>
+                <input type="button" class="btn-changePicture" for-="image-file" value="Change Picture" onclick="changePicture()">
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
+                
+                <a class="history btn-primary" href="History.php">View History</a>
+              
               </div>
              
-              <div class="col">
-                <a class="history btn-primary" href="History.php">View History</a>
-              </div>
+              
 
             </div> 
           </div>
@@ -423,5 +447,11 @@
 
   <script src="javascript/Profile.js"></script>
   <script src="javascript/Common(History and Profile).js"></script>
+  <script>
+    function changePicture() {
+      // Display the image-file input
+      document.getElementById("image-file").style.display = "block";
+    }
+  </script>
 </body>
 </html>
