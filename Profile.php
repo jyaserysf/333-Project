@@ -62,12 +62,14 @@
       border-radius: 5px;
       padding: 6px 10px;
       text-decoration:none;
+      transition: 0.2s;
     }
 
     .btn-primary:hover {
       background-color: #fff;
       color: #292C6D;
       border: 1px solid;
+      transition: 0.2s;
     }
 
     #input-area {
@@ -125,6 +127,26 @@
       margin: 7rem 0 7rem 0;
     }
 
+    #image-file {
+      display: none;
+    }
+
+    .btn-changePicture {
+      background: none;
+      color: #292C6D;
+      border: 1px solid;
+      border-radius: 5px;
+      padding: 6px 10px;
+      text-decoration:none;
+      cursor: pointer;
+    }
+
+    .btn-changePicture:hover {
+      background-color: #292C6D;
+      color:#fff;
+      transition: 0.2s;
+    }
+
   </style>
 
 </head>
@@ -170,7 +192,7 @@
             <div class="row">
               
               <div class="col-10" id="upload-img-div">
-                <label id="profile-label" for="image-file">Update picture</label>
+                <input type="button" class="btn-changePicture" for-="image-file" value="Change Picture" onclick="changePicture()">
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
               </div>
              
@@ -423,5 +445,11 @@
 
   <script src="javascript/Profile.js"></script>
   <script src="javascript/Common(History and Profile).js"></script>
+  <script>
+    function changePicture() {
+      // Display the image-file input
+      document.getElementById("image-file").style.display = "block";
+    }
+  </script>
 </body>
 </html>
