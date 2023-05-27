@@ -32,7 +32,7 @@
             background-color: rgba(255, 255, 255, 1);
             padding: 0 0 1.5rem 0;
             border-radius: 5px;
-            background-image: url("img/work_survey.svg");
+            background-image: url("img/work-survey.svg");
             background-repeat: no-repeat;
             background-position: center;
             border-radius: 5px;
