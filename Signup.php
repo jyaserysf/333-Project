@@ -23,8 +23,8 @@ require("test_input.php");
             }
             
             extract($_POST);
-            var_dump($_POST);
-            echo "hi";
+            //var_dump($_POST);
+            //echo "hi";
 
             $username = test_input($username);
             $email = test_input($email);

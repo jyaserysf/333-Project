@@ -22,10 +22,9 @@
             <hr>
         </div>
          
-        <div class="top-display d-flex justify-content-center
-         ">
+        <div class="top-display d-flex justify-content-center row">
             
-            <div class="displaysection d-flex flex-column align-items-center justify-content-center m-5" id="tagline">
+            <div class="displaysection d-flex flex-column align-items-center justify-content-center m-5 col" id="tagline">
              <h1 class=" text-center"> Your <span style="color:#EC255A">No.1 </span> source for surveys and questionnaires </h1>
              <div> 
                 <?php 
@@ -39,7 +38,7 @@
                 }?>
              </div>
             </div>
-            <div class="displaysection flex-grow-2 me-5 p-2" id="displayImg">
+            <div class="displaysection flex-grow-2 me-lg-5 px-3 ms-4 col" id="displayImg">
             <img src="img\Customer Survey-amico.svg" width=450px  >
             </div>
         </div> 
@@ -53,27 +52,9 @@
                 <div class="col-6 mb-5">
                     <h2 class="mb-3"> Explore </h2>
                 </div>
-                <div class="col-6 text-end   position-absolute top-0 end-0 ">
-                    <a type="button" class="btn mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-                        </svg>
-                    </a>
-                    <a type="button" class="btn  mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                    </a>
-                </div>
-                <div class="row"> 
-                <div class="col ">
-                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
-
-                        <div class="carousel-inner">
-                            <!-- this should be done with php -->
+                
                             <?php
-                                echo "<div class='carousel-item active'>
+                                echo "<div class=''> 
                                     <div class='row cardrow'>";
                                          
                                         try{
@@ -82,7 +63,7 @@
                                             $surveysrec->execute();
                                             $surveys=$surveysrec->fetchAll();
                                             $db=null;
-                                            //print_r($surveys);
+                                            $i=0;
                                             foreach($surveys as $surv){
                                                 // create form for button and hidden input then redirect to displaySu
                                             echo "<div class='col-lg-3 col-md-4 col-sm-8 mb-3'>
@@ -99,39 +80,25 @@
                                             
                                                 </div>
                                             </div> ";
+                                                if($i==4)
+                                                break;
+
+                                            $i++;
                                             }
                                     echo "</div>
-                                </div>
+                                </div>";
                             
-                            <div class='carousel-item '>
-                                <div class='row cardrow'>";
+                            
 
-                                 for($i=0; $i<4; $i++){
-                                       echo" <div class='col-lg-3 col-md-4 col-sm-8 mb-3'>
-                                            <div class='card '>
-                                                 
-                                                <div class='card-details'>
-                                                    <p class='text-title'>Card title</p>
-                                                    <p class='text-body'>Here are the details of the card</p>
-                                                </div>
-                                                <form action='displaySurvey.php' method='POST'>
-                                                <input type='hidden' id='surveyID' value='surveyID'>
-                                                <button class='card-button'  name='startSurv' type='submit'>Answer</button>
-                                                </form>
-                                            </div>
-                                        </div>";
-                                         } 
+                                  
 
-                              echo "  </div>
-                            </div>";
+                            
                         }catch(PDOException $e){
                                             
                             die($e->getMessage());
                                         
                             }?>
-                            <!--end of carousel item  -->
-                        </div> <!--end of carousel inner  -->
-                    </div> <!--end of carousel ID  -->
+
                 </div>
                 </div> 
                 <div class="text-end morelink" >

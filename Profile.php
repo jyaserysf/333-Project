@@ -195,9 +195,16 @@
               <div class="col-10" id="upload-img-div">
                 <input type="button" class="btn-changePicture" for-="image-file" value="Change Picture" onclick="changePicture()">
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
+                <?php 
                 
-                <a class="history btn-primary" href="History.php">View History</a>
-              
+                
+                  $keys=array_keys($_SESSION['user']);
+                  $role= $_SESSION['user']["$keys[0]"];
+                  if($role=='user'){
+                    echo " <a class='history btn-primary' href='History.php'>View History</a>";
+                  }
+                
+                ?>
               </div>
              
               

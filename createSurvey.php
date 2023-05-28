@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -347,20 +348,20 @@
         $validation = false;
 
         if (!preg_match($surveyTitlePattern, $surveyTitle))
-            echo "<span style='color:red;font-size:12px;'>Please, enter a valid title !</span>";
+            echo "<span style='color:red;font-size:20px;'>Please, enter a valid title !</span>";
         else if (!preg_match($surveyCatPattern, $surveyCat))
-            echo "<span style='color:red;font-size:12px;'>Please, choose a category !</span>";
+            echo "<span style='color:red;font-size:20px;'>Please, choose a category !</span>";
         else {
             if ($mcqloopcount != 0)
                 $mcqloopcount = $mcqloopcount / 5;
             for ($i = 0; $i < $mcqloopcount; $i++) {
                 if (!preg_match($questionsPattern, $MCQ[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid🧨 question format !</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
                     die();
                 }
                 for ($j = $i + 1; $j < $i + 4; $j++) {
                     if (!preg_match($choicesPattern, $MCQ[$j])) {
-                        echo "<span style='color:red;font-size:12px;'>Please, enter a valid choices format !</span>";
+                        echo "<span style='color:red;font-size:20px;'>Please, enter a valid choices format !</span>";
                         die();
                     }
                 }
@@ -368,25 +369,25 @@
 
             for ($i = 0; $i < $TFQC; $i++) {
                 if (!preg_match($questionsPattern, $TFQ[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ShortC; $i++) {
                 if (!preg_match($questionsPattern, $Short[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ScaleC; $i++) {
                 if (!preg_match($questionsPattern, $Scale[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
                     die();
                 }
             }
             $validation = true;
         }
-        #.....to be continued     
+            
     
 
 
