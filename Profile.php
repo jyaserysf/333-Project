@@ -196,7 +196,15 @@
                 <input type="button" class="btn-changePicture" for-="image-file" value="Change Picture" onclick="changePicture()">
                 <input type="file" accept="image/jpeg, image/png, image/jpg" id="image-file" class="form-control w-75">
                 
-                <a class="history btn-primary" href="History.php">View History</a>
+                <?php
+                
+                if($_SESSION['user'][key($_SESSION['user'])]!='admin')
+                {
+                    echo "<a class='history btn-primary' href='History.php'>View History</a>";
+                }
+                
+                ?>
+                
               
               </div>
              

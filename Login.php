@@ -23,10 +23,9 @@ elseif(isset($_COOKIE['remember_me'])) {
         echo $e->getMessage();
     }
 }
-
 elseif(isset($_POST['login'])) {
+$msg='';
     extract($_POST);
-    $msg='';
     require("test_input.php");
     $username = strtolower(test_input($username));
     $password = test_input($password);
@@ -134,8 +133,9 @@ elseif(isset($_POST['login'])) {
     
                             <input type="submit" value="Login" name="login" class="login-btn">
                             <?php
-                            if($msg!='')
+                            if(isset($msg))
                             {
+                                if($msg!='')
                                 echo "<h5 style='color:red;'>$msg<h5>";
                             }
                             ?>
