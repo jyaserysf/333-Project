@@ -12,7 +12,7 @@
     <li>Admin:</li>
     <ul>
         <li>Username: sahmed</li>
-        <li>Password: abc123</li>
+        <li>Password: Admin#2002</li>
     </ul>
     <li>Users:</li>
     <ul>

@@ -341,14 +341,14 @@
         $ShortC = isset($_POST['Short'])?count($Short):0;
         $ScaleC = isset($_POST['Scale'])?count($Scale):0;
 
-        $surveyTitlePattern = "/^[a-z]{3,20}(\s{1}[a-z]{3,20}){0,5}$/i";
+        $surveyTitlePattern = "/^[a-z0-9\s]{5,50}$/i";
         $surveyCatPattern = "/^(work|student)$/";
         $questionsPattern = "/^[a-z0-9\?\s]{3,100}$/i";
         $choicesPattern = "/^[a-z0-9 ]{1,50}$/i";
         $validation = false;
 
         if (!preg_match($surveyTitlePattern, $surveyTitle))
-            echo "<span style='color:red;font-size:20px;'>Please, enter a valid title !</span>";
+            echo "<span style='color:red;font-size:12px;'>The title must be at least 5 characters and not exceeding 50 characters !</span>";
         else if (!preg_match($surveyCatPattern, $surveyCat))
             echo "<span style='color:red;font-size:20px;'>Please, choose a category !</span>";
         else {
@@ -356,12 +356,12 @@
                 $mcqloopcount = $mcqloopcount / 5;
             for ($i = 0; $i < $mcqloopcount; $i++) {
                 if (!preg_match($questionsPattern, $MCQ[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters) !</span>";
                     die();
                 }
                 for ($j = $i + 1; $j < $i + 4; $j++) {
                     if (!preg_match($choicesPattern, $MCQ[$j])) {
-                        echo "<span style='color:red;font-size:20px;'>Please, enter a valid choices format !</span>";
+                        echo "<span style='color:red;font-size:12px;'>Please, enter a valid choices format (do not include special characters) !</span>";
                         die();
                     }
                 }
@@ -369,19 +369,19 @@
 
             for ($i = 0; $i < $TFQC; $i++) {
                 if (!preg_match($questionsPattern, $TFQ[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters)!</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ShortC; $i++) {
                 if (!preg_match($questionsPattern, $Short[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters)!</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ScaleC; $i++) {
                 if (!preg_match($questionsPattern, $Scale[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format !</span>";
+                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters)!</span>";
                     die();
                 }
             }
@@ -390,6 +390,7 @@
             
     
 
+          
 
         if ($validation)
             try {
