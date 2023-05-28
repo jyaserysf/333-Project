@@ -356,12 +356,12 @@
                 $mcqloopcount = $mcqloopcount / 5;
             for ($i = 0; $i < $mcqloopcount; $i++) {
                 if (!preg_match($questionsPattern, $MCQ[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters) !</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters) !</span>";
                     die();
                 }
                 for ($j = $i + 1; $j < $i + 4; $j++) {
                     if (!preg_match($choicesPattern, $MCQ[$j])) {
-                        echo "<span style='color:red;font-size:12px;'>Please, enter a valid choices format (do not include special characters) !</span>";
+                        echo "<span style='color:red;font-size:20px;'>Please, enter a valid choices format (do not include special characters) !</span>";
                         die();
                     }
                 }
@@ -369,19 +369,19 @@
 
             for ($i = 0; $i < $TFQC; $i++) {
                 if (!preg_match($questionsPattern, $TFQ[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters)!</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters)!</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ShortC; $i++) {
                 if (!preg_match($questionsPattern, $Short[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters)!</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters)!</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ScaleC; $i++) {
                 if (!preg_match($questionsPattern, $Scale[$i])) {
-                    echo "<span style='color:red;font-size:12px;'>Please, enter a valid question format (do not include special characters)!</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters)!</span>";
                     die();
                 }
             }
