@@ -26,6 +26,7 @@ elseif(isset($_COOKIE['remember_me'])) {
 
 elseif(isset($_POST['login'])) {
     extract($_POST);
+    $msg='';
     require("test_input.php");
     $username = strtolower(test_input($username));
     $password = test_input($password);
@@ -44,11 +45,12 @@ elseif(isset($_POST['login'])) {
                 die();
             }
             else {
-                echo "Invalid username or password";
+                $msg= "Invalid username or password";
             }
         }
         else {
-            echo "Invalid username or password";
+            $msg= "Invalid username or password";
+
         }
         $db=null;
     }
@@ -93,7 +95,6 @@ elseif(isset($_POST['login'])) {
                         </div>
     
                         <div class="actual-form">
-                            
                             <div class="input-area">
                                 <input
                                     type="text"
@@ -102,8 +103,9 @@ elseif(isset($_POST['login'])) {
                                     class="input-field"
                                     autocomplete="off"
                                     required
+                                    value=<?php if(isset($_POST['username'])){echo $_POST['username']; /*movelabel*/}?>
                                 >
-                                <label>User Name</label>
+                                <label class='un'>User Name</label>
                             </div>
     
                             <div class="input-area">
@@ -114,8 +116,9 @@ elseif(isset($_POST['login'])) {
                                     class="input-field"
                                     autocomplete="off"
                                     required
+                                    value=<?php if(isset($_POST['password'])){echo $_POST['password']; /*movelabel*/}?>
                                 >
-                                <label>Password</label>
+                                <label class='ps' >Password</label>
                             </div>
     
                             <div class="input-area" id="rememberMeBtn">
@@ -130,6 +133,12 @@ elseif(isset($_POST['login'])) {
                             </div>
     
                             <input type="submit" value="Login" name="login" class="login-btn">
+                            <?php
+                            if($msg!='')
+                            {
+                                echo "<h5 style='color:red;'>$msg<h5>";
+                            }
+                            ?>
     
                             <p class="text">
                                 Forgotten your password?
@@ -186,5 +195,8 @@ elseif(isset($_POST['login'])) {
     
     <!-- Javascript file -->
     <script src="javascript/Login.js"></script>
+
+
+
 </body>
 </html>
