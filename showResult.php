@@ -68,6 +68,10 @@
                                 </div>
                                 </div>";
                             }
+
+                            if($survey['numResponses']>0){
+
+                            
                                 // get question details
                                 $questionDetailRec=$db->prepare("SELECT questions.* FROM questions WHERE SurveyID=:sID");
                                 $questionDetailRec->bindParam(':sID', $srvID);
@@ -219,7 +223,7 @@
                                 }
                                 $qNo++;
                             }
-                        
+                        }
 
                          
                     }

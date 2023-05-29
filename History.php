@@ -15,6 +15,11 @@
 <body>
     
     <div id="header"> <?php include 'header.php'?> </div>
+    <?php if(!isset($_SESSION['user'])){
+        ?><script>
+        window.location.href = "Login.php";
+        </script><?php
+    }?>
     <!-- Page content in this container -->
     <div class="cointainer" id="main">
     <div class="container">

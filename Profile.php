@@ -156,6 +156,12 @@
   <div id="header"> 
     <?php include 'header.php';
 
+if(!isset($_SESSION['user'])){
+  ?><script>
+  window.location.href = "Login.php";
+  </script><?php
+}
+
     try { 
       require('database/connection.php');
       $sql=$db->prepare('select * from users where username=?');

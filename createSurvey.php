@@ -123,6 +123,11 @@
     <div id="header">
         <?php include 'header.php' ?>
     </div>
+    <?php if(!isset($_SESSION['user'])){
+        ?><script>
+        window.location.href = "Login.php";
+        </script><?php
+    }?>
     <div class="container" id="main">
         <div class="inner-container col-lg-8">
             <form class="form-horizontal" id="form1" method='post'>
@@ -343,8 +348,8 @@
 
         $surveyTitlePattern = "/^[a-z0-9\s]{5,50}$/i";
         $surveyCatPattern = "/^(work|student)$/";
-        $questionsPattern = "/^[a-z0-9\?\s]{3,100}$/i";
-        $choicesPattern = "/^[a-z0-9 ]{1,50}$/i";
+        $questionsPattern = "/^[a-z0-9\?\s\,\:\-]{3,100}$/i";
+        $choicesPattern = "/^[a-z0-9\-\s\?\:\,]{1,50}$/i";
         $validation = false;
 
         if (!preg_match($surveyTitlePattern, $surveyTitle))
@@ -356,7 +361,7 @@
                 $mcqloopcount = $mcqloopcount / 5;
             for ($i = 0; $i < $mcqloopcount; $i++) {
                 if (!preg_match($questionsPattern, $MCQ[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters) !</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format for MCQ (do not include special characters) !</span>";
                     die();
                 }
                 for ($j = $i + 1; $j < $i + 4; $j++) {
@@ -369,19 +374,19 @@
 
             for ($i = 0; $i < $TFQC; $i++) {
                 if (!preg_match($questionsPattern, $TFQ[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters)!</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format for T/F (do not include special characters)!</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ShortC; $i++) {
                 if (!preg_match($questionsPattern, $Short[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters)!</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format for short answer (do not include special characters)!</span>";
                     die();
                 }
             }
             for ($i = 0; $i < $ScaleC; $i++) {
                 if (!preg_match($questionsPattern, $Scale[$i])) {
-                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format (do not include special characters)!</span>";
+                    echo "<span style='color:red;font-size:20px;'>Please, enter a valid question format for scale (do not include special characters)!</span>";
                     die();
                 }
             }
@@ -397,7 +402,7 @@
                 $totalQuestions = $mcqloopcount + $ScaleC + $ShortC + $TFQC;
                 require('database/connection.php');
                 $db->beginTransaction();
-                $stmt = $db->prepare("INSERT INTO surveys VALUES(NULL, DEFAULT, ?, NOW(), ?, ?, ?)");
+                $stmt = $db->prepare("INSERT INTO surveys VALUES(NULL, ?, DEFAULT, NOW(), ?, ?, ?)");
                 $stmt->execute(array($totalQuestions, $surveyTitle, $surveyDesc, $surveyCat));
                 $lastSurvey = $db->lastInsertId();
                 $stmt1 = $db->prepare("INSERT INTO questions VALUES(NULL,?,?,$lastSurvey)");
