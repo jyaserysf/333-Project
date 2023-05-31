@@ -227,7 +227,8 @@ require("test_input.php");
     
     <script src="javascript/Login.js"></script>
     <script>
-            window.addEventListener('DOMContentLoaded', function() {
+            window.addEventListener('DOMContentLoaded', function() 
+            {
 
                 const form =document.getElementById('form');
                 //console.log(form);
@@ -274,25 +275,25 @@ require("test_input.php");
 
 
 
-/*                 
-                function checkRequired(userinputARR){
-                let error=0;
-                userinputARR.forEach(function(input){
+                     
+                // function checkRequired(userinputARR){
+                // let error=0;
+                // userinputARR.forEach(function(input){
 
-                    if(input.value.trim() === ''){
+                //     if(input.value.trim() === ''){
 
-                            showError(input, `${getFieldName(input)} is required `);
-                            ++error;
+                //             showError(input, `${getFieldName(input)} is required `);
+                //             ++error;
                            
-                    }else{
-                         showSuccess(input); 
+                //     }else{
+                //          showSuccess(input); 
                        
-                    }
+                //     }
 
-                });
-                    return error;
-                }
- */
+                // });
+                //     return error;
+                // }
+      
                 
                 
               
@@ -371,26 +372,14 @@ require("test_input.php");
 
                 //event listener for submit 
 
-               
-                
-
-                
-
-                
 
                 //get field name 
 
-               
-
                 //check input length 
 
-                
-
                 //check if email is valid
-
-
-                
-            });
+   
+        });
             
     </script>
 

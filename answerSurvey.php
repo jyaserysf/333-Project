@@ -18,7 +18,7 @@
        
         //session_start(); # open it later to prevent the user to come without premission to profile page (should be added most to all pages)
         if(!isset($_SESSION['user'])) {
-            // js popup
+            
             ?><script>
                     window.location.href = "Login.php";
             </script>
